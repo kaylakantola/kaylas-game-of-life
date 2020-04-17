@@ -1,0 +1,15 @@
+{
+  "name": "kaylas-game-of-life",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Kayla Kantola <kkantola@trhc.com> (https://git.carekinesis.net/KKantola)",
+  "license": "MIT",
+  "devDependencies": {
+    "parcel": "^2.0.0-alpha.3.2"
+  }
+}
