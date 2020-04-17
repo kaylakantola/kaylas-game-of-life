@@ -6,14 +6,12 @@
     "> 0.2%",
     "not dead"
   ],
-  "source": "src/index.html",
+  "main": "src/index.html",
   "engines": {
     "node": ">=10.x"
   },
   "scripts": {
-    "dev": "parcel src/index.html",
-    "build": "parcel build src/index.html",
-    "start": "parcel serve dist/index.html"
+    "start": "parcel index.html"
   },
   "keywords": [
     "parcel",
@@ -32,6 +30,7 @@
   "author": "Kayla Kantola <kkantola@trhc.com> (https://git.carekinesis.net/KKantola)",
   "license": "MIT",
   "devDependencies": {
+    "@babel/core": "^7.9.0",
     "@babel/preset-env": "^7.9.5",
     "@babel/preset-react": "^7.9.4",
     "parcel": "^2.0.0-alpha.3.2",
