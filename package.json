@@ -2,33 +2,9 @@
   "name": "kaylas-game-of-life",
   "version": "1.0.0",
   "description": "WIP Conway's Game of Life",
-  "browserslist": [
-    "> 0.2%",
-    "not dead"
-  ],
-  "main": "src/index.html",
-  "engines": {
-    "node": ">=10.x"
-  },
   "scripts": {
-    "start": "parcel index.html"
+    "start": "parcel src/index.html"
   },
-  "keywords": [
-    "parcel",
-    "react",
-    "javascript",
-    "jsx",
-    "component",
-    "conway",
-    "conwaysgameoflife",
-    "conways",
-    "game",
-    "life",
-    "automata",
-    "colors"
-  ],
-  "author": "Kayla Kantola <kkantola@trhc.com> (https://git.carekinesis.net/KKantola)",
-  "license": "MIT",
   "devDependencies": {
     "@babel/core": "^7.9.0",
     "@babel/preset-env": "^7.9.5",
@@ -39,5 +15,8 @@
   "dependencies": {
     "react": "^16.13.1",
     "react-dom": "^16.13.1"
-  }
+  },
+  "author": "Kayla Kantola <kkantola@trhc.com> (https://git.carekinesis.net/KKantola)",
+  "license": "MIT",
+  "keywords": []
 }
