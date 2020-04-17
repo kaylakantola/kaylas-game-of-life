@@ -2,20 +2,18 @@
   "name": "kaylas-game-of-life",
   "version": "1.0.0",
   "description": "WIP Conway's Game of Life",
-  "main": "dist/main/index.js",
-  "module": "dist/module/index.js",
-  "browser": "dist/browser/index.js",
   "browserslist": [
     "> 0.2%",
     "not dead"
   ],
-  "source": [
-    "src/index.js",
-    "src/index.html"
-  ],
+  "source": "src/index.html",
+  "engines": {
+    "node": ">=10.x"
+  },
   "scripts": {
-    "build": "parcel build index.js",
-    "start": "parcel serve index.js"
+    "dev": "parcel src/index.html",
+    "build": "parcel build src/index.html",
+    "start": "parcel serve dist/index.html"
   },
   "keywords": [
     "parcel",
