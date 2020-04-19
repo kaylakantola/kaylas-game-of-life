@@ -8,7 +8,22 @@ const createGenerations = (table) => {
     const lastGen = t;
     const newGen = t.map((row, rowIdx) =>
       row.map((cell, cellIdx) => {
-        console.log({ cell });
+        const topRowIdx = rowIdx + 1;
+        const btmRowIdx = rowIdx - 1;
+        const leftIdx = cellIdx - 1;
+        const rightIdx = cellIdx + 1;
+
+        const topRow = rows[topRowIdx];
+        const bottomRow = rows[btmRowIdx];
+
+        const topLeft = topRow[leftIdx];
+        const top = topRow[cellIdx];
+        const topRight = topRow[rightIdx];
+        const left = row[leftIdx];
+        const right = row[rightIdx];
+        const bottomLeft = bottomRow[leftIdx];
+        const bottom = bottomRow[cellIdx];
+        const bottomRight = bottomRow[rightIdx];
       })
     );
     gens.push(newGen);
