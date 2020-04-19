@@ -29,7 +29,7 @@ const App = () => {
       <h1>Kayla's Game of Life</h1>
       {!seeding && (
         <h2>
-          Generation: {gen}/{maxGens}
+          Generation: {gen}/{generations.length - 1}
         </h2>
       )}
       {seeding && <h2>Select some squares to start, then click play.</h2>}
@@ -56,61 +56,10 @@ const App = () => {
           />
         )}
         {!seeding && (
-          <GameBoard
-            generations={generations}
-            gen={gen}
-            setGen={setGen}
-            maxGens={maxGens}
-          />
+          <GameBoard generations={generations} gen={gen} setGen={setGen} />
         )}
       </BoardWrapper>
     </div>
   );
 };
 export default App;
-
-/*
-const [rows, setRows] = useState([]);
-const [generations, setGenerations] = useState(0);
-const [gameActive, setGameActive] = useState(false);
-const formData = useForm();
-
-const genRows = () => {
-  const rows = generateRows(formData);
-  setRows(rows);
-  setGenerations(1);
-};
-
-const startGame = (v) => {
-  setGameActive(v);
-  if (!v) {
-    formData.resetForm();
-  }
-};
-
-const handleNext = () =>
-  nextGeneration({
-    rows,
-    setRows,
-    generations,
-    setGenerations,
-    formData,
-  });
-
-
-  {!gameActive && <Form formData={formData} />}
-  {gameActive && <Decisions formData={formData} />}
-  <Button
-    gameActive={gameActive}
-    startGame={startGame}
-    rows={rows}
-    genRows={genRows}
-  />
-  {gameActive && <button onClick={() => handleNext()}>next</button>}
-  <Gameboard
-    cellInfo={{ ...formData }}
-    rows={rows}
-    setRows={setRows}
-    gameActive={gameActive}
-  />
-*/

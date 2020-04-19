@@ -28435,8 +28435,11 @@ var GameBoard = function GameBoard(_ref) {
   var generations = _ref.generations,
       gen = _ref.gen,
       setGen = _ref.setGen;
+  console.log({
+    generations: generations
+  });
   (0, _react.useEffect)(function () {
-    if (gen - 1 === generations.length) {
+    if (gen + 1 < generations.length) {
       setTimeout(function () {
         return setGen(gen + 1);
       }, 1000);
@@ -45933,7 +45936,7 @@ var App = function App() {
     }
   };
 
-  return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("h1", null, "Kayla's Game of Life"), !seeding && /*#__PURE__*/_react.default.createElement("h2", null, "Generation: ", gen, "/", maxGens), seeding && /*#__PURE__*/_react.default.createElement("h2", null, "Select some squares to start, then click play."), /*#__PURE__*/_react.default.createElement("div", {
+  return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("h1", null, "Kayla's Game of Life"), !seeding && /*#__PURE__*/_react.default.createElement("h2", null, "Generation: ", gen, "/", generations.length - 1), seeding && /*#__PURE__*/_react.default.createElement("h2", null, "Select some squares to start, then click play."), /*#__PURE__*/_react.default.createElement("div", {
     role: "button",
     onClick: toggleBtn,
     style: {
@@ -45951,58 +45954,11 @@ var App = function App() {
   }), !seeding && /*#__PURE__*/_react.default.createElement(_GameBoard.GameBoard, {
     generations: generations,
     gen: gen,
-    setGen: setGen,
-    maxGens: maxGens
+    setGen: setGen
   })));
 };
 
 var _default = App;
-/*
-const [rows, setRows] = useState([]);
-const [generations, setGenerations] = useState(0);
-const [gameActive, setGameActive] = useState(false);
-const formData = useForm();
-
-const genRows = () => {
-  const rows = generateRows(formData);
-  setRows(rows);
-  setGenerations(1);
-};
-
-const startGame = (v) => {
-  setGameActive(v);
-  if (!v) {
-    formData.resetForm();
-  }
-};
-
-const handleNext = () =>
-  nextGeneration({
-    rows,
-    setRows,
-    generations,
-    setGenerations,
-    formData,
-  });
-
-
-  {!gameActive && <Form formData={formData} />}
-  {gameActive && <Decisions formData={formData} />}
-  <Button
-    gameActive={gameActive}
-    startGame={startGame}
-    rows={rows}
-    genRows={genRows}
-  />
-  {gameActive && <button onClick={() => handleNext()}>next</button>}
-  <Gameboard
-    cellInfo={{ ...formData }}
-    rows={rows}
-    setRows={setRows}
-    gameActive={gameActive}
-  />
-*/
-
 exports.default = _default;
 },{"react":"../node_modules/react/index.js","./BoardWrapper":"BoardWrapper/index.js","./GameBoard":"GameBoard/index.js","./SeedTable":"SeedTable/index.js","./initial-table":"initial-table.json","./lib":"lib/index.js"}],"index.js":[function(require,module,exports) {
 "use strict";
@@ -46044,7 +46000,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56448" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59973" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
