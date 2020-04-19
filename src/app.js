@@ -1,64 +1,108 @@
 import React, { useState } from "react";
 import { BoardWrapper } from "./BoardWrapper";
-import { GameBoard } from "./GameBoard";
+import { Button } from "./Button";
+import { CreateTable } from "./CreateTable";
 import { SeedTable } from "./SeedTable";
-import initialTable from "./initial-table";
-import { createGenerations } from "./lib";
+import { GameBoard } from "./GameBoard";
+
+import { createGenerations, createInitialTable } from "./lib";
 
 const App = () => {
-  const maxGens = 25;
-  const [table, setTable] = useState(initialTable);
+  const [step, setStep] = useState("initialize");
+
+  const [maxGens, setMaxGens] = useState(25);
+  const [tableN, setTableN] = useState(25);
+  const [initialTable, setInitialTable] = useState([]);
+
+  const [table, setTable] = useState([]);
   const [generations, setGenerations] = useState([]);
   const [gen, setGen] = useState(0);
-  const [seeding, setSeeding] = useState(true);
 
-  const toggleBtn = () => {
-    if (seeding) {
-      setSeeding(false);
-      const gens = createGenerations({ table, maxGens });
-      setGenerations(gens);
-    } else {
-      setTable(initialTable);
-      setGenerations([]);
-      setSeeding(true);
+  const createTable = () => {
+    const iT = createInitialTable(tableN);
+    setInitialTable(iT);
+    setStep("seed");
+  };
+
+  const setSeeds = () => {
+    const gens = createGenerations({ table, maxGens });
+    setGenerations(gens);
+    setStep("play");
+  };
+
+  const resetTable = () => {
+    setMaxGens(25);
+    setTableN(25);
+    setInitialTable([]);
+    setTable([]);
+    setGenerations([]);
+    setGen(0);
+    setStep("initialize");
+  };
+
+  const renderHeader = () => {
+    switch (step) {
+      case "initialize":
+        return <h2>Pick your starter values.</h2>;
+      case "seed":
+        return <h2>Select some squares to start, then click play.</h2>;
+      case "play":
+        return (
+          <h2>
+            Generation: {gen}/{generations.length - 1}
+          </h2>
+        );
     }
   };
 
+  const renderButton = () => {
+    switch (step) {
+      case "initialize":
+        return <Button onClick={() => createTable()} text="Create Board" />;
+      case "seed":
+        return <Button onClick={() => setSeeds()} text="Play Game" />;
+      case "play":
+        return <Button onClick={() => resetTable()} text="Reset Board" />;
+      default:
+        return <Button onClick={() => resetTable()} text="Reset Board" />;
+    }
+  };
+
+  const renderBoard = () => {
+    switch (step) {
+      case "initialize":
+        return (
+          <CreateTable
+            setMaxGens={setMaxGens}
+            setTableN={setTableN}
+            maxGens={maxGens}
+            tableN={tableN}
+          />
+        );
+      case "seed":
+        return <SeedTable table={table} setTable={setTable} />;
+      case "play":
+        return (
+          <GameBoard generations={generations} gen={gen} setGen={setGen} />
+        );
+
+      default:
+        return (
+          <CreateTable
+            setMaxGens={setMaxGens}
+            setTableN={setTableN}
+            maxGens={maxGens}
+            tableN={tableN}
+          />
+        );
+    }
+  };
   return (
     <div>
       <h1>Kayla's Game of Life</h1>
-      {!seeding && (
-        <h2>
-          Generation: {gen}/{generations.length - 1}
-        </h2>
-      )}
-      {seeding && <h2>Select some squares to start, then click play.</h2>}
-      <div
-        role="button"
-        onClick={toggleBtn}
-        style={{
-          height: "50px",
-          width: "100px",
-          border: "1px solid green",
-          margin: "1rem",
-          cursor: "pointer",
-        }}
-      >
-        {seeding ? "Play" : "Reset"}
-      </div>
-      <BoardWrapper>
-        {seeding && (
-          <SeedTable
-            setSeeding={setSeeding}
-            setGenerations={setGenerations}
-            table={table}
-            setTable={setTable}
-          />
-        )}
-        {!seeding && (
-          <GameBoard generations={generations} gen={gen} setGen={setGen} />
-        )}
-      </BoardWrapper>
+      {renderHeader()}
+      {renderButton()}
+      <BoardWrapper>{renderBoard()}</BoardWrapper>
     </div>
   );
 };

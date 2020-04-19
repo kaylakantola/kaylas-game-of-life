@@ -3,7 +3,7 @@ import { update } from "ramda";
 import { Row } from "../Row";
 import { SeedCell } from "../SeedCell";
 
-const SeedTable = ({ setSeeding, setGenerations, table, setTable }) => {
+const SeedTable = ({ table, setTable }) => {
   const setCell = ({ alive, rowIdx, cellIdx }) => {
     const row = table[rowIdx];
     const newRow = update(cellIdx, { alive }, row);

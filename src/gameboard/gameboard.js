@@ -3,7 +3,6 @@ import { Row } from "../Row";
 import { Cell } from "../Cell";
 
 const GameBoard = ({ generations, gen, setGen }) => {
-  console.log({ generations });
   useEffect(() => {
     if (gen + 1 < generations.length) {
       setTimeout(() => setGen(gen + 1), 1000);
