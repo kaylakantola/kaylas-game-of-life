@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-
+import { BoardWrapper } from "./BoardWrapper";
 import { GameBoard } from "./GameBoard";
 import { SeedTable } from "./SeedTable";
 
@@ -8,8 +8,10 @@ const App = () => {
   return (
     <div>
       <h1>Kayla's Game of Life</h1>
-      {seeding && <SeedTable setSeeding={setSeeding} />}
-      {!seeding && <GameBoard />}
+      <BoardWrapper>
+        {seeding && <SeedTable setSeeding={setSeeding} />}
+        {!seeding && <GameBoard />}
+      </BoardWrapper>
     </div>
   );
 };
