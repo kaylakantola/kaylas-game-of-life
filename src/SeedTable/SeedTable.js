@@ -2,11 +2,8 @@ import React, { useState, useEffect } from "react";
 import { update } from "ramda";
 import { Row } from "../Row";
 import { SeedCell } from "../SeedCell";
-import initialTable from "./initial-table";
 
-const SeedTable = ({ setSeeding, setGenerations }) => {
-  const [table, setTable] = useState(initialTable);
-
+const SeedTable = ({ setSeeding, setGenerations, table, setTable }) => {
   const setCell = ({ alive, rowIdx, cellIdx }) => {
     const row = table[rowIdx];
     const newRow = update(cellIdx, { alive }, row);

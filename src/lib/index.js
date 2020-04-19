@@ -1,3 +1,1 @@
-export { default as generateRows } from "./generate-rows";
-export { default as nextGeneration } from "./next-generation";
-export { default as updateCell } from "./update-cell";
+export { default as createGenerations } from "./create-generations";

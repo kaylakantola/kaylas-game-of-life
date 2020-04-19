@@ -45447,7 +45447,92 @@ Object.defineProperty(exports, "SeedCell", {
 var _SeedCell = _interopRequireDefault(require("./SeedCell"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-},{"./SeedCell":"SeedCell/SeedCell.js"}],"SeedTable/initial-table.json":[function(require,module,exports) {
+},{"./SeedCell":"SeedCell/SeedCell.js"}],"SeedTable/SeedTable.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _react = _interopRequireWildcard(require("react"));
+
+var _ramda = require("ramda");
+
+var _Row = require("../Row");
+
+var _SeedCell = require("../SeedCell");
+
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+var SeedTable = function SeedTable(_ref) {
+  var setSeeding = _ref.setSeeding,
+      setGenerations = _ref.setGenerations,
+      table = _ref.table,
+      setTable = _ref.setTable;
+
+  var setCell = function setCell(_ref2) {
+    var alive = _ref2.alive,
+        rowIdx = _ref2.rowIdx,
+        cellIdx = _ref2.cellIdx;
+    var row = table[rowIdx];
+    var newRow = (0, _ramda.update)(cellIdx, {
+      alive: alive
+    }, row);
+    var newTable = (0, _ramda.update)(rowIdx, newRow, table);
+    setTable(newTable);
+  };
+
+  return /*#__PURE__*/_react.default.createElement("div", {
+    style: {
+      width: "100%",
+      height: "100%",
+      display: "flex",
+      flexDirection: "column"
+    }
+  }, table.map(function (row, rowIdx) {
+    return /*#__PURE__*/_react.default.createElement(_Row.Row, {
+      key: rowIdx
+    }, row.map(function (cell, cellIdx) {
+      return /*#__PURE__*/_react.default.createElement(_SeedCell.SeedCell, {
+        key: cellIdx,
+        cell: _objectSpread({}, cell, {
+          rowIdx: rowIdx,
+          cellIdx: cellIdx
+        }),
+        setCell: setCell
+      });
+    }));
+  }));
+};
+
+var _default = SeedTable;
+exports.default = _default;
+},{"react":"../node_modules/react/index.js","ramda":"../node_modules/ramda/es/index.js","../Row":"Row/index.js","../SeedCell":"SeedCell/index.js"}],"SeedTable/index.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+Object.defineProperty(exports, "SeedTable", {
+  enumerable: true,
+  get: function () {
+    return _SeedTable.default;
+  }
+});
+
+var _SeedTable = _interopRequireDefault(require("./SeedTable"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+},{"./SeedTable":"SeedTable/SeedTable.js"}],"initial-table.json":[function(require,module,exports) {
 module.exports = [[{
   "alive": false
 }, {
@@ -65449,7 +65534,7 @@ module.exports = [[{
 }, {
   "alive": false
 }]];
-},{}],"SeedTable/SeedTable.js":[function(require,module,exports) {
+},{}],"lib/generate-rows.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -65457,21 +65542,36 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 
-var _react = _interopRequireWildcard(require("react"));
-
 var _ramda = require("ramda");
 
-var _Row = require("../Row");
+var generateRows = function generateRows(_ref) {
+  var nRows = _ref.nRows,
+      nColumns = _ref.nColumns;
+  var rowArr = (0, _ramda.range)(0, nRows);
+  var colArr = (0, _ramda.range)(0, nColumns);
+  var rows = rowArr.map(function (r, rowIdx) {
+    return colArr.map(function (col, colIdx) {
+      return {
+        alive: false,
+        rowIdx: rowIdx,
+        colIdx: colIdx
+      };
+    });
+  });
+  return rows;
+};
 
-var _SeedCell = require("../SeedCell");
+var _default = generateRows;
+exports.default = _default;
+},{"ramda":"../node_modules/ramda/es/index.js"}],"lib/next-generation.js":[function(require,module,exports) {
+"use strict";
 
-var _initialTable = _interopRequireDefault(require("./initial-table"));
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
-
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+var _ramda = require("ramda");
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
@@ -65479,81 +65579,135 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
-
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(n); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
-function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
-
-function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-
-var SeedTable = function SeedTable(_ref) {
-  var setSeeding = _ref.setSeeding,
-      setGenerations = _ref.setGenerations;
-
-  var _useState = (0, _react.useState)(_initialTable.default),
-      _useState2 = _slicedToArray(_useState, 2),
-      table = _useState2[0],
-      setTable = _useState2[1];
-
-  var setCell = function setCell(_ref2) {
-    var alive = _ref2.alive,
-        rowIdx = _ref2.rowIdx,
-        cellIdx = _ref2.cellIdx;
-    var row = table[rowIdx];
-    var newRow = (0, _ramda.update)(cellIdx, {
-      alive: alive
-    }, row);
-    var newTable = (0, _ramda.update)(rowIdx, newRow, table);
-    setTable(newTable);
+var nextGeneration = function nextGeneration(_ref) {
+  var rows = _ref.rows,
+      setRows = _ref.setRows,
+      generations = _ref.generations,
+      setGenerations = _ref.setGenerations,
+      formData = _ref.formData;
+  var nColumns = formData.nColumns,
+      nRows = formData.nRows;
+  var cols = (0, _ramda.range)(0, nColumns);
+  var deadRow = cols.map(function (col) {
+    return deadCell;
+  });
+  var deadCell = {
+    alive: false
   };
+  var newRows = rows.map(function (row, rowIdx) {
+    var lastRowIdx = rowIdx - 1;
+    var nextRowIdx = rowIdx + 1;
+    var lastRow = (0, _ramda.isNil)(rows[lastRowIdx]) ? deadRow : rows[lastRowIdx];
+    var nextRow = (0, _ramda.isNil)(rows[nextRowIdx]) ? deadRow : rows[nextRowIdx];
+    var newCells = row.map(function (cell, cellIdx) {
+      var lastCellIdx = cellIdx - 1;
+      var nextCellIdx = cellIdx + 1;
+      var leftTop = (0, _ramda.isNil)(lastRow[lastCellIdx]) ? deadCell : lastRow[lastCellIdx];
+      var top = (0, _ramda.isNil)(lastRow[cellIdx]) ? deadCell : lastRow[cellIdx];
+      var rightTop = (0, _ramda.isNil)(lastRow[nextCellIdx]) ? deadCell : lastRow[nextCellIdx];
+      var left = (0, _ramda.isNil)(row[lastCellIdx]) ? deadCell : row[lastCellIdx];
+      var right = (0, _ramda.isNil)(row[nextCellIdx]) ? deadCell : row[nextCellIdx];
+      var leftBottom = (0, _ramda.isNil)(nextRow[lastCellIdx]) ? deadCell : nextRow[lastCellIdx];
+      var bottom = (0, _ramda.isNil)(nextRow[cellIdx]) ? deadCell : nextRow[cellIdx];
+      var rightBottom = (0, _ramda.isNil)(nextRow[nextCellIdx]) ? deadCell : nextRow[nextCellIdx];
+      var neighbors = [leftTop, top, rightTop, left, right, leftBottom, bottom, rightBottom];
+      var livingNeighbors = (0, _ramda.filter)(function (n) {
+        return n.alive;
+      }, neighbors).length;
 
-  return /*#__PURE__*/_react.default.createElement("div", {
-    style: {
-      width: "100%",
-      height: "100%",
-      display: "flex",
-      flexDirection: "column"
-    }
-  }, table.map(function (row, rowIdx) {
-    return /*#__PURE__*/_react.default.createElement(_Row.Row, {
-      key: rowIdx
-    }, row.map(function (cell, cellIdx) {
-      return /*#__PURE__*/_react.default.createElement(_SeedCell.SeedCell, {
-        key: cellIdx,
-        cell: _objectSpread({}, cell, {
-          rowIdx: rowIdx,
-          cellIdx: cellIdx
-        }),
-        setCell: setCell
-      });
-    }));
-  }));
+      if (cell.alive) {
+        if (livingNeighbors === 2 || livingNeighbors === 3) {
+          return cell;
+        } else {
+          var dead = _objectSpread({}, cell, {
+            alive: false
+          });
+
+          return dead;
+        }
+      } else {
+        if (livingNeighbors === 3) {
+          var alive = _objectSpread({}, cell, {
+            alive: true
+          });
+
+          return alive;
+        } else {
+          return cell;
+        }
+      }
+    });
+    return newCells;
+  });
+  setRows(newRows);
+  setGenerations(generations + 1);
 };
 
-var _default = SeedTable;
+var _default = nextGeneration;
 exports.default = _default;
-},{"react":"../node_modules/react/index.js","ramda":"../node_modules/ramda/es/index.js","../Row":"Row/index.js","../SeedCell":"SeedCell/index.js","./initial-table":"SeedTable/initial-table.json"}],"SeedTable/index.js":[function(require,module,exports) {
+},{"ramda":"../node_modules/ramda/es/index.js"}],"lib/update-cell.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-Object.defineProperty(exports, "SeedTable", {
+exports.default = void 0;
+
+var _ramda = require("ramda");
+
+var updateCell = function updateCell(_ref) {
+  var rows = _ref.rows,
+      setRows = _ref.setRows,
+      rowIdx = _ref.rowIdx,
+      colIdx = _ref.colIdx,
+      alive = _ref.alive;
+  var existingRow = rows[rowIdx];
+  var existingCell = existingRow[colIdx];
+  var newCell = {
+    rowIdx: rowIdx,
+    colIdx: colIdx,
+    alive: alive
+  };
+  var newRow = (0, _ramda.update)(colIdx, newCell, existingRow);
+  var newRows = (0, _ramda.update)(rowIdx, newRow, rows);
+  setRows(newRows);
+};
+
+var _default = updateCell;
+exports.default = _default;
+},{"ramda":"../node_modules/ramda/es/index.js"}],"lib/index.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+Object.defineProperty(exports, "generateRows", {
   enumerable: true,
   get: function () {
-    return _SeedTable.default;
+    return _generateRows.default;
+  }
+});
+Object.defineProperty(exports, "nextGeneration", {
+  enumerable: true,
+  get: function () {
+    return _nextGeneration.default;
+  }
+});
+Object.defineProperty(exports, "updateCell", {
+  enumerable: true,
+  get: function () {
+    return _updateCell.default;
   }
 });
 
-var _SeedTable = _interopRequireDefault(require("./SeedTable"));
+var _generateRows = _interopRequireDefault(require("./generate-rows"));
+
+var _nextGeneration = _interopRequireDefault(require("./next-generation"));
+
+var _updateCell = _interopRequireDefault(require("./update-cell"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-},{"./SeedTable":"SeedTable/SeedTable.js"}],"app.js":[function(require,module,exports) {
+},{"./generate-rows":"lib/generate-rows.js","./next-generation":"lib/next-generation.js","./update-cell":"lib/update-cell.js"}],"app.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -65568,6 +65722,12 @@ var _BoardWrapper = require("./BoardWrapper");
 var _GameBoard = require("./GameBoard");
 
 var _SeedTable = require("./SeedTable");
+
+var _initialTable = _interopRequireDefault(require("./initial-table"));
+
+var _lib = require("./lib");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
 
@@ -65586,19 +65746,48 @@ function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 var App = function App() {
-  var _useState = (0, _react.useState)([]),
+  var _useState = (0, _react.useState)(_initialTable.default),
       _useState2 = _slicedToArray(_useState, 2),
-      generations = _useState2[0],
-      setGenerations = _useState2[1];
+      table = _useState2[0],
+      setTable = _useState2[1];
 
-  var _useState3 = (0, _react.useState)(true),
+  var _useState3 = (0, _react.useState)([]),
       _useState4 = _slicedToArray(_useState3, 2),
-      seeding = _useState4[0],
-      setSeeding = _useState4[1];
+      generations = _useState4[0],
+      setGenerations = _useState4[1];
 
-  return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("h1", null, "Kayla's Game of Life"), /*#__PURE__*/_react.default.createElement(_BoardWrapper.BoardWrapper, null, seeding && /*#__PURE__*/_react.default.createElement(_SeedTable.SeedTable, {
+  var _useState5 = (0, _react.useState)(true),
+      _useState6 = _slicedToArray(_useState5, 2),
+      seeding = _useState6[0],
+      setSeeding = _useState6[1];
+
+  var toggleBtn = function toggleBtn() {
+    if (seeding) {
+      setSeeding(false);
+      var gens = (0, _lib.createGenerations)(table);
+      setGenerations(gens);
+    } else {
+      setTable(_initialTable.default);
+      setGenerations([]);
+      setSeeding(true);
+    }
+  };
+
+  return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("h1", null, "Kayla's Game of Life"), /*#__PURE__*/_react.default.createElement("div", {
+    role: "button",
+    onClick: toggleBtn,
+    style: {
+      height: "50px",
+      width: "100px",
+      border: "1px solid green",
+      margin: "1rem",
+      cursor: "pointer"
+    }
+  }, seeding ? "Play" : "Reset"), /*#__PURE__*/_react.default.createElement(_BoardWrapper.BoardWrapper, null, seeding && /*#__PURE__*/_react.default.createElement(_SeedTable.SeedTable, {
     setSeeding: setSeeding,
-    setGenerations: setGenerations
+    setGenerations: setGenerations,
+    table: table,
+    setTable: setTable
   }), !seeding && /*#__PURE__*/_react.default.createElement(_GameBoard.GameBoard, {
     generations: generations
   })));
@@ -65652,7 +65841,7 @@ const handleNext = () =>
 */
 
 exports.default = _default;
-},{"react":"../node_modules/react/index.js","./BoardWrapper":"BoardWrapper/index.js","./GameBoard":"GameBoard/index.js","./SeedTable":"SeedTable/index.js"}],"index.js":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","./BoardWrapper":"BoardWrapper/index.js","./GameBoard":"GameBoard/index.js","./SeedTable":"SeedTable/index.js","./initial-table":"initial-table.json","./lib":"lib/index.js"}],"index.js":[function(require,module,exports) {
 "use strict";
 
 var _react = _interopRequireDefault(require("react"));
@@ -65692,7 +65881,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53698" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57624" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
