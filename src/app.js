@@ -26,29 +26,14 @@ const App = () => {
     }
   };
 
-  useEffect(() => {
-    if (generations > 0 && generations <= formData.nGens && gameActive) {
-      setTimeout(
-        () =>
-          nextGeneration({
-            rows,
-            setRows,
-            generations,
-            setGenerations,
-            formData,
-          }),
-        2000
-      );
-    }
-  }, [generations, gameActive]);
-
-  useEffect(() => {
-    const flattened = unnest(rows);
-    const theLiving = filter((f) => f.alive, flattened);
-    if (theLiving.length < 1) {
-      setGameActive(false);
-    }
-  }, [rows]);
+  const handleNext = () =>
+    nextGeneration({
+      rows,
+      setRows,
+      generations,
+      setGenerations,
+      formData,
+    });
 
   return (
     <div>
@@ -63,6 +48,7 @@ const App = () => {
         rows={rows}
         genRows={genRows}
       />
+      {gameActive && <button onClick={() => handleNext()}>next</button>}
       <Gameboard cellInfo={{ ...formData }} rows={rows} setRows={setRows} />
     </div>
   );

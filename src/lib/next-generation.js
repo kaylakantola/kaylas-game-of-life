@@ -24,14 +24,22 @@ const nextGeneration = ({
       const lastCellIdx = cellIdx - 1;
       const nextCellIdx = cellIdx + 1;
 
-      const leftTop = lastRow[lastCellIdx] || deadCell;
-      const top = lastRow[cellIdx] || deadCell;
-      const rightTop = lastRow[nextCellIdx] || deadCell;
-      const left = row[lastCellIdx] || deadCell;
-      const right = row[nextCellIdx] || deadCell;
-      const leftBottom = nextRow[lastCellIdx] || deadCell;
-      const bottom = nextRow[cellIdx] || deadCell;
-      const rightBottom = nextRow[nextCellIdx] || deadCell;
+      const leftTop = isNil(lastRow[lastCellIdx])
+        ? deadCell
+        : lastRow[lastCellIdx];
+      const top = isNil(lastRow[cellIdx]) ? deadCell : lastRow[cellIdx];
+      const rightTop = isNil(lastRow[nextCellIdx])
+        ? deadCell
+        : lastRow[nextCellIdx];
+      const left = isNil(row[lastCellIdx]) ? deadCell : row[lastCellIdx];
+      const right = isNil(row[nextCellIdx]) ? deadCell : row[nextCellIdx];
+      const leftBottom = isNil(nextRow[lastCellIdx])
+        ? deadCell
+        : nextRow[lastCellIdx];
+      const bottom = isNil(nextRow[cellIdx]) ? deadCell : nextRow[cellIdx];
+      const rightBottom = isNil(nextRow[nextCellIdx])
+        ? deadCell
+        : nextRow[nextCellIdx];
 
       const neighbors = [
         leftTop,
@@ -44,20 +52,18 @@ const nextGeneration = ({
         rightBottom,
       ];
 
-      const livingNeighbors = filter((n) => {
-        return true;
-      }, neighbors);
-      const deadNeighbors = 8 - livingNeighbors;
-
+      const livingNeighbors = filter((n) => n.alive, neighbors).length;
       if (cell.alive) {
-        if (livingNeighbors >= 2 && livingNeighbors <= 3) {
-          return { ...cell, alive: true };
+        if (livingNeighbors === 2 || livingNeighbors === 3) {
+          return cell;
         } else {
-          return { ...cell, alive: false };
+          const dead = { ...cell, alive: false };
+          return dead;
         }
       } else {
-        if (deadNeighbors === 3) {
-          return { ...cell, alive: true };
+        if (livingNeighbors === 3) {
+          const alive = { ...cell, alive: true };
+          return alive;
         } else {
           return cell;
         }

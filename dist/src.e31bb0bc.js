@@ -45422,35 +45422,36 @@ var nextGeneration = function nextGeneration(_ref) {
     var newCells = row.map(function (cell, cellIdx) {
       var lastCellIdx = cellIdx - 1;
       var nextCellIdx = cellIdx + 1;
-      var leftTop = lastRow[lastCellIdx] || deadCell;
-      var top = lastRow[cellIdx] || deadCell;
-      var rightTop = lastRow[nextCellIdx] || deadCell;
-      var left = row[lastCellIdx] || deadCell;
-      var right = row[nextCellIdx] || deadCell;
-      var leftBottom = nextRow[lastCellIdx] || deadCell;
-      var bottom = nextRow[cellIdx] || deadCell;
-      var rightBottom = nextRow[nextCellIdx] || deadCell;
+      var leftTop = (0, _ramda.isNil)(lastRow[lastCellIdx]) ? deadCell : lastRow[lastCellIdx];
+      var top = (0, _ramda.isNil)(lastRow[cellIdx]) ? deadCell : lastRow[cellIdx];
+      var rightTop = (0, _ramda.isNil)(lastRow[nextCellIdx]) ? deadCell : lastRow[nextCellIdx];
+      var left = (0, _ramda.isNil)(row[lastCellIdx]) ? deadCell : row[lastCellIdx];
+      var right = (0, _ramda.isNil)(row[nextCellIdx]) ? deadCell : row[nextCellIdx];
+      var leftBottom = (0, _ramda.isNil)(nextRow[lastCellIdx]) ? deadCell : nextRow[lastCellIdx];
+      var bottom = (0, _ramda.isNil)(nextRow[cellIdx]) ? deadCell : nextRow[cellIdx];
+      var rightBottom = (0, _ramda.isNil)(nextRow[nextCellIdx]) ? deadCell : nextRow[nextCellIdx];
       var neighbors = [leftTop, top, rightTop, left, right, leftBottom, bottom, rightBottom];
       var livingNeighbors = (0, _ramda.filter)(function (n) {
-        return true;
-      }, neighbors);
-      var deadNeighbors = 8 - livingNeighbors;
+        return n.alive;
+      }, neighbors).length;
 
       if (cell.alive) {
-        if (livingNeighbors >= 2 && livingNeighbors <= 3) {
-          return _objectSpread({}, cell, {
-            alive: true
-          });
+        if (livingNeighbors === 2 || livingNeighbors === 3) {
+          return cell;
         } else {
-          return _objectSpread({}, cell, {
+          var dead = _objectSpread({}, cell, {
             alive: false
           });
+
+          return dead;
         }
       } else {
-        if (deadNeighbors === 3) {
-          return _objectSpread({}, cell, {
+        if (livingNeighbors === 3) {
+          var alive = _objectSpread({}, cell, {
             alive: true
           });
+
+          return alive;
         } else {
           return cell;
         }
@@ -45940,29 +45941,16 @@ var App = function App() {
     }
   };
 
-  (0, _react.useEffect)(function () {
-    if (generations > 0 && generations <= formData.nGens && gameActive) {
-      setTimeout(function () {
-        return (0, _lib.nextGeneration)({
-          rows: rows,
-          setRows: setRows,
-          generations: generations,
-          setGenerations: setGenerations,
-          formData: formData
-        });
-      }, 2000);
-    }
-  }, [generations, gameActive]);
-  (0, _react.useEffect)(function () {
-    var flattened = (0, _ramda.unnest)(rows);
-    var theLiving = (0, _ramda.filter)(function (f) {
-      return f.alive;
-    }, flattened);
+  var handleNext = function handleNext() {
+    return (0, _lib.nextGeneration)({
+      rows: rows,
+      setRows: setRows,
+      generations: generations,
+      setGenerations: setGenerations,
+      formData: formData
+    });
+  };
 
-    if (theLiving.length < 1) {
-      setGameActive(false);
-    }
-  }, [rows]);
   return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("h1", null, "Kayla's Game of Life"), /*#__PURE__*/_react.default.createElement("h2", null, "Game Active: ", gameActive.toString()), /*#__PURE__*/_react.default.createElement("h2", null, "Generations: ", generations), !gameActive && /*#__PURE__*/_react.default.createElement(_form.Form, {
     formData: formData
   }), gameActive && /*#__PURE__*/_react.default.createElement(_decisions.Decisions, {
@@ -45972,7 +45960,11 @@ var App = function App() {
     startGame: startGame,
     rows: rows,
     genRows: genRows
-  }), /*#__PURE__*/_react.default.createElement(_gameboard.Gameboard, {
+  }), gameActive && /*#__PURE__*/_react.default.createElement("button", {
+    onClick: function onClick() {
+      return handleNext();
+    }
+  }, "next"), /*#__PURE__*/_react.default.createElement(_gameboard.Gameboard, {
     cellInfo: _objectSpread({}, formData),
     rows: rows,
     setRows: setRows
@@ -46021,7 +46013,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53422" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58097" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
