@@ -1,3 +1,5 @@
+import { indexOf, range } from "ramda";
+
 const nextGeneration = ({
   rows,
   setRows,
@@ -5,11 +7,55 @@ const nextGeneration = ({
   setGenerations,
   formData,
 }) => {
+  const { nColumns } = formData;
+
+  const cols = range(0, nColumns);
+  const deadRow = cols.map((col) => deadCell);
+  const deadCell = { alive: false };
+
   if (generations <= formData.nGens) {
     setGenerations(generations + 1);
-  }
+    const newRows = rows.map((row) => {
+      const lastRow = rows[indexOf(row - 1, rows)] || deadRow;
+      const nextRow = rows[indexOf(row + 1, rows)] || deadRow;
+      const newCells = row.map((cell) => {
+        const leftTop = lastRow[indexOf(cell - 1, row)] || deadCell;
+        const top = lastRow[indexOf(cell, row)] || deadCell;
+        const rightTop = lastRow[indexOf(cell + 1, row)] || deadCell;
+        const left = row[indexOf(cell - 1, row)] || deadCell;
+        const right = row[indexOf(cell + 1, row)] || deadCell;
+        const leftBottom = next[indexOf(cell - 1, row)] || deadCell;
+        const bottom = next[indexOf(cell, row)] || deadCell;
+        const rightBottom = next[indexOf(cell + 1, row)] || deadCell;
 
-  return [];
+        const neighbors = [
+          leftTop,
+          top,
+          rightTop,
+          left,
+          right,
+          leftBottom,
+          bottom,
+          rightBottom,
+        ];
+
+        const livingNeighbors = filter((n) => n.alive, neighbors);
+        const deadNeighbors = 8 - livingNeighbors;
+
+        if (cell.alive) {
+          if (livingNeighbors >= 2 && livingNeighbors <= 3) {
+            console.log("you live!");
+          } else {
+            console.log("you die!");
+          }
+        } else {
+          if (deadNeighbors === 3) {
+            console.log("you live!");
+          }
+        }
+      });
+    });
+  }
 };
 
 export default nextGeneration;

@@ -4,7 +4,7 @@ import { Decisions } from "./decisions";
 import { Gameboard } from "./gameboard";
 import { Form } from "./form";
 import { useForm } from "./hooks";
-import { generateRows, nextGeneration, updateCell } from "./lib";
+import { generateRows, nextGeneration } from "./lib";
 
 const App = () => {
   const [rows, setRows] = useState([]);
