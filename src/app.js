@@ -12,7 +12,7 @@ const App = () => {
   return (
     <div>
       <h1>Kayla's Game of Life</h1>
-      <form onSubmit={() => startGame(true)}>
+      <div style={{ display: "flex", flexDirection: "column" }}>
         <label>
           Number of Rows
           <input
@@ -49,8 +49,10 @@ const App = () => {
             onChange={e => setCellColor(e.target.value)}
           />
         </label>
-        <input type="submit" value="Submit" />
-      </form>
+        <button style={{ width: "200px" }} onClick={() => startGame(true)}>
+          start game
+        </button>
+      </div>
       {gameActive && (
         <Gameboard cellInfo={{ cellSize, cellColor }} rows={rows} />
       )}

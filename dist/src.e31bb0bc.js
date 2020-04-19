@@ -28680,7 +28680,47 @@ var App = function App() {
       cellColor = _useState10[0],
       setCellColor = _useState10[1];
 
-  return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("h1", null, "Kayla's Game of Life"), gameActive && /*#__PURE__*/_react.default.createElement(_gameboard.Gameboard, {
+  return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("h1", null, "Kayla's Game of Life"), /*#__PURE__*/_react.default.createElement("div", {
+    style: {
+      display: "flex",
+      flexDirection: "column"
+    }
+  }, /*#__PURE__*/_react.default.createElement("label", null, "Number of Rows", /*#__PURE__*/_react.default.createElement("input", {
+    type: "text",
+    name: "rows",
+    value: nRows,
+    onChange: function onChange(e) {
+      return setNRows(e.target.value);
+    }
+  })), /*#__PURE__*/_react.default.createElement("label", null, "Number of Columns", /*#__PURE__*/_react.default.createElement("input", {
+    type: "text",
+    name: "cols",
+    value: nColumns,
+    onChange: function onChange(e) {
+      return setNColumns(e.target.value);
+    }
+  })), /*#__PURE__*/_react.default.createElement("label", null, "Cell Size", /*#__PURE__*/_react.default.createElement("input", {
+    type: "text",
+    name: "size",
+    value: cellSize,
+    onChange: function onChange(e) {
+      return setCellSize(e.target.value);
+    }
+  })), /*#__PURE__*/_react.default.createElement("label", null, "Cell Color", /*#__PURE__*/_react.default.createElement("input", {
+    type: "text",
+    name: "color",
+    value: cellColor,
+    onChange: function onChange(e) {
+      return setCellColor(e.target.value);
+    }
+  })), /*#__PURE__*/_react.default.createElement("button", {
+    style: {
+      width: "200px"
+    },
+    onClick: function onClick() {
+      return startGame(true);
+    }
+  }, "start game")), gameActive && /*#__PURE__*/_react.default.createElement(_gameboard.Gameboard, {
     cellInfo: {
       cellSize: cellSize,
       cellColor: cellColor
@@ -28731,7 +28771,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54481" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57757" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
