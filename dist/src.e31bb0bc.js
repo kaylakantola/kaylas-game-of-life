@@ -45782,7 +45782,6 @@ var createGenerations = function createGenerations(_ref) {
   var gens = [];
 
   var generate = function generate(rows) {
-    console.log("Generate!", gens.length);
     var newGen = rows.map(function (row, rowIdx) {
       var newRow = row.map(function (cell, cellIdx) {
         var arr = (0, _ramda.range)(0, 10);
@@ -45795,23 +45794,18 @@ var createGenerations = function createGenerations(_ref) {
         var rightIdx = cellIdx + 1;
         var topRow = topRowIdx > 9 ? deadRow : rows[topRowIdx];
         var bottomRow = btmRowIdx < 0 ? deadRow : rows[btmRowIdx];
-        var left = leftIdx < 0 ? deadCell : row[leftIdx];
-        var right = rightIdx > 9 ? deadCell : row[rightIdx];
-        console.log({
-          leftyDead: leftIdx < 0,
-          left: left,
-          deadCell: deadCell
-        });
         var topLeft = leftIdx < 0 ? deadCell : topRow[leftIdx];
         var top = topRow[cellIdx];
         var topRight = rightIdx > 9 ? deadCell : topRow[rightIdx];
+        var left = leftIdx < 0 ? deadCell : row[leftIdx];
+        var right = rightIdx > 9 ? deadCell : row[rightIdx];
         var bottomLeft = leftIdx < 0 ? deadCell : bottomRow[leftIdx];
         var bottom = bottomRow[cellIdx];
         var bottomRight = rightIdx > 9 ? deadCell : bottomRow[rightIdx];
         var neighbors = [topLeft, top, topRight, left, right, bottomLeft, bottom, bottomRight];
-        var livingNeighbors = (0, _ramda.reduceWhile)(function (cell) {
-          return cell.alive;
-        }, _ramda.add, 0, neighbors);
+        var livingNeighbors = (0, _ramda.filter)(function (n) {
+          return n.alive;
+        }, neighbors).length;
 
         if (cell.alive) {
           if (livingNeighbors === 2 || livingNeighbors === 3) {
@@ -45830,16 +45824,19 @@ var createGenerations = function createGenerations(_ref) {
       return newRow;
     });
     gens.push(newGen);
+    var unnested = (0, _ramda.unnest)(newGen);
+    var extinct = (0, _ramda.all)(function (v) {
+      return !v.alive;
+    })(unnested);
 
-    if (gens.length < maxGens) {
-      return generate(newGen);
-    } else {
+    if (extinct || gens.length + 1 > maxGens) {
       return gens;
+    } else {
+      return generate(newGen);
     }
   };
 
-  var generations = generate(table);
-  return generations;
+  return generate(table);
 };
 
 var _default = createGenerations;
@@ -46047,7 +46044,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52900" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56448" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

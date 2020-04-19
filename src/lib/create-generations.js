@@ -1,4 +1,13 @@
-import { range, last, isEmpty, reduceWhile, add } from "ramda";
+import {
+  range,
+  last,
+  isEmpty,
+  reduceWhile,
+  add,
+  filter,
+  unnest,
+  all,
+} from "ramda";
 
 const livingCell = { alive: true };
 const deadCell = { alive: false };
@@ -7,7 +16,6 @@ const createGenerations = ({ table, maxGens }) => {
   let gens = [];
 
   const generate = (rows) => {
-    console.log("Generate!", gens.length);
     const newGen = rows.map((row, rowIdx) => {
       const newRow = row.map((cell, cellIdx) => {
         const arr = range(0, 10);
@@ -22,12 +30,12 @@ const createGenerations = ({ table, maxGens }) => {
         const topRow = topRowIdx > 9 ? deadRow : rows[topRowIdx];
         const bottomRow = btmRowIdx < 0 ? deadRow : rows[btmRowIdx];
 
-        const left = leftIdx < 0 ? deadCell : row[leftIdx];
-        const right = rightIdx > 9 ? deadCell : row[rightIdx];
-        console.log({ leftyDead: leftIdx < 0, left, deadCell });
         const topLeft = leftIdx < 0 ? deadCell : topRow[leftIdx];
         const top = topRow[cellIdx];
         const topRight = rightIdx > 9 ? deadCell : topRow[rightIdx];
+
+        const left = leftIdx < 0 ? deadCell : row[leftIdx];
+        const right = rightIdx > 9 ? deadCell : row[rightIdx];
 
         const bottomLeft = leftIdx < 0 ? deadCell : bottomRow[leftIdx];
         const bottom = bottomRow[cellIdx];
@@ -44,12 +52,7 @@ const createGenerations = ({ table, maxGens }) => {
           bottomRight,
         ];
 
-        const livingNeighbors = reduceWhile(
-          (cell) => cell.alive,
-          add,
-          0,
-          neighbors
-        );
+        const livingNeighbors = filter((n) => n.alive, neighbors).length;
 
         if (cell.alive) {
           if (livingNeighbors === 2 || livingNeighbors === 3) {
@@ -70,16 +73,17 @@ const createGenerations = ({ table, maxGens }) => {
 
     gens.push(newGen);
 
-    if (gens.length < maxGens) {
-      return generate(newGen);
-    } else {
+    const unnested = unnest(newGen);
+    const extinct = all((v) => !v.alive)(unnested);
+
+    if (extinct || gens.length + 1 > maxGens) {
       return gens;
+    } else {
+      return generate(newGen);
     }
   };
 
-  const generations = generate(table);
-
-  return generations;
+  return generate(table);
 };
 
 export default createGenerations;
