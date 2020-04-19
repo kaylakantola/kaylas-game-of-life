@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-const GameBoard = () => {
+const GameBoard = ({ generations }) => {
   return <div>Game Board</div>;
 };
 

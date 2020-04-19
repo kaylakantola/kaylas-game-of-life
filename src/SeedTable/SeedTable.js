@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-const SeedTable = ({ setSeeding }) => {
+const SeedTable = ({ setSeeding, setGenerations }) => {
   return <div>Seed Table</div>;
 };
 

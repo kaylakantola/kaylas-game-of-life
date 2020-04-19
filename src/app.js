@@ -4,13 +4,16 @@ import { GameBoard } from "./GameBoard";
 import { SeedTable } from "./SeedTable";
 
 const App = () => {
+  const [generations, setGenerations] = useState([]);
   const [seeding, setSeeding] = useState(true);
   return (
     <div>
       <h1>Kayla's Game of Life</h1>
       <BoardWrapper>
-        {seeding && <SeedTable setSeeding={setSeeding} />}
-        {!seeding && <GameBoard />}
+        {seeding && (
+          <SeedTable setSeeding={setSeeding} setGenerations={setGenerations} />
+        )}
+        {!seeding && <GameBoard generations={generations} />}
       </BoardWrapper>
     </div>
   );
