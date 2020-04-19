@@ -3,26 +3,31 @@ import { range, last, isEmpty, reduceWhile, add } from "ramda";
 const createGenerations = ({ table, maxGens }) => {
   let gens = [];
 
-  const generate = (t) => {
-    const lastGen = t;
-    const newGen = t.map((row, rowIdx) =>
-      row.map((cell, cellIdx) => {
+  const arr = range(0, 99);
+  const deadRow = arr.map((cell) => deadCell);
+  const deadCell = { alive: false };
+
+  const generate = (rows) => {
+    const newGen = rows.map((row, rowIdx) => {
+      const newRow = row.map((cell, cellIdx) => {
         const topRowIdx = rowIdx + 1;
         const btmRowIdx = rowIdx - 1;
         const leftIdx = cellIdx - 1;
         const rightIdx = cellIdx + 1;
 
-        const topRow = rows[topRowIdx];
-        const bottomRow = rows[btmRowIdx];
+        const topRow = topRowIdx > 99 ? deadRow : rows[topRowIdx];
+        const bottomRow = btmRowIdx < 0 ? deadRow : rows[btmRowIdx];
 
-        const topLeft = topRow[leftIdx];
+        const left = leftIdx < 0 ? deadCell : row[leftIdx];
+        const right = rightIdx > 99 ? deadCell : row[rightIdx];
+
+        const topLeft = leftIdx < 0 ? deadCell : topRow[leftIdx];
         const top = topRow[cellIdx];
-        const topRight = topRow[rightIdx];
-        const left = row[leftIdx];
-        const right = row[rightIdx];
-        const bottomLeft = bottomRow[leftIdx];
+        const topRight = rightIdx > 99 ? deadCell : topRow[rightIdx];
+
+        const bottomLeft = leftIdx < 0 ? deadCell : bottomRow[leftIdx];
         const bottom = bottomRow[cellIdx];
-        const bottomRight = bottomRow[rightIdx];
+        const bottomRight = rightIdx > 99 ? deadCell : bottomRow[rightIdx];
 
         const neighbors = [
           leftTop,
@@ -58,9 +63,12 @@ const createGenerations = ({ table, maxGens }) => {
             return deadCell;
           }
         }
-      })
-    );
+      });
+      return newRow;
+    });
+
     gens.push(newGen);
+
     if (gens.length < maxGens) {
       generate(newGen);
     } else {
