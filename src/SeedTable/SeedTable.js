@@ -1,9 +1,19 @@
 import React, { useState, useEffect } from "react";
+import { update } from "ramda";
 import { Row } from "../Row";
-import { Cell } from "../Cell";
+import { SeedCell } from "../SeedCell";
 import initialTable from "./initial-table";
 
 const SeedTable = ({ setSeeding, setGenerations }) => {
+  const [table, setTable] = useState(initialTable);
+
+  const setCell = ({ alive, rowIdx, cellIdx }) => {
+    const row = table[rowIdx];
+    const newRow = update(cellIdx, { alive }, row);
+    const newTable = update(rowIdx, newRow, table);
+    setTable(newTable);
+  };
+
   return (
     <div
       style={{
@@ -13,10 +23,14 @@ const SeedTable = ({ setSeeding, setGenerations }) => {
         flexDirection: "column",
       }}
     >
-      {initialTable.map((row) => (
-        <Row>
-          {row.map((cell) => (
-            <Cell cell={cell} />
+      {table.map((row, rowIdx) => (
+        <Row key={rowIdx}>
+          {row.map((cell, cellIdx) => (
+            <SeedCell
+              key={cellIdx}
+              cell={{ ...cell, rowIdx, cellIdx }}
+              setCell={setCell}
+            />
           ))}
         </Row>
       ))}
