@@ -28548,7 +28548,9 @@ var Form = function Form(_ref) {
       cellSize = formData.cellSize,
       setCellSize = formData.setCellSize,
       cellColor = formData.cellColor,
-      setCellColor = formData.setCellColor;
+      setCellColor = formData.setCellColor,
+      nGens = formData.nGens,
+      setNGens = formData.setNGens;
   return /*#__PURE__*/_react.default.createElement("div", {
     style: {
       display: "flex",
@@ -28567,6 +28569,13 @@ var Form = function Form(_ref) {
     value: nColumns,
     onChange: function onChange(e) {
       return setNColumns(e.target.value);
+    }
+  })), /*#__PURE__*/_react.default.createElement("label", null, "Max Generations", /*#__PURE__*/_react.default.createElement("input", {
+    type: "text",
+    name: "gens",
+    value: nGens,
+    onChange: function onChange(e) {
+      return setNGens(e.target.value);
     }
   })), /*#__PURE__*/_react.default.createElement("label", null, "Cell Size", /*#__PURE__*/_react.default.createElement("input", {
     type: "text",
@@ -28640,25 +28649,40 @@ var useForm = function useForm() {
       nColumns = _useState4[0],
       setNColumns = _useState4[1];
 
-  var _useState5 = (0, _react.useState)("25px"),
+  var _useState5 = (0, _react.useState)(0),
       _useState6 = _slicedToArray(_useState5, 2),
-      cellSize = _useState6[0],
-      setCellSize = _useState6[1];
+      nGens = _useState6[0],
+      setNGens = _useState6[1];
 
-  var _useState7 = (0, _react.useState)("green"),
+  var _useState7 = (0, _react.useState)("25px"),
       _useState8 = _slicedToArray(_useState7, 2),
-      cellColor = _useState8[0],
-      setCellColor = _useState8[1];
+      cellSize = _useState8[0],
+      setCellSize = _useState8[1];
+
+  var _useState9 = (0, _react.useState)("green"),
+      _useState10 = _slicedToArray(_useState9, 2),
+      cellColor = _useState10[0],
+      setCellColor = _useState10[1];
+
+  var resetForm = function resetForm() {
+    setNRows(0);
+    setNColumns(0);
+    setCellSize("25px");
+    setCellColor("green");
+  };
 
   return {
     nRows: nRows,
     setNRows: setNRows,
     nColumns: nColumns,
     setNColumns: setNColumns,
+    nGens: nGens,
+    setNGens: setNGens,
     cellSize: cellSize,
     setCellSize: setCellSize,
     cellColor: cellColor,
-    setCellColor: setCellColor
+    setCellColor: setCellColor,
+    resetForm: resetForm
   };
 };
 
@@ -28680,209 +28704,71 @@ Object.defineProperty(exports, "useForm", {
 var _useForm = _interopRequireDefault(require("./use-form"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-},{"./use-form":"hooks/use-form.js"}],"rows.json":[function(require,module,exports) {
-module.exports = [[{
-  "alive": true
-}, {
-  "alive": true
-}, {
-  "alive": true
-}, {
-  "alive": true
-}, {
-  "alive": true
-}, {
-  "alive": true
-}, {
-  "alive": true
-}, {
-  "alive": true
-}, {
-  "alive": true
-}, {
-  "alive": true
-}], [{
-  "alive": true
-}, {
-  "alive": true
-}, {
-  "alive": true
-}, {
-  "alive": true
-}, {
-  "alive": true
-}, {
-  "alive": true
-}, {
-  "alive": true
-}, {
-  "alive": true
-}, {
-  "alive": true
-}, {
-  "alive": true
-}], [{
-  "alive": true
-}, {
-  "alive": true
-}, {
-  "alive": true
-}, {
-  "alive": true
-}, {
-  "alive": true
-}, {
-  "alive": true
-}, {
-  "alive": true
-}, {
-  "alive": true
-}, {
-  "alive": true
-}, {
-  "alive": true
-}], [{
-  "alive": true
-}, {
-  "alive": true
-}, {
-  "alive": true
-}, {
-  "alive": true
-}, {
-  "alive": true
-}, {
-  "alive": true
-}, {
-  "alive": true
-}, {
-  "alive": true
-}, {
-  "alive": true
-}, {
-  "alive": true
-}], [{
-  "alive": true
-}, {
-  "alive": true
-}, {
-  "alive": true
-}, {
-  "alive": true
-}, {
-  "alive": true
-}, {
-  "alive": true
-}, {
-  "alive": true
-}, {
-  "alive": true
-}, {
-  "alive": true
-}, {
-  "alive": true
-}], [{
-  "alive": true
-}, {
-  "alive": true
-}, {
-  "alive": true
-}, {
-  "alive": true
-}, {
-  "alive": true
-}, {
-  "alive": true
-}, {
-  "alive": true
-}, {
-  "alive": true
-}, {
-  "alive": true
-}, {
-  "alive": true
-}], [{
-  "alive": true
-}, {
-  "alive": true
-}, {
-  "alive": true
-}, {
-  "alive": true
-}, {
-  "alive": true
-}, {
-  "alive": true
-}, {
-  "alive": true
-}, {
-  "alive": true
-}, {
-  "alive": true
-}, {
-  "alive": true
-}], [{
-  "alive": true
-}, {
-  "alive": true
-}, {
-  "alive": true
-}, {
-  "alive": true
-}, {
-  "alive": true
-}, {
-  "alive": true
-}, {
-  "alive": true
-}, {
-  "alive": true
-}, {
-  "alive": true
-}, {
-  "alive": true
-}], [{
-  "alive": true
-}, {
-  "alive": true
-}, {
-  "alive": true
-}, {
-  "alive": true
-}, {
-  "alive": true
-}, {
-  "alive": true
-}, {
-  "alive": true
-}, {
-  "alive": true
-}, {
-  "alive": true
-}, {
-  "alive": true
-}], [{
-  "alive": true
-}, {
-  "alive": true
-}, {
-  "alive": true
-}, {
-  "alive": true
-}, {
-  "alive": true
-}, {
-  "alive": true
-}, {
-  "alive": true
-}, {
-  "alive": true
-}, {
-  "alive": true
-}, {
-  "alive": true
-}]];
-},{}],"app.js":[function(require,module,exports) {
+},{"./use-form":"hooks/use-form.js"}],"lib/generate-rows.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var generateRows = function generateRows(_ref) {
+  var nRows = _ref.nRows,
+      nColumns = _ref.nColumns;
+  return [];
+};
+
+var _default = generateRows;
+exports.default = _default;
+},{}],"lib/next-generation.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var nextGeneration = function nextGeneration(_ref) {
+  var rows = _ref.rows,
+      setRows = _ref.setRows,
+      generations = _ref.generations,
+      setGenerations = _ref.setGenerations,
+      formData = _ref.formData;
+
+  if (generations <= formData.nGens) {
+    setGenerations(generations + 1);
+  }
+
+  return [];
+};
+
+var _default = nextGeneration;
+exports.default = _default;
+},{}],"lib/index.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+Object.defineProperty(exports, "generateRows", {
+  enumerable: true,
+  get: function () {
+    return _generateRows.default;
+  }
+});
+Object.defineProperty(exports, "nextGeneration", {
+  enumerable: true,
+  get: function () {
+    return _nextGeneration.default;
+  }
+});
+
+var _generateRows = _interopRequireDefault(require("./generate-rows"));
+
+var _nextGeneration = _interopRequireDefault(require("./next-generation"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+},{"./generate-rows":"lib/generate-rows.js","./next-generation":"lib/next-generation.js"}],"app.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -28902,9 +28788,7 @@ var _form = require("./form");
 
 var _hooks = require("./hooks");
 
-var _rows = _interopRequireDefault(require("./rows.json"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+var _lib = require("./lib");
 
 function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
 
@@ -28929,13 +28813,50 @@ function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 var App = function App() {
-  var _useState = (0, _react.useState)(false),
+  var _useState = (0, _react.useState)([]),
       _useState2 = _slicedToArray(_useState, 2),
-      gameActive = _useState2[0],
-      startGame = _useState2[1];
+      rows = _useState2[0],
+      setRows = _useState2[1];
+
+  var _useState3 = (0, _react.useState)(0),
+      _useState4 = _slicedToArray(_useState3, 2),
+      generations = _useState4[0],
+      setGenerations = _useState4[1];
+
+  var _useState5 = (0, _react.useState)(false),
+      _useState6 = _slicedToArray(_useState5, 2),
+      gameActive = _useState6[0],
+      setGameActive = _useState6[1];
 
   var formData = (0, _hooks.useForm)();
-  return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("h1", null, "Kayla's Game of Life"), !gameActive && /*#__PURE__*/_react.default.createElement(_form.Form, {
+
+  var startGame = function startGame(v) {
+    setGameActive(v);
+
+    if (v) {
+      var _rows = (0, _lib.generateRows)(formData);
+
+      setRows(_rows);
+      setGenerations(1);
+    } else {
+      formData.resetForm();
+    }
+  };
+
+  (0, _react.useEffect)(function () {
+    if (generations > 0) {
+      setTimeout(function () {
+        return (0, _lib.nextGeneration)({
+          rows: rows,
+          setRows: setRows,
+          generations: generations,
+          setGenerations: setGenerations,
+          formData: formData
+        });
+      }, 3000);
+    }
+  }, [generations]);
+  return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("h1", null, "Kayla's Game of Life"), /*#__PURE__*/_react.default.createElement("h2", null, "Generations: ", generations), !gameActive && /*#__PURE__*/_react.default.createElement(_form.Form, {
     formData: formData
   }), gameActive && /*#__PURE__*/_react.default.createElement(_decisions.Decisions, {
     formData: formData
@@ -28944,13 +28865,13 @@ var App = function App() {
     startGame: startGame
   }), gameActive && /*#__PURE__*/_react.default.createElement(_gameboard.Gameboard, {
     cellInfo: _objectSpread({}, formData),
-    rows: _rows.default
+    rows: rows
   }));
 };
 
 var _default = App;
 exports.default = _default;
-},{"react":"../node_modules/react/index.js","./button":"button/index.js","./decisions":"decisions/index.js","./gameboard":"gameboard/index.js","./form":"form/index.js","./hooks":"hooks/index.js","./rows.json":"rows.json"}],"index.js":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","./button":"button/index.js","./decisions":"decisions/index.js","./gameboard":"gameboard/index.js","./form":"form/index.js","./hooks":"hooks/index.js","./lib":"lib/index.js"}],"index.js":[function(require,module,exports) {
 "use strict";
 
 var _react = _interopRequireDefault(require("react"));
@@ -28990,7 +28911,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62030" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49404" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

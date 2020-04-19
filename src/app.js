@@ -5,7 +5,6 @@ import { Gameboard } from "./gameboard";
 import { Form } from "./form";
 import { useForm } from "./hooks";
 import { generateRows, nextGeneration } from "./lib";
-import rows from "./rows.json";
 
 const App = () => {
   const [rows, setRows] = useState([]);
@@ -35,7 +34,7 @@ const App = () => {
             setGenerations,
             formData,
           }),
-        3000
+        1000
       );
     }
   }, [generations]);
