@@ -1,43 +1,47 @@
 import { range, last, isEmpty, reduceWhile, add } from "ramda";
 
+const livingCell = { alive: true };
+const deadCell = { alive: false };
+
 const createGenerations = ({ table, maxGens }) => {
   let gens = [];
 
-  const arr = range(0, 99);
-  const deadRow = arr.map((cell) => deadCell);
-  const deadCell = { alive: false };
-
   const generate = (rows) => {
+    console.log("Generate!", gens.length);
     const newGen = rows.map((row, rowIdx) => {
       const newRow = row.map((cell, cellIdx) => {
+        const arr = range(0, 10);
+
+        const deadRow = arr.map(() => deadCell);
+
         const topRowIdx = rowIdx + 1;
         const btmRowIdx = rowIdx - 1;
         const leftIdx = cellIdx - 1;
         const rightIdx = cellIdx + 1;
 
-        const topRow = topRowIdx > 99 ? deadRow : rows[topRowIdx];
+        const topRow = topRowIdx > 9 ? deadRow : rows[topRowIdx];
         const bottomRow = btmRowIdx < 0 ? deadRow : rows[btmRowIdx];
 
         const left = leftIdx < 0 ? deadCell : row[leftIdx];
-        const right = rightIdx > 99 ? deadCell : row[rightIdx];
-
+        const right = rightIdx > 9 ? deadCell : row[rightIdx];
+        console.log({ leftyDead: leftIdx < 0, left, deadCell });
         const topLeft = leftIdx < 0 ? deadCell : topRow[leftIdx];
         const top = topRow[cellIdx];
-        const topRight = rightIdx > 99 ? deadCell : topRow[rightIdx];
+        const topRight = rightIdx > 9 ? deadCell : topRow[rightIdx];
 
         const bottomLeft = leftIdx < 0 ? deadCell : bottomRow[leftIdx];
         const bottom = bottomRow[cellIdx];
-        const bottomRight = rightIdx > 99 ? deadCell : bottomRow[rightIdx];
+        const bottomRight = rightIdx > 9 ? deadCell : bottomRow[rightIdx];
 
         const neighbors = [
-          leftTop,
+          topLeft,
           top,
-          rightTop,
+          topRight,
           left,
           right,
-          leftBottom,
+          bottomLeft,
           bottom,
-          rightBottom,
+          bottomRight,
         ];
 
         const livingNeighbors = reduceWhile(
@@ -46,9 +50,6 @@ const createGenerations = ({ table, maxGens }) => {
           0,
           neighbors
         );
-
-        const livingCell = { alive: true };
-        const deadCell = { alive: false };
 
         if (cell.alive) {
           if (livingNeighbors === 2 || livingNeighbors === 3) {
@@ -70,13 +71,14 @@ const createGenerations = ({ table, maxGens }) => {
     gens.push(newGen);
 
     if (gens.length < maxGens) {
-      generate(newGen);
+      return generate(newGen);
     } else {
       return gens;
     }
   };
 
   const generations = generate(table);
+
   return generations;
 };
 

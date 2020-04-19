@@ -7,7 +7,7 @@ const GameBoard = ({ generations, gen, setGen }) => {
     if (gen - 1 === generations.length) {
       setTimeout(() => setGen(gen + 1), 1000);
     }
-  }, gen);
+  }, [gen]);
 
   return (
     <div

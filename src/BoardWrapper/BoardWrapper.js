@@ -4,8 +4,8 @@ const BoardWrapper = ({ children }) => {
   return (
     <div
       style={{
-        width: "2500px",
-        height: "2500px",
+        width: "250px",
+        height: "250px",
         border: "1px solid green",
       }}
     >
