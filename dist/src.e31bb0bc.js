@@ -45405,7 +45405,8 @@ var nextGeneration = function nextGeneration(_ref) {
       generations = _ref.generations,
       setGenerations = _ref.setGenerations,
       formData = _ref.formData;
-  var nColumns = formData.nColumns;
+  var nColumns = formData.nColumns,
+      nRows = formData.nRows;
   var cols = (0, _ramda.range)(0, nColumns);
   var deadRow = cols.map(function (col) {
     return deadCell;
@@ -45413,53 +45414,52 @@ var nextGeneration = function nextGeneration(_ref) {
   var deadCell = {
     alive: false
   };
+  var newRows = rows.map(function (row, rowIdx) {
+    var lastRowIdx = rowIdx - 1;
+    var nextRowIdx = rowIdx + 1;
+    var lastRow = (0, _ramda.isNil)(rows[lastRowIdx]) ? deadRow : rows[lastRowIdx];
+    var nextRow = (0, _ramda.isNil)(rows[nextRowIdx]) ? deadRow : rows[nextRowIdx];
+    var newCells = row.map(function (cell, cellIdx) {
+      var lastCellIdx = cellIdx - 1;
+      var nextCellIdx = cellIdx + 1;
+      var leftTop = lastRow[lastCellIdx] || deadCell;
+      var top = lastRow[cellIdx] || deadCell;
+      var rightTop = lastRow[nextCellIdx] || deadCell;
+      var left = row[lastCellIdx] || deadCell;
+      var right = row[nextCellIdx] || deadCell;
+      var leftBottom = nextRow[lastCellIdx] || deadCell;
+      var bottom = nextRow[cellIdx] || deadCell;
+      var rightBottom = nextRow[nextCellIdx] || deadCell;
+      var neighbors = [leftTop, top, rightTop, left, right, leftBottom, bottom, rightBottom];
+      var livingNeighbors = (0, _ramda.filter)(function (n) {
+        return true;
+      }, neighbors);
+      var deadNeighbors = 8 - livingNeighbors;
 
-  if (generations <= formData.nGens) {
-    var newRows = rows.map(function (row, rowIdx) {
-      var lastRowIdx = rowIdx - 1;
-      var nextRowIdx = rowIdx + 1;
-      var lastRow = (0, _ramda.isNil)(rows[lastRowIdx]) ? deadRow : rows[lastRowIdx];
-      var nextRow = (0, _ramda.isNil)(rows[nextRowIdx]) ? deadRow : rows[nextRowIdx];
-      var newCells = row.map(function (cell, cellIdx) {
-        var lastCellIdx = cellIdx - 1;
-        var nextCellIdx = cellIdx + 1;
-        var leftTop = lastRow[lastCellIdx] || deadCell;
-        var top = lastRow[cellIdx] || deadCell;
-        var rightTop = lastRow[nextCellIdx] || deadCell;
-        var left = row[lastCellIdx] || deadCell;
-        var right = row[nextCellIdx] || deadCell;
-        var leftBottom = nextRow[lastCellIdx] || deadCell;
-        var bottom = nextRow[cellIdx] || deadCell;
-        var rightBottom = nextRow[nextCellIdx] || deadCell;
-        var neighbors = [leftTop, top, rightTop, left, right, leftBottom, bottom, rightBottom];
-        var livingNeighbors = (0, _ramda.filter)(function (n) {
-          return n.alive;
-        }, neighbors);
-        var deadNeighbors = 8 - livingNeighbors;
-
-        if (cell.alive) {
-          if (livingNeighbors >= 2 && livingNeighbors <= 3) {
-            return _objectSpread({}, cell, {
-              alive: true
-            });
-          } else {
-            return _objectSpread({}, cell, {
-              alive: false
-            });
-          }
+      if (cell.alive) {
+        if (livingNeighbors >= 2 && livingNeighbors <= 3) {
+          return _objectSpread({}, cell, {
+            alive: true
+          });
         } else {
-          if (deadNeighbors === 3) {
-            return _objectSpread({}, cell, {
-              alive: true
-            });
-          }
+          return _objectSpread({}, cell, {
+            alive: false
+          });
         }
-      });
-      return newCells;
+      } else {
+        if (deadNeighbors === 3) {
+          return _objectSpread({}, cell, {
+            alive: true
+          });
+        } else {
+          return cell;
+        }
+      }
     });
-    setRows(newRows);
-    setGenerations(generations + 1);
-  }
+    return newCells;
+  });
+  setRows(newRows);
+  setGenerations(generations + 1);
 };
 
 var _default = nextGeneration;
@@ -45939,24 +45939,16 @@ var App = function App() {
   };
 
   (0, _react.useEffect)(function () {
-    if (generations > 0 && gameActive) {
-      (0, _lib.nextGeneration)({
-        rows: rows,
-        setRows: setRows,
-        generations: generations,
-        setGenerations: setGenerations,
-        formData: formData
-      }); // setTimeout(
-      //   () =>
-      //     nextGeneration({
-      //       rows,
-      //       setRows,
-      //       generations,
-      //       setGenerations,
-      //       formData,
-      //     }),
-      //   1000
-      // );
+    if (generations > 0 && generations <= formData.nGens && gameActive) {
+      setTimeout(function () {
+        return (0, _lib.nextGeneration)({
+          rows: rows,
+          setRows: setRows,
+          generations: generations,
+          setGenerations: setGenerations,
+          formData: formData
+        });
+      }, 2000);
     }
   }, [generations, gameActive]);
   return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("h1", null, "Kayla's Game of Life"), /*#__PURE__*/_react.default.createElement("h2", null, "Generations: ", generations), !gameActive && /*#__PURE__*/_react.default.createElement(_form.Form, {
@@ -46017,7 +46009,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63042" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50483" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
