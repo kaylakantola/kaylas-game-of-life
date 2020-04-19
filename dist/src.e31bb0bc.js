@@ -28425,11 +28425,13 @@ var Gameboard = function Gameboard(_ref) {
       overflowX: "scroll",
       overflowY: "scroll"
     }
-  }, rows.map(function (row) {
+  }, rows.map(function (row, i) {
     return /*#__PURE__*/_react.default.createElement(_.Row, {
+      key: i,
       height: cellInfo.cellSize
-    }, row.map(function (cell) {
+    }, row.map(function (cell, i) {
       return /*#__PURE__*/_react.default.createElement(_.Cell, {
+        key: i,
         cell: _objectSpread({}, cell, {}, cellInfo)
       });
     }));
@@ -28487,8 +28489,7 @@ var Cell = function Cell(_ref) {
     style: {
       height: cellSize,
       width: cellSize,
-      backgroundColor: alive ? cellColor : "white",
-      border: "1px solid ".concat(alive ? "white" : cellColor)
+      backgroundColor: alive ? cellColor : "white"
     }
   });
 };
@@ -45661,7 +45662,7 @@ var generateRows = function generateRows(_ref) {
   var rows = rowArr.map(function (r) {
     return colArr.map(function (col) {
       return {
-        alive: true
+        alive: false
       };
     });
   });
@@ -45861,7 +45862,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50414" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51385" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

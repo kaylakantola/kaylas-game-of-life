@@ -8,7 +8,6 @@ const Cell = ({ cell }) => {
         height: cellSize,
         width: cellSize,
         backgroundColor: alive ? cellColor : "white",
-        border: `1px solid ${alive ? "white" : cellColor}`
       }}
     />
   );

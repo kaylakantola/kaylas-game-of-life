@@ -9,13 +9,13 @@ const Gameboard = ({ cellInfo, rows }) => {
         display: "flex",
         flexDirection: "column-reverse",
         overflowX: "scroll",
-        overflowY: "scroll"
+        overflowY: "scroll",
       }}
     >
-      {rows.map(row => (
-        <Row height={cellInfo.cellSize}>
-          {row.map(cell => (
-            <Cell cell={{ ...cell, ...cellInfo }} />
+      {rows.map((row, i) => (
+        <Row key={i} height={cellInfo.cellSize}>
+          {row.map((cell, i) => (
+            <Cell key={i} cell={{ ...cell, ...cellInfo }} />
           ))}
         </Row>
       ))}
