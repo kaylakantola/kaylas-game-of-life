@@ -1,7 +1,6 @@
 import { range, last, isEmpty, reduceWhile, add } from "ramda";
 
-const createGenerations = (table) => {
-  const n = 25;
+const createGenerations = ({ table, maxGens }) => {
   let gens = [];
 
   const generate = (t) => {
@@ -62,7 +61,7 @@ const createGenerations = (table) => {
       })
     );
     gens.push(newGen);
-    if (gens.length < n) {
+    if (gens.length < maxGens) {
       generate(newGen);
     } else {
       return gens;

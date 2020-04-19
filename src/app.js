@@ -6,14 +6,16 @@ import initialTable from "./initial-table";
 import { createGenerations } from "./lib";
 
 const App = () => {
+  const maxGens = 25;
   const [table, setTable] = useState(initialTable);
   const [generations, setGenerations] = useState([]);
+  const [gen, setGen] = useState(0);
   const [seeding, setSeeding] = useState(true);
 
   const toggleBtn = () => {
     if (seeding) {
       setSeeding(false);
-      const gens = createGenerations(table);
+      const gens = createGenerations({ table, maxGens });
       setGenerations(gens);
     } else {
       setTable(initialTable);
@@ -25,6 +27,12 @@ const App = () => {
   return (
     <div>
       <h1>Kayla's Game of Life</h1>
+      {!seeding && (
+        <h2>
+          Generation: {gen}/{maxGens}
+        </h2>
+      )}
+      {seeding && <h2>Select some squares to start, then click play.</h2>}
       <div
         role="button"
         onClick={toggleBtn}
@@ -47,7 +55,14 @@ const App = () => {
             setTable={setTable}
           />
         )}
-        {!seeding && <GameBoard generations={generations} />}
+        {!seeding && (
+          <GameBoard
+            generations={generations}
+            gen={gen}
+            setGen={setGen}
+            maxGens={maxGens}
+          />
+        )}
       </BoardWrapper>
     </div>
   );

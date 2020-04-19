@@ -1,10 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { Row } from "../Row";
 import { Cell } from "../Cell";
 
-const GameBoard = ({ generations }) => {
-  const [gen, setGen] = useState(0);
-
+const GameBoard = ({ generations, gen, setGen }) => {
   useEffect(() => {
     if (gen - 1 === generations.length) {
       setTimeout(() => setGen(gen + 1), 1000);
