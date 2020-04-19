@@ -14,7 +14,6 @@ const nextGeneration = ({
   const deadCell = { alive: false };
 
   if (generations <= formData.nGens) {
-    setGenerations(generations + 1);
     const newRows = rows.map((row) => {
       const lastRow = rows[indexOf(row - 1, rows)] || deadRow;
       const nextRow = rows[indexOf(row + 1, rows)] || deadRow;
@@ -44,17 +43,21 @@ const nextGeneration = ({
 
         if (cell.alive) {
           if (livingNeighbors >= 2 && livingNeighbors <= 3) {
-            console.log("you live!");
+            return { ...cell, alive: true };
           } else {
-            console.log("you die!");
+            return { ...cell, alive: false };
           }
         } else {
           if (deadNeighbors === 3) {
-            console.log("you live!");
+            return { ...cell, alive: true };
           }
         }
       });
+
+      return newCells;
     });
+    setGenerations(generations + 1);
+    setRows(newRows);
   }
 };
 
