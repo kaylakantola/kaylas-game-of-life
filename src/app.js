@@ -27,7 +27,14 @@ const App = () => {
   useEffect(() => {
     if (generations > 0) {
       setTimeout(
-        () => nextGeneration({ rows, setRows, generations, setGenerations }),
+        () =>
+          nextGeneration({
+            rows,
+            setRows,
+            generations,
+            setGenerations,
+            formData,
+          }),
         3000
       );
     }
@@ -35,6 +42,7 @@ const App = () => {
   return (
     <div>
       <h1>Kayla's Game of Life</h1>
+      <h2>Generations: {generations}</h2>
       {!gameActive && <Form formData={formData} />}
       {gameActive && <Decisions formData={formData} />}
       <Button gameActive={gameActive} startGame={startGame} />

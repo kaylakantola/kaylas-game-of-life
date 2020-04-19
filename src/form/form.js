@@ -10,6 +10,8 @@ const Form = ({ formData }) => {
     setCellSize,
     cellColor,
     setCellColor,
+    nGens,
+    setNGens,
   } = formData;
   return (
     <div style={{ display: "flex", flexDirection: "column" }}>
@@ -29,6 +31,15 @@ const Form = ({ formData }) => {
           name="cols"
           value={nColumns}
           onChange={(e) => setNColumns(e.target.value)}
+        />
+      </label>
+      <label>
+        Max Generations
+        <input
+          type="text"
+          name="gens"
+          value={nGens}
+          onChange={(e) => setNGens(e.target.value)}
         />
       </label>
       <label>
