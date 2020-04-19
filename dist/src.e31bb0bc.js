@@ -28285,7 +28285,55 @@ if ("development" === 'production') {
 } else {
   module.exports = require('./cjs/react-dom.development.js');
 }
-},{"./cjs/react-dom.development.js":"../node_modules/react-dom/cjs/react-dom.development.js"}],"../node_modules/ramda/es/F.js":[function(require,module,exports) {
+},{"./cjs/react-dom.development.js":"../node_modules/react-dom/cjs/react-dom.development.js"}],"GameBoard/GameBoard.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _react = _interopRequireWildcard(require("react"));
+
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+var GameBoard = function GameBoard() {
+  return /*#__PURE__*/_react.default.createElement("div", null, "Game Board");
+};
+
+var _default = GameBoard;
+exports.default = _default;
+},{"react":"../node_modules/react/index.js"}],"GameBoard/Row.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _react = _interopRequireDefault(require("react"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var Row = function Row(_ref) {
+  var children = _ref.children,
+      height = _ref.height;
+  return /*#__PURE__*/_react.default.createElement("div", {
+    style: {
+      width: "100%",
+      display: "flex",
+      flexDirection: "row",
+      flexWrap: "nowrap",
+      height: height
+    }
+  }, children);
+};
+
+var _default = Row;
+exports.default = _default;
+},{"react":"../node_modules/react/index.js"}],"../node_modules/ramda/es/F.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -45224,137 +45272,7 @@ var _zipWith = _interopRequireDefault(require("./zipWith.js"));
 var _thunkify = _interopRequireDefault(require("./thunkify.js"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-},{"./F.js":"../node_modules/ramda/es/F.js","./T.js":"../node_modules/ramda/es/T.js","./__.js":"../node_modules/ramda/es/__.js","./add.js":"../node_modules/ramda/es/add.js","./addIndex.js":"../node_modules/ramda/es/addIndex.js","./adjust.js":"../node_modules/ramda/es/adjust.js","./all.js":"../node_modules/ramda/es/all.js","./allPass.js":"../node_modules/ramda/es/allPass.js","./always.js":"../node_modules/ramda/es/always.js","./and.js":"../node_modules/ramda/es/and.js","./any.js":"../node_modules/ramda/es/any.js","./anyPass.js":"../node_modules/ramda/es/anyPass.js","./ap.js":"../node_modules/ramda/es/ap.js","./aperture.js":"../node_modules/ramda/es/aperture.js","./append.js":"../node_modules/ramda/es/append.js","./apply.js":"../node_modules/ramda/es/apply.js","./applySpec.js":"../node_modules/ramda/es/applySpec.js","./applyTo.js":"../node_modules/ramda/es/applyTo.js","./ascend.js":"../node_modules/ramda/es/ascend.js","./assoc.js":"../node_modules/ramda/es/assoc.js","./assocPath.js":"../node_modules/ramda/es/assocPath.js","./binary.js":"../node_modules/ramda/es/binary.js","./bind.js":"../node_modules/ramda/es/bind.js","./both.js":"../node_modules/ramda/es/both.js","./call.js":"../node_modules/ramda/es/call.js","./chain.js":"../node_modules/ramda/es/chain.js","./clamp.js":"../node_modules/ramda/es/clamp.js","./clone.js":"../node_modules/ramda/es/clone.js","./comparator.js":"../node_modules/ramda/es/comparator.js","./complement.js":"../node_modules/ramda/es/complement.js","./compose.js":"../node_modules/ramda/es/compose.js","./composeK.js":"../node_modules/ramda/es/composeK.js","./composeP.js":"../node_modules/ramda/es/composeP.js","./composeWith.js":"../node_modules/ramda/es/composeWith.js","./concat.js":"../node_modules/ramda/es/concat.js","./cond.js":"../node_modules/ramda/es/cond.js","./construct.js":"../node_modules/ramda/es/construct.js","./constructN.js":"../node_modules/ramda/es/constructN.js","./contains.js":"../node_modules/ramda/es/contains.js","./converge.js":"../node_modules/ramda/es/converge.js","./countBy.js":"../node_modules/ramda/es/countBy.js","./curry.js":"../node_modules/ramda/es/curry.js","./curryN.js":"../node_modules/ramda/es/curryN.js","./dec.js":"../node_modules/ramda/es/dec.js","./defaultTo.js":"../node_modules/ramda/es/defaultTo.js","./descend.js":"../node_modules/ramda/es/descend.js","./difference.js":"../node_modules/ramda/es/difference.js","./differenceWith.js":"../node_modules/ramda/es/differenceWith.js","./dissoc.js":"../node_modules/ramda/es/dissoc.js","./dissocPath.js":"../node_modules/ramda/es/dissocPath.js","./divide.js":"../node_modules/ramda/es/divide.js","./drop.js":"../node_modules/ramda/es/drop.js","./dropLast.js":"../node_modules/ramda/es/dropLast.js","./dropLastWhile.js":"../node_modules/ramda/es/dropLastWhile.js","./dropRepeats.js":"../node_modules/ramda/es/dropRepeats.js","./dropRepeatsWith.js":"../node_modules/ramda/es/dropRepeatsWith.js","./dropWhile.js":"../node_modules/ramda/es/dropWhile.js","./either.js":"../node_modules/ramda/es/either.js","./empty.js":"../node_modules/ramda/es/empty.js","./endsWith.js":"../node_modules/ramda/es/endsWith.js","./eqBy.js":"../node_modules/ramda/es/eqBy.js","./eqProps.js":"../node_modules/ramda/es/eqProps.js","./equals.js":"../node_modules/ramda/es/equals.js","./evolve.js":"../node_modules/ramda/es/evolve.js","./filter.js":"../node_modules/ramda/es/filter.js","./find.js":"../node_modules/ramda/es/find.js","./findIndex.js":"../node_modules/ramda/es/findIndex.js","./findLast.js":"../node_modules/ramda/es/findLast.js","./findLastIndex.js":"../node_modules/ramda/es/findLastIndex.js","./flatten.js":"../node_modules/ramda/es/flatten.js","./flip.js":"../node_modules/ramda/es/flip.js","./forEach.js":"../node_modules/ramda/es/forEach.js","./forEachObjIndexed.js":"../node_modules/ramda/es/forEachObjIndexed.js","./fromPairs.js":"../node_modules/ramda/es/fromPairs.js","./groupBy.js":"../node_modules/ramda/es/groupBy.js","./groupWith.js":"../node_modules/ramda/es/groupWith.js","./gt.js":"../node_modules/ramda/es/gt.js","./gte.js":"../node_modules/ramda/es/gte.js","./has.js":"../node_modules/ramda/es/has.js","./hasIn.js":"../node_modules/ramda/es/hasIn.js","./hasPath.js":"../node_modules/ramda/es/hasPath.js","./head.js":"../node_modules/ramda/es/head.js","./identical.js":"../node_modules/ramda/es/identical.js","./identity.js":"../node_modules/ramda/es/identity.js","./ifElse.js":"../node_modules/ramda/es/ifElse.js","./inc.js":"../node_modules/ramda/es/inc.js","./includes.js":"../node_modules/ramda/es/includes.js","./indexBy.js":"../node_modules/ramda/es/indexBy.js","./indexOf.js":"../node_modules/ramda/es/indexOf.js","./init.js":"../node_modules/ramda/es/init.js","./innerJoin.js":"../node_modules/ramda/es/innerJoin.js","./insert.js":"../node_modules/ramda/es/insert.js","./insertAll.js":"../node_modules/ramda/es/insertAll.js","./intersection.js":"../node_modules/ramda/es/intersection.js","./intersperse.js":"../node_modules/ramda/es/intersperse.js","./into.js":"../node_modules/ramda/es/into.js","./invert.js":"../node_modules/ramda/es/invert.js","./invertObj.js":"../node_modules/ramda/es/invertObj.js","./invoker.js":"../node_modules/ramda/es/invoker.js","./is.js":"../node_modules/ramda/es/is.js","./isEmpty.js":"../node_modules/ramda/es/isEmpty.js","./isNil.js":"../node_modules/ramda/es/isNil.js","./join.js":"../node_modules/ramda/es/join.js","./juxt.js":"../node_modules/ramda/es/juxt.js","./keys.js":"../node_modules/ramda/es/keys.js","./keysIn.js":"../node_modules/ramda/es/keysIn.js","./last.js":"../node_modules/ramda/es/last.js","./lastIndexOf.js":"../node_modules/ramda/es/lastIndexOf.js","./length.js":"../node_modules/ramda/es/length.js","./lens.js":"../node_modules/ramda/es/lens.js","./lensIndex.js":"../node_modules/ramda/es/lensIndex.js","./lensPath.js":"../node_modules/ramda/es/lensPath.js","./lensProp.js":"../node_modules/ramda/es/lensProp.js","./lift.js":"../node_modules/ramda/es/lift.js","./liftN.js":"../node_modules/ramda/es/liftN.js","./lt.js":"../node_modules/ramda/es/lt.js","./lte.js":"../node_modules/ramda/es/lte.js","./map.js":"../node_modules/ramda/es/map.js","./mapAccum.js":"../node_modules/ramda/es/mapAccum.js","./mapAccumRight.js":"../node_modules/ramda/es/mapAccumRight.js","./mapObjIndexed.js":"../node_modules/ramda/es/mapObjIndexed.js","./match.js":"../node_modules/ramda/es/match.js","./mathMod.js":"../node_modules/ramda/es/mathMod.js","./max.js":"../node_modules/ramda/es/max.js","./maxBy.js":"../node_modules/ramda/es/maxBy.js","./mean.js":"../node_modules/ramda/es/mean.js","./median.js":"../node_modules/ramda/es/median.js","./memoizeWith.js":"../node_modules/ramda/es/memoizeWith.js","./merge.js":"../node_modules/ramda/es/merge.js","./mergeAll.js":"../node_modules/ramda/es/mergeAll.js","./mergeDeepLeft.js":"../node_modules/ramda/es/mergeDeepLeft.js","./mergeDeepRight.js":"../node_modules/ramda/es/mergeDeepRight.js","./mergeDeepWith.js":"../node_modules/ramda/es/mergeDeepWith.js","./mergeDeepWithKey.js":"../node_modules/ramda/es/mergeDeepWithKey.js","./mergeLeft.js":"../node_modules/ramda/es/mergeLeft.js","./mergeRight.js":"../node_modules/ramda/es/mergeRight.js","./mergeWith.js":"../node_modules/ramda/es/mergeWith.js","./mergeWithKey.js":"../node_modules/ramda/es/mergeWithKey.js","./min.js":"../node_modules/ramda/es/min.js","./minBy.js":"../node_modules/ramda/es/minBy.js","./modulo.js":"../node_modules/ramda/es/modulo.js","./move.js":"../node_modules/ramda/es/move.js","./multiply.js":"../node_modules/ramda/es/multiply.js","./nAry.js":"../node_modules/ramda/es/nAry.js","./negate.js":"../node_modules/ramda/es/negate.js","./none.js":"../node_modules/ramda/es/none.js","./not.js":"../node_modules/ramda/es/not.js","./nth.js":"../node_modules/ramda/es/nth.js","./nthArg.js":"../node_modules/ramda/es/nthArg.js","./o.js":"../node_modules/ramda/es/o.js","./objOf.js":"../node_modules/ramda/es/objOf.js","./of.js":"../node_modules/ramda/es/of.js","./omit.js":"../node_modules/ramda/es/omit.js","./once.js":"../node_modules/ramda/es/once.js","./or.js":"../node_modules/ramda/es/or.js","./otherwise.js":"../node_modules/ramda/es/otherwise.js","./over.js":"../node_modules/ramda/es/over.js","./pair.js":"../node_modules/ramda/es/pair.js","./partial.js":"../node_modules/ramda/es/partial.js","./partialRight.js":"../node_modules/ramda/es/partialRight.js","./partition.js":"../node_modules/ramda/es/partition.js","./path.js":"../node_modules/ramda/es/path.js","./paths.js":"../node_modules/ramda/es/paths.js","./pathEq.js":"../node_modules/ramda/es/pathEq.js","./pathOr.js":"../node_modules/ramda/es/pathOr.js","./pathSatisfies.js":"../node_modules/ramda/es/pathSatisfies.js","./pick.js":"../node_modules/ramda/es/pick.js","./pickAll.js":"../node_modules/ramda/es/pickAll.js","./pickBy.js":"../node_modules/ramda/es/pickBy.js","./pipe.js":"../node_modules/ramda/es/pipe.js","./pipeK.js":"../node_modules/ramda/es/pipeK.js","./pipeP.js":"../node_modules/ramda/es/pipeP.js","./pipeWith.js":"../node_modules/ramda/es/pipeWith.js","./pluck.js":"../node_modules/ramda/es/pluck.js","./prepend.js":"../node_modules/ramda/es/prepend.js","./product.js":"../node_modules/ramda/es/product.js","./project.js":"../node_modules/ramda/es/project.js","./prop.js":"../node_modules/ramda/es/prop.js","./propEq.js":"../node_modules/ramda/es/propEq.js","./propIs.js":"../node_modules/ramda/es/propIs.js","./propOr.js":"../node_modules/ramda/es/propOr.js","./propSatisfies.js":"../node_modules/ramda/es/propSatisfies.js","./props.js":"../node_modules/ramda/es/props.js","./range.js":"../node_modules/ramda/es/range.js","./reduce.js":"../node_modules/ramda/es/reduce.js","./reduceBy.js":"../node_modules/ramda/es/reduceBy.js","./reduceRight.js":"../node_modules/ramda/es/reduceRight.js","./reduceWhile.js":"../node_modules/ramda/es/reduceWhile.js","./reduced.js":"../node_modules/ramda/es/reduced.js","./reject.js":"../node_modules/ramda/es/reject.js","./remove.js":"../node_modules/ramda/es/remove.js","./repeat.js":"../node_modules/ramda/es/repeat.js","./replace.js":"../node_modules/ramda/es/replace.js","./reverse.js":"../node_modules/ramda/es/reverse.js","./scan.js":"../node_modules/ramda/es/scan.js","./sequence.js":"../node_modules/ramda/es/sequence.js","./set.js":"../node_modules/ramda/es/set.js","./slice.js":"../node_modules/ramda/es/slice.js","./sort.js":"../node_modules/ramda/es/sort.js","./sortBy.js":"../node_modules/ramda/es/sortBy.js","./sortWith.js":"../node_modules/ramda/es/sortWith.js","./split.js":"../node_modules/ramda/es/split.js","./splitAt.js":"../node_modules/ramda/es/splitAt.js","./splitEvery.js":"../node_modules/ramda/es/splitEvery.js","./splitWhen.js":"../node_modules/ramda/es/splitWhen.js","./startsWith.js":"../node_modules/ramda/es/startsWith.js","./subtract.js":"../node_modules/ramda/es/subtract.js","./sum.js":"../node_modules/ramda/es/sum.js","./symmetricDifference.js":"../node_modules/ramda/es/symmetricDifference.js","./symmetricDifferenceWith.js":"../node_modules/ramda/es/symmetricDifferenceWith.js","./tail.js":"../node_modules/ramda/es/tail.js","./take.js":"../node_modules/ramda/es/take.js","./takeLast.js":"../node_modules/ramda/es/takeLast.js","./takeLastWhile.js":"../node_modules/ramda/es/takeLastWhile.js","./takeWhile.js":"../node_modules/ramda/es/takeWhile.js","./tap.js":"../node_modules/ramda/es/tap.js","./test.js":"../node_modules/ramda/es/test.js","./andThen.js":"../node_modules/ramda/es/andThen.js","./times.js":"../node_modules/ramda/es/times.js","./toLower.js":"../node_modules/ramda/es/toLower.js","./toPairs.js":"../node_modules/ramda/es/toPairs.js","./toPairsIn.js":"../node_modules/ramda/es/toPairsIn.js","./toString.js":"../node_modules/ramda/es/toString.js","./toUpper.js":"../node_modules/ramda/es/toUpper.js","./transduce.js":"../node_modules/ramda/es/transduce.js","./transpose.js":"../node_modules/ramda/es/transpose.js","./traverse.js":"../node_modules/ramda/es/traverse.js","./trim.js":"../node_modules/ramda/es/trim.js","./tryCatch.js":"../node_modules/ramda/es/tryCatch.js","./type.js":"../node_modules/ramda/es/type.js","./unapply.js":"../node_modules/ramda/es/unapply.js","./unary.js":"../node_modules/ramda/es/unary.js","./uncurryN.js":"../node_modules/ramda/es/uncurryN.js","./unfold.js":"../node_modules/ramda/es/unfold.js","./union.js":"../node_modules/ramda/es/union.js","./unionWith.js":"../node_modules/ramda/es/unionWith.js","./uniq.js":"../node_modules/ramda/es/uniq.js","./uniqBy.js":"../node_modules/ramda/es/uniqBy.js","./uniqWith.js":"../node_modules/ramda/es/uniqWith.js","./unless.js":"../node_modules/ramda/es/unless.js","./unnest.js":"../node_modules/ramda/es/unnest.js","./until.js":"../node_modules/ramda/es/until.js","./update.js":"../node_modules/ramda/es/update.js","./useWith.js":"../node_modules/ramda/es/useWith.js","./values.js":"../node_modules/ramda/es/values.js","./valuesIn.js":"../node_modules/ramda/es/valuesIn.js","./view.js":"../node_modules/ramda/es/view.js","./when.js":"../node_modules/ramda/es/when.js","./where.js":"../node_modules/ramda/es/where.js","./whereEq.js":"../node_modules/ramda/es/whereEq.js","./without.js":"../node_modules/ramda/es/without.js","./xor.js":"../node_modules/ramda/es/xor.js","./xprod.js":"../node_modules/ramda/es/xprod.js","./zip.js":"../node_modules/ramda/es/zip.js","./zipObj.js":"../node_modules/ramda/es/zipObj.js","./zipWith.js":"../node_modules/ramda/es/zipWith.js","./thunkify.js":"../node_modules/ramda/es/thunkify.js"}],"button/button.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-
-var _react = _interopRequireDefault(require("react"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var Button = function Button(_ref) {
-  var gameActive = _ref.gameActive,
-      startGame = _ref.startGame,
-      rows = _ref.rows,
-      genRows = _ref.genRows;
-
-  if (rows.length === 0) {
-    return /*#__PURE__*/_react.default.createElement("button", {
-      style: {
-        width: "200px"
-      },
-      onClick: function onClick() {
-        return genRows();
-      }
-    }, "generate rows");
-  } else if (rows.length > 0 && gameActive) {
-    return /*#__PURE__*/_react.default.createElement("button", {
-      style: {
-        width: "200px"
-      },
-      onClick: function onClick() {
-        return startGame(false);
-      }
-    }, "end game");
-  } else {
-    return /*#__PURE__*/_react.default.createElement("button", {
-      style: {
-        width: "200px"
-      },
-      onClick: function onClick() {
-        return startGame(true);
-      }
-    }, "start game");
-  }
-};
-
-var _default = Button;
-exports.default = _default;
-},{"react":"../node_modules/react/index.js"}],"button/index.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-Object.defineProperty(exports, "Button", {
-  enumerable: true,
-  get: function () {
-    return _button.default;
-  }
-});
-
-var _button = _interopRequireDefault(require("./button"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-},{"./button":"button/button.js"}],"decisions/decisions.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-
-var _react = _interopRequireDefault(require("react"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var Decisions = function Decisions(_ref) {
-  var formData = _ref.formData;
-  var nRows = formData.nRows,
-      nColumns = formData.nColumns,
-      cellSize = formData.cellSize,
-      cellColor = formData.cellColor;
-  return /*#__PURE__*/_react.default.createElement("div", {
-    style: {
-      display: "flex",
-      flexDirection: "column"
-    }
-  }, /*#__PURE__*/_react.default.createElement("div", {
-    style: {
-      display: "flex",
-      flexDirection: "row"
-    }
-  }, /*#__PURE__*/_react.default.createElement("div", null, "Number of Rows:"), /*#__PURE__*/_react.default.createElement("div", null, nRows)), /*#__PURE__*/_react.default.createElement("div", {
-    style: {
-      display: "flex",
-      flexDirection: "row"
-    }
-  }, /*#__PURE__*/_react.default.createElement("div", null, "Number of Columns:"), /*#__PURE__*/_react.default.createElement("div", null, nColumns)), /*#__PURE__*/_react.default.createElement("div", {
-    style: {
-      display: "flex",
-      flexDirection: "row"
-    }
-  }, /*#__PURE__*/_react.default.createElement("div", null, "Cell Size:"), /*#__PURE__*/_react.default.createElement("div", null, cellSize)), /*#__PURE__*/_react.default.createElement("div", {
-    style: {
-      display: "flex",
-      flexDirection: "row"
-    }
-  }, /*#__PURE__*/_react.default.createElement("div", null, "Cell Color:"), /*#__PURE__*/_react.default.createElement("div", null, cellColor)));
-};
-
-var _default = Decisions;
-exports.default = _default;
-},{"react":"../node_modules/react/index.js"}],"decisions/index.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-Object.defineProperty(exports, "Decisions", {
-  enumerable: true,
-  get: function () {
-    return _decisions.default;
-  }
-});
-
-var _decisions = _interopRequireDefault(require("./decisions"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-},{"./decisions":"decisions/decisions.js"}],"lib/generate-rows.js":[function(require,module,exports) {
+},{"./F.js":"../node_modules/ramda/es/F.js","./T.js":"../node_modules/ramda/es/T.js","./__.js":"../node_modules/ramda/es/__.js","./add.js":"../node_modules/ramda/es/add.js","./addIndex.js":"../node_modules/ramda/es/addIndex.js","./adjust.js":"../node_modules/ramda/es/adjust.js","./all.js":"../node_modules/ramda/es/all.js","./allPass.js":"../node_modules/ramda/es/allPass.js","./always.js":"../node_modules/ramda/es/always.js","./and.js":"../node_modules/ramda/es/and.js","./any.js":"../node_modules/ramda/es/any.js","./anyPass.js":"../node_modules/ramda/es/anyPass.js","./ap.js":"../node_modules/ramda/es/ap.js","./aperture.js":"../node_modules/ramda/es/aperture.js","./append.js":"../node_modules/ramda/es/append.js","./apply.js":"../node_modules/ramda/es/apply.js","./applySpec.js":"../node_modules/ramda/es/applySpec.js","./applyTo.js":"../node_modules/ramda/es/applyTo.js","./ascend.js":"../node_modules/ramda/es/ascend.js","./assoc.js":"../node_modules/ramda/es/assoc.js","./assocPath.js":"../node_modules/ramda/es/assocPath.js","./binary.js":"../node_modules/ramda/es/binary.js","./bind.js":"../node_modules/ramda/es/bind.js","./both.js":"../node_modules/ramda/es/both.js","./call.js":"../node_modules/ramda/es/call.js","./chain.js":"../node_modules/ramda/es/chain.js","./clamp.js":"../node_modules/ramda/es/clamp.js","./clone.js":"../node_modules/ramda/es/clone.js","./comparator.js":"../node_modules/ramda/es/comparator.js","./complement.js":"../node_modules/ramda/es/complement.js","./compose.js":"../node_modules/ramda/es/compose.js","./composeK.js":"../node_modules/ramda/es/composeK.js","./composeP.js":"../node_modules/ramda/es/composeP.js","./composeWith.js":"../node_modules/ramda/es/composeWith.js","./concat.js":"../node_modules/ramda/es/concat.js","./cond.js":"../node_modules/ramda/es/cond.js","./construct.js":"../node_modules/ramda/es/construct.js","./constructN.js":"../node_modules/ramda/es/constructN.js","./contains.js":"../node_modules/ramda/es/contains.js","./converge.js":"../node_modules/ramda/es/converge.js","./countBy.js":"../node_modules/ramda/es/countBy.js","./curry.js":"../node_modules/ramda/es/curry.js","./curryN.js":"../node_modules/ramda/es/curryN.js","./dec.js":"../node_modules/ramda/es/dec.js","./defaultTo.js":"../node_modules/ramda/es/defaultTo.js","./descend.js":"../node_modules/ramda/es/descend.js","./difference.js":"../node_modules/ramda/es/difference.js","./differenceWith.js":"../node_modules/ramda/es/differenceWith.js","./dissoc.js":"../node_modules/ramda/es/dissoc.js","./dissocPath.js":"../node_modules/ramda/es/dissocPath.js","./divide.js":"../node_modules/ramda/es/divide.js","./drop.js":"../node_modules/ramda/es/drop.js","./dropLast.js":"../node_modules/ramda/es/dropLast.js","./dropLastWhile.js":"../node_modules/ramda/es/dropLastWhile.js","./dropRepeats.js":"../node_modules/ramda/es/dropRepeats.js","./dropRepeatsWith.js":"../node_modules/ramda/es/dropRepeatsWith.js","./dropWhile.js":"../node_modules/ramda/es/dropWhile.js","./either.js":"../node_modules/ramda/es/either.js","./empty.js":"../node_modules/ramda/es/empty.js","./endsWith.js":"../node_modules/ramda/es/endsWith.js","./eqBy.js":"../node_modules/ramda/es/eqBy.js","./eqProps.js":"../node_modules/ramda/es/eqProps.js","./equals.js":"../node_modules/ramda/es/equals.js","./evolve.js":"../node_modules/ramda/es/evolve.js","./filter.js":"../node_modules/ramda/es/filter.js","./find.js":"../node_modules/ramda/es/find.js","./findIndex.js":"../node_modules/ramda/es/findIndex.js","./findLast.js":"../node_modules/ramda/es/findLast.js","./findLastIndex.js":"../node_modules/ramda/es/findLastIndex.js","./flatten.js":"../node_modules/ramda/es/flatten.js","./flip.js":"../node_modules/ramda/es/flip.js","./forEach.js":"../node_modules/ramda/es/forEach.js","./forEachObjIndexed.js":"../node_modules/ramda/es/forEachObjIndexed.js","./fromPairs.js":"../node_modules/ramda/es/fromPairs.js","./groupBy.js":"../node_modules/ramda/es/groupBy.js","./groupWith.js":"../node_modules/ramda/es/groupWith.js","./gt.js":"../node_modules/ramda/es/gt.js","./gte.js":"../node_modules/ramda/es/gte.js","./has.js":"../node_modules/ramda/es/has.js","./hasIn.js":"../node_modules/ramda/es/hasIn.js","./hasPath.js":"../node_modules/ramda/es/hasPath.js","./head.js":"../node_modules/ramda/es/head.js","./identical.js":"../node_modules/ramda/es/identical.js","./identity.js":"../node_modules/ramda/es/identity.js","./ifElse.js":"../node_modules/ramda/es/ifElse.js","./inc.js":"../node_modules/ramda/es/inc.js","./includes.js":"../node_modules/ramda/es/includes.js","./indexBy.js":"../node_modules/ramda/es/indexBy.js","./indexOf.js":"../node_modules/ramda/es/indexOf.js","./init.js":"../node_modules/ramda/es/init.js","./innerJoin.js":"../node_modules/ramda/es/innerJoin.js","./insert.js":"../node_modules/ramda/es/insert.js","./insertAll.js":"../node_modules/ramda/es/insertAll.js","./intersection.js":"../node_modules/ramda/es/intersection.js","./intersperse.js":"../node_modules/ramda/es/intersperse.js","./into.js":"../node_modules/ramda/es/into.js","./invert.js":"../node_modules/ramda/es/invert.js","./invertObj.js":"../node_modules/ramda/es/invertObj.js","./invoker.js":"../node_modules/ramda/es/invoker.js","./is.js":"../node_modules/ramda/es/is.js","./isEmpty.js":"../node_modules/ramda/es/isEmpty.js","./isNil.js":"../node_modules/ramda/es/isNil.js","./join.js":"../node_modules/ramda/es/join.js","./juxt.js":"../node_modules/ramda/es/juxt.js","./keys.js":"../node_modules/ramda/es/keys.js","./keysIn.js":"../node_modules/ramda/es/keysIn.js","./last.js":"../node_modules/ramda/es/last.js","./lastIndexOf.js":"../node_modules/ramda/es/lastIndexOf.js","./length.js":"../node_modules/ramda/es/length.js","./lens.js":"../node_modules/ramda/es/lens.js","./lensIndex.js":"../node_modules/ramda/es/lensIndex.js","./lensPath.js":"../node_modules/ramda/es/lensPath.js","./lensProp.js":"../node_modules/ramda/es/lensProp.js","./lift.js":"../node_modules/ramda/es/lift.js","./liftN.js":"../node_modules/ramda/es/liftN.js","./lt.js":"../node_modules/ramda/es/lt.js","./lte.js":"../node_modules/ramda/es/lte.js","./map.js":"../node_modules/ramda/es/map.js","./mapAccum.js":"../node_modules/ramda/es/mapAccum.js","./mapAccumRight.js":"../node_modules/ramda/es/mapAccumRight.js","./mapObjIndexed.js":"../node_modules/ramda/es/mapObjIndexed.js","./match.js":"../node_modules/ramda/es/match.js","./mathMod.js":"../node_modules/ramda/es/mathMod.js","./max.js":"../node_modules/ramda/es/max.js","./maxBy.js":"../node_modules/ramda/es/maxBy.js","./mean.js":"../node_modules/ramda/es/mean.js","./median.js":"../node_modules/ramda/es/median.js","./memoizeWith.js":"../node_modules/ramda/es/memoizeWith.js","./merge.js":"../node_modules/ramda/es/merge.js","./mergeAll.js":"../node_modules/ramda/es/mergeAll.js","./mergeDeepLeft.js":"../node_modules/ramda/es/mergeDeepLeft.js","./mergeDeepRight.js":"../node_modules/ramda/es/mergeDeepRight.js","./mergeDeepWith.js":"../node_modules/ramda/es/mergeDeepWith.js","./mergeDeepWithKey.js":"../node_modules/ramda/es/mergeDeepWithKey.js","./mergeLeft.js":"../node_modules/ramda/es/mergeLeft.js","./mergeRight.js":"../node_modules/ramda/es/mergeRight.js","./mergeWith.js":"../node_modules/ramda/es/mergeWith.js","./mergeWithKey.js":"../node_modules/ramda/es/mergeWithKey.js","./min.js":"../node_modules/ramda/es/min.js","./minBy.js":"../node_modules/ramda/es/minBy.js","./modulo.js":"../node_modules/ramda/es/modulo.js","./move.js":"../node_modules/ramda/es/move.js","./multiply.js":"../node_modules/ramda/es/multiply.js","./nAry.js":"../node_modules/ramda/es/nAry.js","./negate.js":"../node_modules/ramda/es/negate.js","./none.js":"../node_modules/ramda/es/none.js","./not.js":"../node_modules/ramda/es/not.js","./nth.js":"../node_modules/ramda/es/nth.js","./nthArg.js":"../node_modules/ramda/es/nthArg.js","./o.js":"../node_modules/ramda/es/o.js","./objOf.js":"../node_modules/ramda/es/objOf.js","./of.js":"../node_modules/ramda/es/of.js","./omit.js":"../node_modules/ramda/es/omit.js","./once.js":"../node_modules/ramda/es/once.js","./or.js":"../node_modules/ramda/es/or.js","./otherwise.js":"../node_modules/ramda/es/otherwise.js","./over.js":"../node_modules/ramda/es/over.js","./pair.js":"../node_modules/ramda/es/pair.js","./partial.js":"../node_modules/ramda/es/partial.js","./partialRight.js":"../node_modules/ramda/es/partialRight.js","./partition.js":"../node_modules/ramda/es/partition.js","./path.js":"../node_modules/ramda/es/path.js","./paths.js":"../node_modules/ramda/es/paths.js","./pathEq.js":"../node_modules/ramda/es/pathEq.js","./pathOr.js":"../node_modules/ramda/es/pathOr.js","./pathSatisfies.js":"../node_modules/ramda/es/pathSatisfies.js","./pick.js":"../node_modules/ramda/es/pick.js","./pickAll.js":"../node_modules/ramda/es/pickAll.js","./pickBy.js":"../node_modules/ramda/es/pickBy.js","./pipe.js":"../node_modules/ramda/es/pipe.js","./pipeK.js":"../node_modules/ramda/es/pipeK.js","./pipeP.js":"../node_modules/ramda/es/pipeP.js","./pipeWith.js":"../node_modules/ramda/es/pipeWith.js","./pluck.js":"../node_modules/ramda/es/pluck.js","./prepend.js":"../node_modules/ramda/es/prepend.js","./product.js":"../node_modules/ramda/es/product.js","./project.js":"../node_modules/ramda/es/project.js","./prop.js":"../node_modules/ramda/es/prop.js","./propEq.js":"../node_modules/ramda/es/propEq.js","./propIs.js":"../node_modules/ramda/es/propIs.js","./propOr.js":"../node_modules/ramda/es/propOr.js","./propSatisfies.js":"../node_modules/ramda/es/propSatisfies.js","./props.js":"../node_modules/ramda/es/props.js","./range.js":"../node_modules/ramda/es/range.js","./reduce.js":"../node_modules/ramda/es/reduce.js","./reduceBy.js":"../node_modules/ramda/es/reduceBy.js","./reduceRight.js":"../node_modules/ramda/es/reduceRight.js","./reduceWhile.js":"../node_modules/ramda/es/reduceWhile.js","./reduced.js":"../node_modules/ramda/es/reduced.js","./reject.js":"../node_modules/ramda/es/reject.js","./remove.js":"../node_modules/ramda/es/remove.js","./repeat.js":"../node_modules/ramda/es/repeat.js","./replace.js":"../node_modules/ramda/es/replace.js","./reverse.js":"../node_modules/ramda/es/reverse.js","./scan.js":"../node_modules/ramda/es/scan.js","./sequence.js":"../node_modules/ramda/es/sequence.js","./set.js":"../node_modules/ramda/es/set.js","./slice.js":"../node_modules/ramda/es/slice.js","./sort.js":"../node_modules/ramda/es/sort.js","./sortBy.js":"../node_modules/ramda/es/sortBy.js","./sortWith.js":"../node_modules/ramda/es/sortWith.js","./split.js":"../node_modules/ramda/es/split.js","./splitAt.js":"../node_modules/ramda/es/splitAt.js","./splitEvery.js":"../node_modules/ramda/es/splitEvery.js","./splitWhen.js":"../node_modules/ramda/es/splitWhen.js","./startsWith.js":"../node_modules/ramda/es/startsWith.js","./subtract.js":"../node_modules/ramda/es/subtract.js","./sum.js":"../node_modules/ramda/es/sum.js","./symmetricDifference.js":"../node_modules/ramda/es/symmetricDifference.js","./symmetricDifferenceWith.js":"../node_modules/ramda/es/symmetricDifferenceWith.js","./tail.js":"../node_modules/ramda/es/tail.js","./take.js":"../node_modules/ramda/es/take.js","./takeLast.js":"../node_modules/ramda/es/takeLast.js","./takeLastWhile.js":"../node_modules/ramda/es/takeLastWhile.js","./takeWhile.js":"../node_modules/ramda/es/takeWhile.js","./tap.js":"../node_modules/ramda/es/tap.js","./test.js":"../node_modules/ramda/es/test.js","./andThen.js":"../node_modules/ramda/es/andThen.js","./times.js":"../node_modules/ramda/es/times.js","./toLower.js":"../node_modules/ramda/es/toLower.js","./toPairs.js":"../node_modules/ramda/es/toPairs.js","./toPairsIn.js":"../node_modules/ramda/es/toPairsIn.js","./toString.js":"../node_modules/ramda/es/toString.js","./toUpper.js":"../node_modules/ramda/es/toUpper.js","./transduce.js":"../node_modules/ramda/es/transduce.js","./transpose.js":"../node_modules/ramda/es/transpose.js","./traverse.js":"../node_modules/ramda/es/traverse.js","./trim.js":"../node_modules/ramda/es/trim.js","./tryCatch.js":"../node_modules/ramda/es/tryCatch.js","./type.js":"../node_modules/ramda/es/type.js","./unapply.js":"../node_modules/ramda/es/unapply.js","./unary.js":"../node_modules/ramda/es/unary.js","./uncurryN.js":"../node_modules/ramda/es/uncurryN.js","./unfold.js":"../node_modules/ramda/es/unfold.js","./union.js":"../node_modules/ramda/es/union.js","./unionWith.js":"../node_modules/ramda/es/unionWith.js","./uniq.js":"../node_modules/ramda/es/uniq.js","./uniqBy.js":"../node_modules/ramda/es/uniqBy.js","./uniqWith.js":"../node_modules/ramda/es/uniqWith.js","./unless.js":"../node_modules/ramda/es/unless.js","./unnest.js":"../node_modules/ramda/es/unnest.js","./until.js":"../node_modules/ramda/es/until.js","./update.js":"../node_modules/ramda/es/update.js","./useWith.js":"../node_modules/ramda/es/useWith.js","./values.js":"../node_modules/ramda/es/values.js","./valuesIn.js":"../node_modules/ramda/es/valuesIn.js","./view.js":"../node_modules/ramda/es/view.js","./when.js":"../node_modules/ramda/es/when.js","./where.js":"../node_modules/ramda/es/where.js","./whereEq.js":"../node_modules/ramda/es/whereEq.js","./without.js":"../node_modules/ramda/es/without.js","./xor.js":"../node_modules/ramda/es/xor.js","./xprod.js":"../node_modules/ramda/es/xprod.js","./zip.js":"../node_modules/ramda/es/zip.js","./zipObj.js":"../node_modules/ramda/es/zipObj.js","./zipWith.js":"../node_modules/ramda/es/zipWith.js","./thunkify.js":"../node_modules/ramda/es/thunkify.js"}],"lib/generate-rows.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -45527,90 +45445,7 @@ var _nextGeneration = _interopRequireDefault(require("./next-generation"));
 var _updateCell = _interopRequireDefault(require("./update-cell"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-},{"./generate-rows":"lib/generate-rows.js","./next-generation":"lib/next-generation.js","./update-cell":"lib/update-cell.js"}],"gameboard/gameboard.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-
-var _react = _interopRequireWildcard(require("react"));
-
-var _lib = require("../lib");
-
-var _ = require("./");
-
-function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
-
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
-
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-var Gameboard = function Gameboard(_ref) {
-  var cellInfo = _ref.cellInfo,
-      rows = _ref.rows,
-      setRows = _ref.setRows,
-      gameActive = _ref.gameActive;
-  return /*#__PURE__*/_react.default.createElement("div", {
-    style: {
-      width: "100%",
-      display: "flex",
-      flexDirection: "column-reverse",
-      overflowX: "scroll",
-      overflowY: "scroll"
-    }
-  }, rows.map(function (row, i) {
-    return /*#__PURE__*/_react.default.createElement(_.Row, {
-      key: i,
-      height: cellInfo.cellSize
-    }, row.map(function (cell, i) {
-      return /*#__PURE__*/_react.default.createElement(_.Cell, {
-        key: i,
-        cell: _objectSpread({}, cell, {}, cellInfo),
-        rows: rows,
-        setRows: setRows,
-        gameActive: gameActive
-      });
-    }));
-  }));
-};
-
-var _default = Gameboard;
-exports.default = _default;
-},{"react":"../node_modules/react/index.js","../lib":"lib/index.js","./":"gameboard/index.js"}],"gameboard/row.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-
-var _react = _interopRequireDefault(require("react"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var Row = function Row(_ref) {
-  var children = _ref.children,
-      height = _ref.height;
-  return /*#__PURE__*/_react.default.createElement("div", {
-    style: {
-      width: "100%",
-      display: "flex",
-      flexDirection: "row",
-      flexWrap: "nowrap",
-      height: height
-    }
-  }, children);
-};
-
-var _default = Row;
-exports.default = _default;
-},{"react":"../node_modules/react/index.js"}],"gameboard/cell.js":[function(require,module,exports) {
+},{"./generate-rows":"lib/generate-rows.js","./next-generation":"lib/next-generation.js","./update-cell":"lib/update-cell.js"}],"GameBoard/Cell.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -45658,124 +45493,39 @@ var Cell = function Cell(_ref) {
 
 var _default = Cell;
 exports.default = _default;
-},{"react":"../node_modules/react/index.js","../lib":"lib/index.js"}],"gameboard/index.js":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","../lib":"lib/index.js"}],"GameBoard/index.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-Object.defineProperty(exports, "Gameboard", {
+Object.defineProperty(exports, "GameBoard", {
   enumerable: true,
   get: function () {
-    return _gameboard.default;
+    return _GameBoard.default;
   }
 });
 Object.defineProperty(exports, "Row", {
   enumerable: true,
   get: function () {
-    return _row.default;
+    return _Row.default;
   }
 });
 Object.defineProperty(exports, "Cell", {
   enumerable: true,
   get: function () {
-    return _cell.default;
+    return _Cell.default;
   }
 });
 
-var _gameboard = _interopRequireDefault(require("./gameboard"));
+var _GameBoard = _interopRequireDefault(require("./GameBoard"));
 
-var _row = _interopRequireDefault(require("./row"));
+var _Row = _interopRequireDefault(require("./Row"));
 
-var _cell = _interopRequireDefault(require("./cell"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-},{"./gameboard":"gameboard/gameboard.js","./row":"gameboard/row.js","./cell":"gameboard/cell.js"}],"form/form.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-
-var _react = _interopRequireDefault(require("react"));
+var _Cell = _interopRequireDefault(require("./Cell"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var Form = function Form(_ref) {
-  var formData = _ref.formData;
-  var nRows = formData.nRows,
-      setNRows = formData.setNRows,
-      nColumns = formData.nColumns,
-      setNColumns = formData.setNColumns,
-      cellSize = formData.cellSize,
-      setCellSize = formData.setCellSize,
-      cellColor = formData.cellColor,
-      setCellColor = formData.setCellColor,
-      nGens = formData.nGens,
-      setNGens = formData.setNGens;
-  return /*#__PURE__*/_react.default.createElement("div", {
-    style: {
-      display: "flex",
-      flexDirection: "column"
-    }
-  }, /*#__PURE__*/_react.default.createElement("label", null, "Number of Rows", /*#__PURE__*/_react.default.createElement("input", {
-    type: "number",
-    name: "rows",
-    value: nRows,
-    onChange: function onChange(e) {
-      return setNRows(parseInt(e.target.value));
-    }
-  })), /*#__PURE__*/_react.default.createElement("label", null, "Number of Columns", /*#__PURE__*/_react.default.createElement("input", {
-    type: "number",
-    name: "cols",
-    value: nColumns,
-    onChange: function onChange(e) {
-      return setNColumns(parseInt(e.target.value));
-    }
-  })), /*#__PURE__*/_react.default.createElement("label", null, "Max Generations", /*#__PURE__*/_react.default.createElement("input", {
-    type: "number",
-    name: "gens",
-    value: nGens,
-    onChange: function onChange(e) {
-      return setNGens(parseInt(e.target.value));
-    }
-  })), /*#__PURE__*/_react.default.createElement("label", null, "Cell Size", /*#__PURE__*/_react.default.createElement("input", {
-    type: "text",
-    name: "size",
-    value: cellSize,
-    onChange: function onChange(e) {
-      return setCellSize(parseInt(e.target.value));
-    }
-  })), /*#__PURE__*/_react.default.createElement("label", null, "Cell Color", /*#__PURE__*/_react.default.createElement("input", {
-    type: "text",
-    name: "color",
-    value: cellColor,
-    onChange: function onChange(e) {
-      return setCellColor(parseInt(e.target.value));
-    }
-  })));
-};
-
-var _default = Form;
-exports.default = _default;
-},{"react":"../node_modules/react/index.js"}],"form/index.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-Object.defineProperty(exports, "Form", {
-  enumerable: true,
-  get: function () {
-    return _form.default;
-  }
-});
-
-var _form = _interopRequireDefault(require("./form"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-},{"./form":"form/form.js"}],"hooks/use-form.js":[function(require,module,exports) {
+},{"./GameBoard":"GameBoard/GameBoard.js","./Row":"GameBoard/Row.js","./Cell":"GameBoard/Cell.js"}],"SeedTable/SeedTable.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -45789,86 +45539,30 @@ function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return 
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
-function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
-
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(n); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
-function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
-
-function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-
-var useForm = function useForm() {
-  var _useState = (0, _react.useState)(10),
-      _useState2 = _slicedToArray(_useState, 2),
-      nRows = _useState2[0],
-      setNRows = _useState2[1];
-
-  var _useState3 = (0, _react.useState)(10),
-      _useState4 = _slicedToArray(_useState3, 2),
-      nColumns = _useState4[0],
-      setNColumns = _useState4[1];
-
-  var _useState5 = (0, _react.useState)(10),
-      _useState6 = _slicedToArray(_useState5, 2),
-      nGens = _useState6[0],
-      setNGens = _useState6[1];
-
-  var _useState7 = (0, _react.useState)("25px"),
-      _useState8 = _slicedToArray(_useState7, 2),
-      cellSize = _useState8[0],
-      setCellSize = _useState8[1];
-
-  var _useState9 = (0, _react.useState)("green"),
-      _useState10 = _slicedToArray(_useState9, 2),
-      cellColor = _useState10[0],
-      setCellColor = _useState10[1];
-
-  var resetForm = function resetForm() {
-    setNRows(10);
-    setNColumns(10);
-    setNGens(10);
-    setCellSize("25px");
-    setCellColor("green");
-  };
-
-  return {
-    nRows: nRows,
-    setNRows: setNRows,
-    nColumns: nColumns,
-    setNColumns: setNColumns,
-    nGens: nGens,
-    setNGens: setNGens,
-    cellSize: cellSize,
-    setCellSize: setCellSize,
-    cellColor: cellColor,
-    setCellColor: setCellColor,
-    resetForm: resetForm
-  };
+var SeedTable = function SeedTable(_ref) {
+  var setSeeding = _ref.setSeeding;
+  return /*#__PURE__*/_react.default.createElement("div", null, "Seed Table");
 };
 
-var _default = useForm;
+var _default = SeedTable;
 exports.default = _default;
-},{"react":"../node_modules/react/index.js"}],"hooks/index.js":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js"}],"SeedTable/index.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-Object.defineProperty(exports, "useForm", {
+Object.defineProperty(exports, "SeedTable", {
   enumerable: true,
   get: function () {
-    return _useForm.default;
+    return _SeedTable.default;
   }
 });
 
-var _useForm = _interopRequireDefault(require("./use-form"));
+var _SeedTable = _interopRequireDefault(require("./SeedTable"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-},{"./use-form":"hooks/use-form.js"}],"app.js":[function(require,module,exports) {
+},{"./SeedTable":"SeedTable/SeedTable.js"}],"app.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -45878,29 +45572,13 @@ exports.default = void 0;
 
 var _react = _interopRequireWildcard(require("react"));
 
-var _ramda = require("ramda");
+var _GameBoard = require("./GameBoard");
 
-var _button = require("./button");
-
-var _decisions = require("./decisions");
-
-var _gameboard = require("./gameboard");
-
-var _form = require("./form");
-
-var _hooks = require("./hooks");
-
-var _lib = require("./lib");
+var _SeedTable = require("./SeedTable");
 
 function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
-
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
@@ -45915,71 +45593,65 @@ function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 var App = function App() {
-  var _useState = (0, _react.useState)([]),
+  var _useState = (0, _react.useState)(true),
       _useState2 = _slicedToArray(_useState, 2),
-      rows = _useState2[0],
-      setRows = _useState2[1];
+      seeding = _useState2[0],
+      setSeeding = _useState2[1];
 
-  var _useState3 = (0, _react.useState)(0),
-      _useState4 = _slicedToArray(_useState3, 2),
-      generations = _useState4[0],
-      setGenerations = _useState4[1];
-
-  var _useState5 = (0, _react.useState)(false),
-      _useState6 = _slicedToArray(_useState5, 2),
-      gameActive = _useState6[0],
-      setGameActive = _useState6[1];
-
-  var formData = (0, _hooks.useForm)();
-
-  var genRows = function genRows() {
-    var rows = (0, _lib.generateRows)(formData);
-    setRows(rows);
-    setGenerations(1);
-  };
-
-  var startGame = function startGame(v) {
-    setGameActive(v);
-
-    if (!v) {
-      formData.resetForm();
-    }
-  };
-
-  var handleNext = function handleNext() {
-    return (0, _lib.nextGeneration)({
-      rows: rows,
-      setRows: setRows,
-      generations: generations,
-      setGenerations: setGenerations,
-      formData: formData
-    });
-  };
-
-  return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("h1", null, "Kayla's Game of Life"), /*#__PURE__*/_react.default.createElement("h2", null, "Game Active: ", gameActive.toString()), /*#__PURE__*/_react.default.createElement("h2", null, "Generations: ", generations), !gameActive && /*#__PURE__*/_react.default.createElement(_form.Form, {
-    formData: formData
-  }), gameActive && /*#__PURE__*/_react.default.createElement(_decisions.Decisions, {
-    formData: formData
-  }), /*#__PURE__*/_react.default.createElement(_button.Button, {
-    gameActive: gameActive,
-    startGame: startGame,
-    rows: rows,
-    genRows: genRows
-  }), gameActive && /*#__PURE__*/_react.default.createElement("button", {
-    onClick: function onClick() {
-      return handleNext();
-    }
-  }, "next"), /*#__PURE__*/_react.default.createElement(_gameboard.Gameboard, {
-    cellInfo: _objectSpread({}, formData),
-    rows: rows,
-    setRows: setRows,
-    gameActive: gameActive
-  }));
+  return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("h1", null, "Kayla's Game of Life"), seeding && /*#__PURE__*/_react.default.createElement(_SeedTable.SeedTable, {
+    setSeeding: setSeeding
+  }), !seeding && /*#__PURE__*/_react.default.createElement(_GameBoard.GameBoard, null));
 };
 
 var _default = App;
+/*
+const [rows, setRows] = useState([]);
+const [generations, setGenerations] = useState(0);
+const [gameActive, setGameActive] = useState(false);
+const formData = useForm();
+
+const genRows = () => {
+  const rows = generateRows(formData);
+  setRows(rows);
+  setGenerations(1);
+};
+
+const startGame = (v) => {
+  setGameActive(v);
+  if (!v) {
+    formData.resetForm();
+  }
+};
+
+const handleNext = () =>
+  nextGeneration({
+    rows,
+    setRows,
+    generations,
+    setGenerations,
+    formData,
+  });
+
+
+  {!gameActive && <Form formData={formData} />}
+  {gameActive && <Decisions formData={formData} />}
+  <Button
+    gameActive={gameActive}
+    startGame={startGame}
+    rows={rows}
+    genRows={genRows}
+  />
+  {gameActive && <button onClick={() => handleNext()}>next</button>}
+  <Gameboard
+    cellInfo={{ ...formData }}
+    rows={rows}
+    setRows={setRows}
+    gameActive={gameActive}
+  />
+*/
+
 exports.default = _default;
-},{"react":"../node_modules/react/index.js","ramda":"../node_modules/ramda/es/index.js","./button":"button/index.js","./decisions":"decisions/index.js","./gameboard":"gameboard/index.js","./form":"form/index.js","./hooks":"hooks/index.js","./lib":"lib/index.js"}],"index.js":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","./GameBoard":"GameBoard/index.js","./SeedTable":"SeedTable/index.js"}],"index.js":[function(require,module,exports) {
 "use strict";
 
 var _react = _interopRequireDefault(require("react"));
@@ -46019,7 +45691,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60088" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63480" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
