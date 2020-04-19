@@ -45554,9 +45554,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 var Gameboard = function Gameboard(_ref) {
   var cellInfo = _ref.cellInfo,
       rows = _ref.rows,
-      setRows = _ref.setRows;
+      setRows = _ref.setRows,
+      gameActive = _ref.gameActive;
   return /*#__PURE__*/_react.default.createElement("div", {
     style: {
+      width: "100%",
       display: "flex",
       flexDirection: "column-reverse",
       overflowX: "scroll",
@@ -45571,7 +45573,8 @@ var Gameboard = function Gameboard(_ref) {
         key: i,
         cell: _objectSpread({}, cell, {}, cellInfo),
         rows: rows,
-        setRows: setRows
+        setRows: setRows,
+        gameActive: gameActive
       });
     }));
   }));
@@ -45624,7 +45627,8 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var Cell = function Cell(_ref) {
   var cell = _ref.cell,
       rows = _ref.rows,
-      setRows = _ref.setRows;
+      setRows = _ref.setRows,
+      gameActive = _ref.gameActive;
   var cellColor = cell.cellColor,
       cellSize = cell.cellSize,
       rowIdx = cell.rowIdx,
@@ -45632,6 +45636,7 @@ var Cell = function Cell(_ref) {
       alive = cell.alive;
   return /*#__PURE__*/_react.default.createElement("div", {
     role: "button",
+    disabled: gameActive,
     onClick: function onClick() {
       return (0, _lib.updateCell)({
         rows: rows,
@@ -45645,7 +45650,7 @@ var Cell = function Cell(_ref) {
       height: cellSize,
       width: cellSize,
       backgroundColor: alive ? cellColor : "white",
-      cursor: "pointer",
+      cursor: gameActive ? "forbidden" : "pointer",
       border: "1px solid ".concat(cellColor)
     }
   });
@@ -45967,7 +45972,8 @@ var App = function App() {
   }, "next"), /*#__PURE__*/_react.default.createElement(_gameboard.Gameboard, {
     cellInfo: _objectSpread({}, formData),
     rows: rows,
-    setRows: setRows
+    setRows: setRows,
+    gameActive: gameActive
   }));
 };
 
@@ -46013,7 +46019,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58097" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60088" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

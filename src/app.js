@@ -49,7 +49,12 @@ const App = () => {
         genRows={genRows}
       />
       {gameActive && <button onClick={() => handleNext()}>next</button>}
-      <Gameboard cellInfo={{ ...formData }} rows={rows} setRows={setRows} />
+      <Gameboard
+        cellInfo={{ ...formData }}
+        rows={rows}
+        setRows={setRows}
+        gameActive={gameActive}
+      />
     </div>
   );
 };

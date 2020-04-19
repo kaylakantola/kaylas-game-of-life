@@ -1,11 +1,12 @@
 import React from "react";
 import { updateCell } from "../lib";
 
-const Cell = ({ cell, rows, setRows }) => {
+const Cell = ({ cell, rows, setRows, gameActive }) => {
   const { cellColor, cellSize, rowIdx, colIdx, alive } = cell;
   return (
     <div
       role="button"
+      disabled={gameActive}
       onClick={() =>
         updateCell({ rows, alive: !alive, setRows, rowIdx, colIdx })
       }
@@ -13,7 +14,7 @@ const Cell = ({ cell, rows, setRows }) => {
         height: cellSize,
         width: cellSize,
         backgroundColor: alive ? cellColor : "white",
-        cursor: "pointer",
+        cursor: gameActive ? "forbidden" : "pointer",
         border: `1px solid ${cellColor}`,
       }}
     />
