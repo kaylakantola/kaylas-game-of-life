@@ -1,4 +1,4 @@
-import { range, last, isEmpty } from "ramda";
+import { range, last, isEmpty, reduceWhile, add } from "ramda";
 
 const createGenerations = (table) => {
   const n = 25;
@@ -24,6 +24,41 @@ const createGenerations = (table) => {
         const bottomLeft = bottomRow[leftIdx];
         const bottom = bottomRow[cellIdx];
         const bottomRight = bottomRow[rightIdx];
+
+        const neighbors = [
+          leftTop,
+          top,
+          rightTop,
+          left,
+          right,
+          leftBottom,
+          bottom,
+          rightBottom,
+        ];
+
+        const livingNeighbors = reduceWhile(
+          (cell) => cell.alive,
+          add,
+          0,
+          neighbors
+        );
+
+        const livingCell = { alive: true };
+        const deadCell = { alive: false };
+
+        if (cell.alive) {
+          if (livingNeighbors === 2 || livingNeighbors === 3) {
+            return livingCell;
+          } else {
+            return deadCell;
+          }
+        } else {
+          if (livingNeighbors === 3) {
+            return livingCell;
+          } else {
+            return deadCell;
+          }
+        }
       })
     );
     gens.push(newGen);
