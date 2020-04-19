@@ -1,6 +1,7 @@
 import React from "react";
 
-const Cell = ({ alive }) => {
+const Cell = ({ cell }) => {
+  const { alive } = cell;
   return (
     <div
       style={{
