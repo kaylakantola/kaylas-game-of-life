@@ -45913,7 +45913,7 @@ var App = function App() {
         return /*#__PURE__*/_react.default.createElement("h2", null, "Select some squares to start, then click play.");
 
       case "play":
-        return /*#__PURE__*/_react.default.createElement("h2", null, "Generation: ", gen, "/", generations.length - 1);
+        return /*#__PURE__*/_react.default.createElement("h2", null, "Generation: ", gen + 1, "/", generations.length);
     }
   };
 
@@ -46033,7 +46033,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50293" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53591" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

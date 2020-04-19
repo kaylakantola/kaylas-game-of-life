@@ -47,7 +47,7 @@ const App = () => {
       case "play":
         return (
           <h2>
-            Generation: {gen}/{generations.length - 1}
+            Generation: {gen + 1}/{generations.length}
           </h2>
         );
     }
