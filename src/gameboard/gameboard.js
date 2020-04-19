@@ -5,7 +5,6 @@ const Gameboard = ({ cellInfo, rows }) => {
   return (
     <div
       style={{
-        width: "100%",
         display: "flex",
         flexDirection: "column-reverse",
         overflowX: "scroll",

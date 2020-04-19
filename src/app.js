@@ -12,19 +12,21 @@ const App = () => {
   const [gameActive, setGameActive] = useState(false);
   const formData = useForm();
 
+  const genRows = () => {
+    const rows = generateRows(formData);
+    setRows(rows);
+    setGenerations(1);
+  };
+
   const startGame = (v) => {
     setGameActive(v);
-    if (v) {
-      const rows = generateRows(formData);
-      setRows(rows);
-      setGenerations(1);
-    } else {
+    if (!v) {
       formData.resetForm();
     }
   };
 
   useEffect(() => {
-    if (generations > 0) {
+    if (generations > 0 && gameActive) {
       setTimeout(
         () =>
           nextGeneration({
@@ -37,15 +39,21 @@ const App = () => {
         1000
       );
     }
-  }, [generations]);
+  }, [generations, gameActive]);
+
   return (
     <div>
       <h1>Kayla's Game of Life</h1>
       <h2>Generations: {generations}</h2>
       {!gameActive && <Form formData={formData} />}
       {gameActive && <Decisions formData={formData} />}
-      <Button gameActive={gameActive} startGame={startGame} />
-      {gameActive && <Gameboard cellInfo={{ ...formData }} rows={rows} />}
+      <Button
+        gameActive={gameActive}
+        startGame={startGame}
+        rows={rows}
+        genRows={genRows}
+      />
+      <Gameboard cellInfo={{ ...formData }} rows={rows} />
     </div>
   );
 };

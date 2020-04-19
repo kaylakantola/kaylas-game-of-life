@@ -28299,15 +28299,38 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var Button = function Button(_ref) {
   var gameActive = _ref.gameActive,
-      startGame = _ref.startGame;
-  return /*#__PURE__*/_react.default.createElement("button", {
-    style: {
-      width: "200px"
-    },
-    onClick: function onClick() {
-      return startGame(!gameActive);
-    }
-  }, gameActive ? "end game" : "start game");
+      startGame = _ref.startGame,
+      rows = _ref.rows,
+      genRows = _ref.genRows;
+
+  if (rows.length === 0) {
+    return /*#__PURE__*/_react.default.createElement("button", {
+      style: {
+        width: "200px"
+      },
+      onClick: function onClick() {
+        return genRows();
+      }
+    }, "generate rows");
+  } else if (rows.length > 0 && gameActive) {
+    return /*#__PURE__*/_react.default.createElement("button", {
+      style: {
+        width: "200px"
+      },
+      onClick: function onClick() {
+        return startGame(false);
+      }
+    }, "end game");
+  } else {
+    return /*#__PURE__*/_react.default.createElement("button", {
+      style: {
+        width: "200px"
+      },
+      onClick: function onClick() {
+        return startGame(true);
+      }
+    }, "start game");
+  }
 };
 
 var _default = Button;
@@ -28419,7 +28442,6 @@ var Gameboard = function Gameboard(_ref) {
       rows = _ref.rows;
   return /*#__PURE__*/_react.default.createElement("div", {
     style: {
-      width: "100%",
       display: "flex",
       flexDirection: "column-reverse",
       overflowX: "scroll",
@@ -28476,20 +28498,45 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 
-var _react = _interopRequireDefault(require("react"));
+var _react = _interopRequireWildcard(require("react"));
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(n); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 var Cell = function Cell(_ref) {
   var cell = _ref.cell;
-  var alive = cell.alive,
-      cellColor = cell.cellColor,
+
+  var _useState = (0, _react.useState)(cell.alive),
+      _useState2 = _slicedToArray(_useState, 2),
+      alive = _useState2[0],
+      setAlive = _useState2[1];
+
+  var cellColor = cell.cellColor,
       cellSize = cell.cellSize;
   return /*#__PURE__*/_react.default.createElement("div", {
+    role: "button",
+    onClick: function onClick() {
+      return setAlive(!alive);
+    },
     style: {
       height: cellSize,
       width: cellSize,
-      backgroundColor: alive ? cellColor : "white"
+      backgroundColor: alive ? cellColor : "white",
+      cursor: "pointer",
+      border: "1px solid ".concat(cellColor)
     }
   });
 };
@@ -45781,21 +45828,22 @@ var App = function App() {
 
   var formData = (0, _hooks.useForm)();
 
+  var genRows = function genRows() {
+    var rows = (0, _lib.generateRows)(formData);
+    setRows(rows);
+    setGenerations(1);
+  };
+
   var startGame = function startGame(v) {
     setGameActive(v);
 
-    if (v) {
-      var _rows = (0, _lib.generateRows)(formData);
-
-      setRows(_rows);
-      setGenerations(1);
-    } else {
+    if (!v) {
       formData.resetForm();
     }
   };
 
   (0, _react.useEffect)(function () {
-    if (generations > 0) {
+    if (generations > 0 && gameActive) {
       setTimeout(function () {
         return (0, _lib.nextGeneration)({
           rows: rows,
@@ -45806,15 +45854,17 @@ var App = function App() {
         });
       }, 1000);
     }
-  }, [generations]);
+  }, [generations, gameActive]);
   return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("h1", null, "Kayla's Game of Life"), /*#__PURE__*/_react.default.createElement("h2", null, "Generations: ", generations), !gameActive && /*#__PURE__*/_react.default.createElement(_form.Form, {
     formData: formData
   }), gameActive && /*#__PURE__*/_react.default.createElement(_decisions.Decisions, {
     formData: formData
   }), /*#__PURE__*/_react.default.createElement(_button.Button, {
     gameActive: gameActive,
-    startGame: startGame
-  }), gameActive && /*#__PURE__*/_react.default.createElement(_gameboard.Gameboard, {
+    startGame: startGame,
+    rows: rows,
+    genRows: genRows
+  }), /*#__PURE__*/_react.default.createElement(_gameboard.Gameboard, {
     cellInfo: _objectSpread({}, formData),
     rows: rows
   }));
@@ -45862,7 +45912,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51385" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52269" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
