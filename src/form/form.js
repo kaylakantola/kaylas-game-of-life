@@ -9,7 +9,7 @@ const Form = ({ formData }) => {
     cellSize,
     setCellSize,
     cellColor,
-    setCellColor
+    setCellColor,
   } = formData;
   return (
     <div style={{ display: "flex", flexDirection: "column" }}>
@@ -19,7 +19,7 @@ const Form = ({ formData }) => {
           type="text"
           name="rows"
           value={nRows}
-          onChange={e => setNRows(e.target.value)}
+          onChange={(e) => setNRows(e.target.value)}
         />
       </label>
       <label>
@@ -28,7 +28,7 @@ const Form = ({ formData }) => {
           type="text"
           name="cols"
           value={nColumns}
-          onChange={e => setNColumns(e.target.value)}
+          onChange={(e) => setNColumns(e.target.value)}
         />
       </label>
       <label>
@@ -37,7 +37,7 @@ const Form = ({ formData }) => {
           type="text"
           name="size"
           value={cellSize}
-          onChange={e => setCellSize(e.target.value)}
+          onChange={(e) => setCellSize(e.target.value)}
         />
       </label>
       <label>
@@ -46,12 +46,9 @@ const Form = ({ formData }) => {
           type="text"
           name="color"
           value={cellColor}
-          onChange={e => setCellColor(e.target.value)}
+          onChange={(e) => setCellColor(e.target.value)}
         />
       </label>
-      <button style={{ width: "200px" }} onClick={() => startGame(true)}>
-        start game
-      </button>
     </div>
   );
 };
