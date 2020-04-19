@@ -4,11 +4,34 @@ import { Decisions } from "./decisions";
 import { Gameboard } from "./gameboard";
 import { Form } from "./form";
 import { useForm } from "./hooks";
+import { generateRows, nextGeneration } from "./lib";
 import rows from "./rows.json";
 
 const App = () => {
-  const [gameActive, startGame] = useState(false);
+  const [rows, setRows] = useState([]);
+  const [generations, setGenerations] = useState(0);
+  const [gameActive, setGameActive] = useState(false);
   const formData = useForm();
+
+  const startGame = (v) => {
+    setGameActive(v);
+    if (v) {
+      const rows = generateRows(formData);
+      setRows(rows);
+      setGenerations(1);
+    } else {
+      formData.resetForm();
+    }
+  };
+
+  useEffect(() => {
+    if (generations > 0) {
+      setTimeout(
+        () => nextGeneration({ rows, setRows, generations, setGenerations }),
+        3000
+      );
+    }
+  }, [generations]);
   return (
     <div>
       <h1>Kayla's Game of Life</h1>

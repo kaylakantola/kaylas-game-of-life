@@ -6,6 +6,12 @@ const useForm = () => {
   const [cellSize, setCellSize] = useState("25px");
   const [cellColor, setCellColor] = useState("green");
 
+  const resetForm = () => {
+    setNRows(0);
+    setNColumns(0);
+    setCellSize("25px");
+    setCellColor("green");
+  };
   return {
     nRows,
     setNRows,
@@ -14,7 +20,8 @@ const useForm = () => {
     cellSize,
     setCellSize,
     cellColor,
-    setCellColor
+    setCellColor,
+    resetForm,
   };
 };
 
