@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Row, Cell } from "./";
 
-const GameBoard = ({ rows }) => {
+const Gameboard = ({ rows }) => {
   return (
     <div
       style={{
@@ -23,4 +23,4 @@ const GameBoard = ({ rows }) => {
   );
 };
 
-export default GameBoard;
+export default Gameboard;
