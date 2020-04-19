@@ -17,7 +17,8 @@
   },
   "dependencies": {
     "react": "^16.13.1",
-    "react-dom": "^16.13.1"
+    "react-dom": "^16.13.1",
+    "react-reveal": "^1.2.2"
   },
   "author": "Kayla Kantola <kkantola@trhc.com> (https://git.carekinesis.net/KKantola)",
   "license": "MIT",
