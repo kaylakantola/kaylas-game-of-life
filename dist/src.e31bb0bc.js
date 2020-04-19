@@ -45391,23 +45391,80 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 
+var _ramda = require("ramda");
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 var nextGeneration = function nextGeneration(_ref) {
   var rows = _ref.rows,
       setRows = _ref.setRows,
       generations = _ref.generations,
       setGenerations = _ref.setGenerations,
       formData = _ref.formData;
+  var nColumns = formData.nColumns;
+  var cols = (0, _ramda.range)(0, nColumns);
+  var deadRow = cols.map(function (col) {
+    return deadCell;
+  });
+  var deadCell = {
+    alive: false
+  };
 
   if (generations <= formData.nGens) {
+    var newRows = rows.map(function (row, rowIdx) {
+      var lastRowIdx = rowIdx - 1;
+      var nextRowIdx = rowIdx + 1;
+      var lastRow = (0, _ramda.isNil)(rows[lastRowIdx]) ? deadRow : rows[lastRowIdx];
+      var nextRow = (0, _ramda.isNil)(rows[nextRowIdx]) ? deadRow : rows[nextRowIdx];
+      var newCells = row.map(function (cell, cellIdx) {
+        var lastCellIdx = cellIdx - 1;
+        var nextCellIdx = cellIdx + 1;
+        var leftTop = lastRow[lastCellIdx] || deadCell;
+        var top = lastRow[cellIdx] || deadCell;
+        var rightTop = lastRow[nextCellIdx] || deadCell;
+        var left = row[lastCellIdx] || deadCell;
+        var right = row[nextCellIdx] || deadCell;
+        var leftBottom = nextRow[lastCellIdx] || deadCell;
+        var bottom = nextRow[cellIdx] || deadCell;
+        var rightBottom = nextRow[nextCellIdx] || deadCell;
+        var neighbors = [leftTop, top, rightTop, left, right, leftBottom, bottom, rightBottom];
+        var livingNeighbors = (0, _ramda.filter)(function (n) {
+          return n.alive;
+        }, neighbors);
+        var deadNeighbors = 8 - livingNeighbors;
+
+        if (cell.alive) {
+          if (livingNeighbors >= 2 && livingNeighbors <= 3) {
+            return _objectSpread({}, cell, {
+              alive: true
+            });
+          } else {
+            return _objectSpread({}, cell, {
+              alive: false
+            });
+          }
+        } else {
+          if (deadNeighbors === 3) {
+            return _objectSpread({}, cell, {
+              alive: true
+            });
+          }
+        }
+      });
+      return newCells;
+    });
+    setRows(newRows);
     setGenerations(generations + 1);
   }
-
-  return [];
 };
 
 var _default = nextGeneration;
 exports.default = _default;
-},{}],"lib/update-cell.js":[function(require,module,exports) {
+},{"ramda":"../node_modules/ramda/es/index.js"}],"lib/update-cell.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -45739,17 +45796,17 @@ function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 var useForm = function useForm() {
-  var _useState = (0, _react.useState)(25),
+  var _useState = (0, _react.useState)(10),
       _useState2 = _slicedToArray(_useState, 2),
       nRows = _useState2[0],
       setNRows = _useState2[1];
 
-  var _useState3 = (0, _react.useState)(25),
+  var _useState3 = (0, _react.useState)(10),
       _useState4 = _slicedToArray(_useState3, 2),
       nColumns = _useState4[0],
       setNColumns = _useState4[1];
 
-  var _useState5 = (0, _react.useState)(25),
+  var _useState5 = (0, _react.useState)(10),
       _useState6 = _slicedToArray(_useState5, 2),
       nGens = _useState6[0],
       setNGens = _useState6[1];
@@ -45765,8 +45822,9 @@ var useForm = function useForm() {
       setCellColor = _useState10[1];
 
   var resetForm = function resetForm() {
-    setNRows(25);
-    setNColumns(25);
+    setNRows(10);
+    setNColumns(10);
+    setNGens(10);
     setCellSize("25px");
     setCellColor("green");
   };
@@ -45882,15 +45940,23 @@ var App = function App() {
 
   (0, _react.useEffect)(function () {
     if (generations > 0 && gameActive) {
-      setTimeout(function () {
-        return (0, _lib.nextGeneration)({
-          rows: rows,
-          setRows: setRows,
-          generations: generations,
-          setGenerations: setGenerations,
-          formData: formData
-        });
-      }, 1000);
+      (0, _lib.nextGeneration)({
+        rows: rows,
+        setRows: setRows,
+        generations: generations,
+        setGenerations: setGenerations,
+        formData: formData
+      }); // setTimeout(
+      //   () =>
+      //     nextGeneration({
+      //       rows,
+      //       setRows,
+      //       generations,
+      //       setGenerations,
+      //       formData,
+      //     }),
+      //   1000
+      // );
     }
   }, [generations, gameActive]);
   return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("h1", null, "Kayla's Game of Life"), /*#__PURE__*/_react.default.createElement("h2", null, "Generations: ", generations), !gameActive && /*#__PURE__*/_react.default.createElement(_form.Form, {
@@ -45951,7 +46017,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58546" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63042" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

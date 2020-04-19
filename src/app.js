@@ -27,17 +27,24 @@ const App = () => {
 
   useEffect(() => {
     if (generations > 0 && gameActive) {
-      setTimeout(
-        () =>
-          nextGeneration({
-            rows,
-            setRows,
-            generations,
-            setGenerations,
-            formData,
-          }),
-        1000
-      );
+      nextGeneration({
+        rows,
+        setRows,
+        generations,
+        setGenerations,
+        formData,
+      });
+      // setTimeout(
+      //   () =>
+      //     nextGeneration({
+      //       rows,
+      //       setRows,
+      //       generations,
+      //       setGenerations,
+      //       formData,
+      //     }),
+      //   1000
+      // );
     }
   }, [generations, gameActive]);
 
