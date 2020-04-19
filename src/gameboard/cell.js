@@ -1,14 +1,17 @@
 import React from "react";
 
-const Cell = ({ cell }) => (
-  <div
-    style={{
-      height: "25px",
-      width: "25px",
-      backgroundColor: cell.alive ? "green" : "white",
-      border: `1px solid ${cell.alive ? "white" : "green"}`
-    }}
-  />
-);
+const Cell = ({ cell }) => {
+  const { alive, cellColor, cellSize } = cell;
+  return (
+    <div
+      style={{
+        height: cellSize,
+        width: cellSize,
+        backgroundColor: alive ? cellColor : "white",
+        border: `1px solid ${alive ? "white" : cellColor}`
+      }}
+    />
+  );
+};
 
 export default Cell;

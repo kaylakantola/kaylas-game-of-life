@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Row, Cell } from "./";
 
-const Gameboard = ({ rows }) => {
+const Gameboard = ({ cellInfo, rows }) => {
   return (
     <div
       style={{
@@ -13,9 +13,9 @@ const Gameboard = ({ rows }) => {
       }}
     >
       {rows.map(row => (
-        <Row>
+        <Row height={cellInfo.cellSize}>
           {row.map(cell => (
-            <Cell cell={cell} />
+            <Cell cell={{ ...cell, ...cellInfo }} />
           ))}
         </Row>
       ))}

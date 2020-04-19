@@ -1,13 +1,13 @@
 import React from "react";
 
-const Row = ({ children }) => (
+const Row = ({ children, height }) => (
   <div
     style={{
       width: "100%",
       display: "flex",
       flexDirection: "row",
       flexWrap: "nowrap",
-      height: "25px"
+      height
     }}
   >
     {children}
