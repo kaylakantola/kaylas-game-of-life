@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { unnest, filter } from "ramda";
 import { Button } from "./button";
 import { Decisions } from "./decisions";
 import { Gameboard } from "./gameboard";
@@ -41,9 +42,18 @@ const App = () => {
     }
   }, [generations, gameActive]);
 
+  useEffect(() => {
+    const flattened = unnest(rows);
+    const theLiving = filter((f) => f.alive, flattened);
+    if (theLiving.length < 1) {
+      setGameActive(false);
+    }
+  }, [rows]);
+
   return (
     <div>
       <h1>Kayla's Game of Life</h1>
+      <h2>Game Active: {gameActive.toString()}</h2>
       <h2>Generations: {generations}</h2>
       {!gameActive && <Form formData={formData} />}
       {gameActive && <Decisions formData={formData} />}

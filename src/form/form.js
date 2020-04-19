@@ -18,28 +18,28 @@ const Form = ({ formData }) => {
       <label>
         Number of Rows
         <input
-          type="text"
+          type="number"
           name="rows"
           value={nRows}
-          onChange={(e) => setNRows(e.target.value)}
+          onChange={(e) => setNRows(parseInt(e.target.value))}
         />
       </label>
       <label>
         Number of Columns
         <input
-          type="text"
+          type="number"
           name="cols"
           value={nColumns}
-          onChange={(e) => setNColumns(e.target.value)}
+          onChange={(e) => setNColumns(parseInt(e.target.value))}
         />
       </label>
       <label>
         Max Generations
         <input
-          type="text"
+          type="number"
           name="gens"
           value={nGens}
-          onChange={(e) => setNGens(e.target.value)}
+          onChange={(e) => setNGens(parseInt(e.target.value))}
         />
       </label>
       <label>
@@ -48,7 +48,7 @@ const Form = ({ formData }) => {
           type="text"
           name="size"
           value={cellSize}
-          onChange={(e) => setCellSize(e.target.value)}
+          onChange={(e) => setCellSize(parseInt(e.target.value))}
         />
       </label>
       <label>
@@ -57,7 +57,7 @@ const Form = ({ formData }) => {
           type="text"
           name="color"
           value={cellColor}
-          onChange={(e) => setCellColor(e.target.value)}
+          onChange={(e) => setCellColor(parseInt(e.target.value))}
         />
       </label>
     </div>
