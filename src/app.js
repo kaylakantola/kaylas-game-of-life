@@ -4,7 +4,7 @@ import { Decisions } from "./decisions";
 import { Gameboard } from "./gameboard";
 import { Form } from "./form";
 import { useForm } from "./hooks";
-import { generateRows, nextGeneration } from "./lib";
+import { generateRows, nextGeneration, updateCell } from "./lib";
 
 const App = () => {
   const [rows, setRows] = useState([]);
@@ -53,7 +53,7 @@ const App = () => {
         rows={rows}
         genRows={genRows}
       />
-      <Gameboard cellInfo={{ ...formData }} rows={rows} />
+      <Gameboard cellInfo={{ ...formData }} rows={rows} setRows={setRows} />
     </div>
   );
 };

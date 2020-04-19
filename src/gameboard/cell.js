@@ -1,12 +1,14 @@
-import React, { useState } from "react";
+import React from "react";
+import { updateCell } from "../lib";
 
-const Cell = ({ cell }) => {
-  const [alive, setAlive] = useState(cell.alive);
-  const { cellColor, cellSize } = cell;
+const Cell = ({ cell, rows, setRows }) => {
+  const { cellColor, cellSize, rowIdx, colIdx, alive } = cell;
   return (
     <div
       role="button"
-      onClick={() => setAlive(!alive)}
+      onClick={() =>
+        updateCell({ rows, alive: !alive, setRows, rowIdx, colIdx })
+      }
       style={{
         height: cellSize,
         width: cellSize,
