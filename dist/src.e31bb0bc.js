@@ -28293,18 +28293,17 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 
-var _react = _interopRequireWildcard(require("react"));
+var _react = _interopRequireDefault(require("react"));
 
-function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
-
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var BoardWrapper = function BoardWrapper(_ref) {
-  var children = _ref.children;
+  var children = _ref.children,
+      tableN = _ref.tableN;
   return /*#__PURE__*/_react.default.createElement("div", {
     style: {
-      width: "250px",
-      height: "250px",
+      width: "".concat(tableN * 25, "px"),
+      height: "".concat(tableN * 25, "px"),
       border: "1px solid green"
     }
   }, children);
@@ -28328,7 +28327,7 @@ Object.defineProperty(exports, "BoardWrapper", {
 var _BoardWrapper = _interopRequireDefault(require("./BoardWrapper"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-},{"./BoardWrapper":"BoardWrapper/BoardWrapper.js"}],"Row/Row.js":[function(require,module,exports) {
+},{"./BoardWrapper":"BoardWrapper/BoardWrapper.js"}],"Button/Button.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -28340,149 +28339,118 @@ var _react = _interopRequireDefault(require("react"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var Row = function Row(_ref) {
-  var children = _ref.children;
+var Button = function Button(_ref) {
+  var text = _ref.text,
+      onClick = _ref.onClick;
+  return /*#__PURE__*/_react.default.createElement("div", {
+    role: "button",
+    onClick: onClick,
+    style: {
+      margin: "1rem",
+      cursor: "pointer",
+      border: "1px solid green",
+      width: "100px",
+      padding: "5px",
+      textAlign: "center"
+    }
+  }, text);
+};
+
+var _default = Button;
+exports.default = _default;
+},{"react":"../node_modules/react/index.js"}],"Button/index.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+Object.defineProperty(exports, "Button", {
+  enumerable: true,
+  get: function () {
+    return _Button.default;
+  }
+});
+
+var _Button = _interopRequireDefault(require("./Button"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+},{"./Button":"Button/Button.js"}],"CreateTable/CreateTable.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _react = _interopRequireDefault(require("react"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var CreateTable = function CreateTable(_ref) {
+  var setMaxGens = _ref.setMaxGens,
+      setTableN = _ref.setTableN,
+      maxGens = _ref.maxGens,
+      tableN = _ref.tableN;
   return /*#__PURE__*/_react.default.createElement("div", {
     style: {
-      width: "100%",
+      display: "flex",
+      flexDirection: "column",
+      width: "100%"
+    }
+  }, /*#__PURE__*/_react.default.createElement("div", {
+    style: {
       display: "flex",
       flexDirection: "row",
-      flexWrap: "nowrap",
-      height: "25px"
+      width: "100%"
     }
-  }, children);
-};
-
-var _default = Row;
-exports.default = _default;
-},{"react":"../node_modules/react/index.js"}],"Row/index.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-Object.defineProperty(exports, "Row", {
-  enumerable: true,
-  get: function () {
-    return _Row.default;
-  }
-});
-
-var _Row = _interopRequireDefault(require("./Row"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-},{"./Row":"Row/Row.js"}],"Cell/Cell.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-
-var _react = _interopRequireDefault(require("react"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var Cell = function Cell(_ref) {
-  var cell = _ref.cell;
-  var alive = cell.alive;
-  return /*#__PURE__*/_react.default.createElement("div", {
+  }, /*#__PURE__*/_react.default.createElement("div", null, "Max number of generations: "), /*#__PURE__*/_react.default.createElement("button", {
+    role: "button",
+    onClick: function onClick() {
+      return setMaxGens(maxGens - 1);
+    }
+  }, "less"), /*#__PURE__*/_react.default.createElement("div", null, maxGens), /*#__PURE__*/_react.default.createElement("button", {
+    role: "button",
+    onClick: function onClick() {
+      return setMaxGens(maxGens + 1);
+    }
+  }, "more")), /*#__PURE__*/_react.default.createElement("div", {
     style: {
-      height: "25px",
-      width: "25px",
-      backgroundColor: alive ? "green" : "white"
-    }
-  });
-};
-
-var _default = Cell;
-exports.default = _default;
-},{"react":"../node_modules/react/index.js"}],"Cell/index.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-Object.defineProperty(exports, "Cell", {
-  enumerable: true,
-  get: function () {
-    return _Cell.default;
-  }
-});
-
-var _Cell = _interopRequireDefault(require("./Cell"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-},{"./Cell":"Cell/Cell.js"}],"GameBoard/GameBoard.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-
-var _react = _interopRequireWildcard(require("react"));
-
-var _Row = require("../Row");
-
-var _Cell = require("../Cell");
-
-function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
-
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
-
-var GameBoard = function GameBoard(_ref) {
-  var generations = _ref.generations,
-      gen = _ref.gen,
-      setGen = _ref.setGen;
-  console.log({
-    generations: generations
-  });
-  (0, _react.useEffect)(function () {
-    if (gen + 1 < generations.length) {
-      setTimeout(function () {
-        return setGen(gen + 1);
-      }, 1000);
-    }
-  }, [gen]);
-  return /*#__PURE__*/_react.default.createElement("div", {
-    style: {
-      width: "100%",
-      height: "100%",
       display: "flex",
-      flexDirection: "column"
+      flexDirection: "row",
+      width: "100%"
     }
-  }, generations[gen].map(function (row, rowIdx) {
-    return /*#__PURE__*/_react.default.createElement(_Row.Row, {
-      key: rowIdx
-    }, row.map(function (cell, cellIdx) {
-      return /*#__PURE__*/_react.default.createElement(_Cell.Cell, {
-        key: cellIdx,
-        cell: cell
-      });
-    }));
-  }));
+  }, /*#__PURE__*/_react.default.createElement("div", null, "Table size: "), /*#__PURE__*/_react.default.createElement("button", {
+    role: "button",
+    onClick: function onClick() {
+      return setTableN(tableN - 1);
+    }
+  }, "less"), /*#__PURE__*/_react.default.createElement("div", null, tableN), /*#__PURE__*/_react.default.createElement("button", {
+    role: "button",
+    onClick: function onClick() {
+      return setTableN(tableN + 1);
+    }
+  }, "more")));
 };
 
-var _default = GameBoard;
+var _default = CreateTable;
 exports.default = _default;
-},{"react":"../node_modules/react/index.js","../Row":"Row/index.js","../Cell":"Cell/index.js"}],"GameBoard/index.js":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js"}],"CreateTable/index.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-Object.defineProperty(exports, "GameBoard", {
+Object.defineProperty(exports, "CreateTable", {
   enumerable: true,
   get: function () {
-    return _GameBoard.default;
+    return _CreateTable.default;
   }
 });
 
-var _GameBoard = _interopRequireDefault(require("./GameBoard"));
+var _CreateTable = _interopRequireDefault(require("./CreateTable"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-},{"./GameBoard":"GameBoard/GameBoard.js"}],"../node_modules/ramda/es/F.js":[function(require,module,exports) {
+},{"./CreateTable":"CreateTable/CreateTable.js"}],"../node_modules/ramda/es/F.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -45421,7 +45389,50 @@ var _zipWith = _interopRequireDefault(require("./zipWith.js"));
 var _thunkify = _interopRequireDefault(require("./thunkify.js"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-},{"./F.js":"../node_modules/ramda/es/F.js","./T.js":"../node_modules/ramda/es/T.js","./__.js":"../node_modules/ramda/es/__.js","./add.js":"../node_modules/ramda/es/add.js","./addIndex.js":"../node_modules/ramda/es/addIndex.js","./adjust.js":"../node_modules/ramda/es/adjust.js","./all.js":"../node_modules/ramda/es/all.js","./allPass.js":"../node_modules/ramda/es/allPass.js","./always.js":"../node_modules/ramda/es/always.js","./and.js":"../node_modules/ramda/es/and.js","./any.js":"../node_modules/ramda/es/any.js","./anyPass.js":"../node_modules/ramda/es/anyPass.js","./ap.js":"../node_modules/ramda/es/ap.js","./aperture.js":"../node_modules/ramda/es/aperture.js","./append.js":"../node_modules/ramda/es/append.js","./apply.js":"../node_modules/ramda/es/apply.js","./applySpec.js":"../node_modules/ramda/es/applySpec.js","./applyTo.js":"../node_modules/ramda/es/applyTo.js","./ascend.js":"../node_modules/ramda/es/ascend.js","./assoc.js":"../node_modules/ramda/es/assoc.js","./assocPath.js":"../node_modules/ramda/es/assocPath.js","./binary.js":"../node_modules/ramda/es/binary.js","./bind.js":"../node_modules/ramda/es/bind.js","./both.js":"../node_modules/ramda/es/both.js","./call.js":"../node_modules/ramda/es/call.js","./chain.js":"../node_modules/ramda/es/chain.js","./clamp.js":"../node_modules/ramda/es/clamp.js","./clone.js":"../node_modules/ramda/es/clone.js","./comparator.js":"../node_modules/ramda/es/comparator.js","./complement.js":"../node_modules/ramda/es/complement.js","./compose.js":"../node_modules/ramda/es/compose.js","./composeK.js":"../node_modules/ramda/es/composeK.js","./composeP.js":"../node_modules/ramda/es/composeP.js","./composeWith.js":"../node_modules/ramda/es/composeWith.js","./concat.js":"../node_modules/ramda/es/concat.js","./cond.js":"../node_modules/ramda/es/cond.js","./construct.js":"../node_modules/ramda/es/construct.js","./constructN.js":"../node_modules/ramda/es/constructN.js","./contains.js":"../node_modules/ramda/es/contains.js","./converge.js":"../node_modules/ramda/es/converge.js","./countBy.js":"../node_modules/ramda/es/countBy.js","./curry.js":"../node_modules/ramda/es/curry.js","./curryN.js":"../node_modules/ramda/es/curryN.js","./dec.js":"../node_modules/ramda/es/dec.js","./defaultTo.js":"../node_modules/ramda/es/defaultTo.js","./descend.js":"../node_modules/ramda/es/descend.js","./difference.js":"../node_modules/ramda/es/difference.js","./differenceWith.js":"../node_modules/ramda/es/differenceWith.js","./dissoc.js":"../node_modules/ramda/es/dissoc.js","./dissocPath.js":"../node_modules/ramda/es/dissocPath.js","./divide.js":"../node_modules/ramda/es/divide.js","./drop.js":"../node_modules/ramda/es/drop.js","./dropLast.js":"../node_modules/ramda/es/dropLast.js","./dropLastWhile.js":"../node_modules/ramda/es/dropLastWhile.js","./dropRepeats.js":"../node_modules/ramda/es/dropRepeats.js","./dropRepeatsWith.js":"../node_modules/ramda/es/dropRepeatsWith.js","./dropWhile.js":"../node_modules/ramda/es/dropWhile.js","./either.js":"../node_modules/ramda/es/either.js","./empty.js":"../node_modules/ramda/es/empty.js","./endsWith.js":"../node_modules/ramda/es/endsWith.js","./eqBy.js":"../node_modules/ramda/es/eqBy.js","./eqProps.js":"../node_modules/ramda/es/eqProps.js","./equals.js":"../node_modules/ramda/es/equals.js","./evolve.js":"../node_modules/ramda/es/evolve.js","./filter.js":"../node_modules/ramda/es/filter.js","./find.js":"../node_modules/ramda/es/find.js","./findIndex.js":"../node_modules/ramda/es/findIndex.js","./findLast.js":"../node_modules/ramda/es/findLast.js","./findLastIndex.js":"../node_modules/ramda/es/findLastIndex.js","./flatten.js":"../node_modules/ramda/es/flatten.js","./flip.js":"../node_modules/ramda/es/flip.js","./forEach.js":"../node_modules/ramda/es/forEach.js","./forEachObjIndexed.js":"../node_modules/ramda/es/forEachObjIndexed.js","./fromPairs.js":"../node_modules/ramda/es/fromPairs.js","./groupBy.js":"../node_modules/ramda/es/groupBy.js","./groupWith.js":"../node_modules/ramda/es/groupWith.js","./gt.js":"../node_modules/ramda/es/gt.js","./gte.js":"../node_modules/ramda/es/gte.js","./has.js":"../node_modules/ramda/es/has.js","./hasIn.js":"../node_modules/ramda/es/hasIn.js","./hasPath.js":"../node_modules/ramda/es/hasPath.js","./head.js":"../node_modules/ramda/es/head.js","./identical.js":"../node_modules/ramda/es/identical.js","./identity.js":"../node_modules/ramda/es/identity.js","./ifElse.js":"../node_modules/ramda/es/ifElse.js","./inc.js":"../node_modules/ramda/es/inc.js","./includes.js":"../node_modules/ramda/es/includes.js","./indexBy.js":"../node_modules/ramda/es/indexBy.js","./indexOf.js":"../node_modules/ramda/es/indexOf.js","./init.js":"../node_modules/ramda/es/init.js","./innerJoin.js":"../node_modules/ramda/es/innerJoin.js","./insert.js":"../node_modules/ramda/es/insert.js","./insertAll.js":"../node_modules/ramda/es/insertAll.js","./intersection.js":"../node_modules/ramda/es/intersection.js","./intersperse.js":"../node_modules/ramda/es/intersperse.js","./into.js":"../node_modules/ramda/es/into.js","./invert.js":"../node_modules/ramda/es/invert.js","./invertObj.js":"../node_modules/ramda/es/invertObj.js","./invoker.js":"../node_modules/ramda/es/invoker.js","./is.js":"../node_modules/ramda/es/is.js","./isEmpty.js":"../node_modules/ramda/es/isEmpty.js","./isNil.js":"../node_modules/ramda/es/isNil.js","./join.js":"../node_modules/ramda/es/join.js","./juxt.js":"../node_modules/ramda/es/juxt.js","./keys.js":"../node_modules/ramda/es/keys.js","./keysIn.js":"../node_modules/ramda/es/keysIn.js","./last.js":"../node_modules/ramda/es/last.js","./lastIndexOf.js":"../node_modules/ramda/es/lastIndexOf.js","./length.js":"../node_modules/ramda/es/length.js","./lens.js":"../node_modules/ramda/es/lens.js","./lensIndex.js":"../node_modules/ramda/es/lensIndex.js","./lensPath.js":"../node_modules/ramda/es/lensPath.js","./lensProp.js":"../node_modules/ramda/es/lensProp.js","./lift.js":"../node_modules/ramda/es/lift.js","./liftN.js":"../node_modules/ramda/es/liftN.js","./lt.js":"../node_modules/ramda/es/lt.js","./lte.js":"../node_modules/ramda/es/lte.js","./map.js":"../node_modules/ramda/es/map.js","./mapAccum.js":"../node_modules/ramda/es/mapAccum.js","./mapAccumRight.js":"../node_modules/ramda/es/mapAccumRight.js","./mapObjIndexed.js":"../node_modules/ramda/es/mapObjIndexed.js","./match.js":"../node_modules/ramda/es/match.js","./mathMod.js":"../node_modules/ramda/es/mathMod.js","./max.js":"../node_modules/ramda/es/max.js","./maxBy.js":"../node_modules/ramda/es/maxBy.js","./mean.js":"../node_modules/ramda/es/mean.js","./median.js":"../node_modules/ramda/es/median.js","./memoizeWith.js":"../node_modules/ramda/es/memoizeWith.js","./merge.js":"../node_modules/ramda/es/merge.js","./mergeAll.js":"../node_modules/ramda/es/mergeAll.js","./mergeDeepLeft.js":"../node_modules/ramda/es/mergeDeepLeft.js","./mergeDeepRight.js":"../node_modules/ramda/es/mergeDeepRight.js","./mergeDeepWith.js":"../node_modules/ramda/es/mergeDeepWith.js","./mergeDeepWithKey.js":"../node_modules/ramda/es/mergeDeepWithKey.js","./mergeLeft.js":"../node_modules/ramda/es/mergeLeft.js","./mergeRight.js":"../node_modules/ramda/es/mergeRight.js","./mergeWith.js":"../node_modules/ramda/es/mergeWith.js","./mergeWithKey.js":"../node_modules/ramda/es/mergeWithKey.js","./min.js":"../node_modules/ramda/es/min.js","./minBy.js":"../node_modules/ramda/es/minBy.js","./modulo.js":"../node_modules/ramda/es/modulo.js","./move.js":"../node_modules/ramda/es/move.js","./multiply.js":"../node_modules/ramda/es/multiply.js","./nAry.js":"../node_modules/ramda/es/nAry.js","./negate.js":"../node_modules/ramda/es/negate.js","./none.js":"../node_modules/ramda/es/none.js","./not.js":"../node_modules/ramda/es/not.js","./nth.js":"../node_modules/ramda/es/nth.js","./nthArg.js":"../node_modules/ramda/es/nthArg.js","./o.js":"../node_modules/ramda/es/o.js","./objOf.js":"../node_modules/ramda/es/objOf.js","./of.js":"../node_modules/ramda/es/of.js","./omit.js":"../node_modules/ramda/es/omit.js","./once.js":"../node_modules/ramda/es/once.js","./or.js":"../node_modules/ramda/es/or.js","./otherwise.js":"../node_modules/ramda/es/otherwise.js","./over.js":"../node_modules/ramda/es/over.js","./pair.js":"../node_modules/ramda/es/pair.js","./partial.js":"../node_modules/ramda/es/partial.js","./partialRight.js":"../node_modules/ramda/es/partialRight.js","./partition.js":"../node_modules/ramda/es/partition.js","./path.js":"../node_modules/ramda/es/path.js","./paths.js":"../node_modules/ramda/es/paths.js","./pathEq.js":"../node_modules/ramda/es/pathEq.js","./pathOr.js":"../node_modules/ramda/es/pathOr.js","./pathSatisfies.js":"../node_modules/ramda/es/pathSatisfies.js","./pick.js":"../node_modules/ramda/es/pick.js","./pickAll.js":"../node_modules/ramda/es/pickAll.js","./pickBy.js":"../node_modules/ramda/es/pickBy.js","./pipe.js":"../node_modules/ramda/es/pipe.js","./pipeK.js":"../node_modules/ramda/es/pipeK.js","./pipeP.js":"../node_modules/ramda/es/pipeP.js","./pipeWith.js":"../node_modules/ramda/es/pipeWith.js","./pluck.js":"../node_modules/ramda/es/pluck.js","./prepend.js":"../node_modules/ramda/es/prepend.js","./product.js":"../node_modules/ramda/es/product.js","./project.js":"../node_modules/ramda/es/project.js","./prop.js":"../node_modules/ramda/es/prop.js","./propEq.js":"../node_modules/ramda/es/propEq.js","./propIs.js":"../node_modules/ramda/es/propIs.js","./propOr.js":"../node_modules/ramda/es/propOr.js","./propSatisfies.js":"../node_modules/ramda/es/propSatisfies.js","./props.js":"../node_modules/ramda/es/props.js","./range.js":"../node_modules/ramda/es/range.js","./reduce.js":"../node_modules/ramda/es/reduce.js","./reduceBy.js":"../node_modules/ramda/es/reduceBy.js","./reduceRight.js":"../node_modules/ramda/es/reduceRight.js","./reduceWhile.js":"../node_modules/ramda/es/reduceWhile.js","./reduced.js":"../node_modules/ramda/es/reduced.js","./reject.js":"../node_modules/ramda/es/reject.js","./remove.js":"../node_modules/ramda/es/remove.js","./repeat.js":"../node_modules/ramda/es/repeat.js","./replace.js":"../node_modules/ramda/es/replace.js","./reverse.js":"../node_modules/ramda/es/reverse.js","./scan.js":"../node_modules/ramda/es/scan.js","./sequence.js":"../node_modules/ramda/es/sequence.js","./set.js":"../node_modules/ramda/es/set.js","./slice.js":"../node_modules/ramda/es/slice.js","./sort.js":"../node_modules/ramda/es/sort.js","./sortBy.js":"../node_modules/ramda/es/sortBy.js","./sortWith.js":"../node_modules/ramda/es/sortWith.js","./split.js":"../node_modules/ramda/es/split.js","./splitAt.js":"../node_modules/ramda/es/splitAt.js","./splitEvery.js":"../node_modules/ramda/es/splitEvery.js","./splitWhen.js":"../node_modules/ramda/es/splitWhen.js","./startsWith.js":"../node_modules/ramda/es/startsWith.js","./subtract.js":"../node_modules/ramda/es/subtract.js","./sum.js":"../node_modules/ramda/es/sum.js","./symmetricDifference.js":"../node_modules/ramda/es/symmetricDifference.js","./symmetricDifferenceWith.js":"../node_modules/ramda/es/symmetricDifferenceWith.js","./tail.js":"../node_modules/ramda/es/tail.js","./take.js":"../node_modules/ramda/es/take.js","./takeLast.js":"../node_modules/ramda/es/takeLast.js","./takeLastWhile.js":"../node_modules/ramda/es/takeLastWhile.js","./takeWhile.js":"../node_modules/ramda/es/takeWhile.js","./tap.js":"../node_modules/ramda/es/tap.js","./test.js":"../node_modules/ramda/es/test.js","./andThen.js":"../node_modules/ramda/es/andThen.js","./times.js":"../node_modules/ramda/es/times.js","./toLower.js":"../node_modules/ramda/es/toLower.js","./toPairs.js":"../node_modules/ramda/es/toPairs.js","./toPairsIn.js":"../node_modules/ramda/es/toPairsIn.js","./toString.js":"../node_modules/ramda/es/toString.js","./toUpper.js":"../node_modules/ramda/es/toUpper.js","./transduce.js":"../node_modules/ramda/es/transduce.js","./transpose.js":"../node_modules/ramda/es/transpose.js","./traverse.js":"../node_modules/ramda/es/traverse.js","./trim.js":"../node_modules/ramda/es/trim.js","./tryCatch.js":"../node_modules/ramda/es/tryCatch.js","./type.js":"../node_modules/ramda/es/type.js","./unapply.js":"../node_modules/ramda/es/unapply.js","./unary.js":"../node_modules/ramda/es/unary.js","./uncurryN.js":"../node_modules/ramda/es/uncurryN.js","./unfold.js":"../node_modules/ramda/es/unfold.js","./union.js":"../node_modules/ramda/es/union.js","./unionWith.js":"../node_modules/ramda/es/unionWith.js","./uniq.js":"../node_modules/ramda/es/uniq.js","./uniqBy.js":"../node_modules/ramda/es/uniqBy.js","./uniqWith.js":"../node_modules/ramda/es/uniqWith.js","./unless.js":"../node_modules/ramda/es/unless.js","./unnest.js":"../node_modules/ramda/es/unnest.js","./until.js":"../node_modules/ramda/es/until.js","./update.js":"../node_modules/ramda/es/update.js","./useWith.js":"../node_modules/ramda/es/useWith.js","./values.js":"../node_modules/ramda/es/values.js","./valuesIn.js":"../node_modules/ramda/es/valuesIn.js","./view.js":"../node_modules/ramda/es/view.js","./when.js":"../node_modules/ramda/es/when.js","./where.js":"../node_modules/ramda/es/where.js","./whereEq.js":"../node_modules/ramda/es/whereEq.js","./without.js":"../node_modules/ramda/es/without.js","./xor.js":"../node_modules/ramda/es/xor.js","./xprod.js":"../node_modules/ramda/es/xprod.js","./zip.js":"../node_modules/ramda/es/zip.js","./zipObj.js":"../node_modules/ramda/es/zipObj.js","./zipWith.js":"../node_modules/ramda/es/zipWith.js","./thunkify.js":"../node_modules/ramda/es/thunkify.js"}],"SeedCell/SeedCell.js":[function(require,module,exports) {
+},{"./F.js":"../node_modules/ramda/es/F.js","./T.js":"../node_modules/ramda/es/T.js","./__.js":"../node_modules/ramda/es/__.js","./add.js":"../node_modules/ramda/es/add.js","./addIndex.js":"../node_modules/ramda/es/addIndex.js","./adjust.js":"../node_modules/ramda/es/adjust.js","./all.js":"../node_modules/ramda/es/all.js","./allPass.js":"../node_modules/ramda/es/allPass.js","./always.js":"../node_modules/ramda/es/always.js","./and.js":"../node_modules/ramda/es/and.js","./any.js":"../node_modules/ramda/es/any.js","./anyPass.js":"../node_modules/ramda/es/anyPass.js","./ap.js":"../node_modules/ramda/es/ap.js","./aperture.js":"../node_modules/ramda/es/aperture.js","./append.js":"../node_modules/ramda/es/append.js","./apply.js":"../node_modules/ramda/es/apply.js","./applySpec.js":"../node_modules/ramda/es/applySpec.js","./applyTo.js":"../node_modules/ramda/es/applyTo.js","./ascend.js":"../node_modules/ramda/es/ascend.js","./assoc.js":"../node_modules/ramda/es/assoc.js","./assocPath.js":"../node_modules/ramda/es/assocPath.js","./binary.js":"../node_modules/ramda/es/binary.js","./bind.js":"../node_modules/ramda/es/bind.js","./both.js":"../node_modules/ramda/es/both.js","./call.js":"../node_modules/ramda/es/call.js","./chain.js":"../node_modules/ramda/es/chain.js","./clamp.js":"../node_modules/ramda/es/clamp.js","./clone.js":"../node_modules/ramda/es/clone.js","./comparator.js":"../node_modules/ramda/es/comparator.js","./complement.js":"../node_modules/ramda/es/complement.js","./compose.js":"../node_modules/ramda/es/compose.js","./composeK.js":"../node_modules/ramda/es/composeK.js","./composeP.js":"../node_modules/ramda/es/composeP.js","./composeWith.js":"../node_modules/ramda/es/composeWith.js","./concat.js":"../node_modules/ramda/es/concat.js","./cond.js":"../node_modules/ramda/es/cond.js","./construct.js":"../node_modules/ramda/es/construct.js","./constructN.js":"../node_modules/ramda/es/constructN.js","./contains.js":"../node_modules/ramda/es/contains.js","./converge.js":"../node_modules/ramda/es/converge.js","./countBy.js":"../node_modules/ramda/es/countBy.js","./curry.js":"../node_modules/ramda/es/curry.js","./curryN.js":"../node_modules/ramda/es/curryN.js","./dec.js":"../node_modules/ramda/es/dec.js","./defaultTo.js":"../node_modules/ramda/es/defaultTo.js","./descend.js":"../node_modules/ramda/es/descend.js","./difference.js":"../node_modules/ramda/es/difference.js","./differenceWith.js":"../node_modules/ramda/es/differenceWith.js","./dissoc.js":"../node_modules/ramda/es/dissoc.js","./dissocPath.js":"../node_modules/ramda/es/dissocPath.js","./divide.js":"../node_modules/ramda/es/divide.js","./drop.js":"../node_modules/ramda/es/drop.js","./dropLast.js":"../node_modules/ramda/es/dropLast.js","./dropLastWhile.js":"../node_modules/ramda/es/dropLastWhile.js","./dropRepeats.js":"../node_modules/ramda/es/dropRepeats.js","./dropRepeatsWith.js":"../node_modules/ramda/es/dropRepeatsWith.js","./dropWhile.js":"../node_modules/ramda/es/dropWhile.js","./either.js":"../node_modules/ramda/es/either.js","./empty.js":"../node_modules/ramda/es/empty.js","./endsWith.js":"../node_modules/ramda/es/endsWith.js","./eqBy.js":"../node_modules/ramda/es/eqBy.js","./eqProps.js":"../node_modules/ramda/es/eqProps.js","./equals.js":"../node_modules/ramda/es/equals.js","./evolve.js":"../node_modules/ramda/es/evolve.js","./filter.js":"../node_modules/ramda/es/filter.js","./find.js":"../node_modules/ramda/es/find.js","./findIndex.js":"../node_modules/ramda/es/findIndex.js","./findLast.js":"../node_modules/ramda/es/findLast.js","./findLastIndex.js":"../node_modules/ramda/es/findLastIndex.js","./flatten.js":"../node_modules/ramda/es/flatten.js","./flip.js":"../node_modules/ramda/es/flip.js","./forEach.js":"../node_modules/ramda/es/forEach.js","./forEachObjIndexed.js":"../node_modules/ramda/es/forEachObjIndexed.js","./fromPairs.js":"../node_modules/ramda/es/fromPairs.js","./groupBy.js":"../node_modules/ramda/es/groupBy.js","./groupWith.js":"../node_modules/ramda/es/groupWith.js","./gt.js":"../node_modules/ramda/es/gt.js","./gte.js":"../node_modules/ramda/es/gte.js","./has.js":"../node_modules/ramda/es/has.js","./hasIn.js":"../node_modules/ramda/es/hasIn.js","./hasPath.js":"../node_modules/ramda/es/hasPath.js","./head.js":"../node_modules/ramda/es/head.js","./identical.js":"../node_modules/ramda/es/identical.js","./identity.js":"../node_modules/ramda/es/identity.js","./ifElse.js":"../node_modules/ramda/es/ifElse.js","./inc.js":"../node_modules/ramda/es/inc.js","./includes.js":"../node_modules/ramda/es/includes.js","./indexBy.js":"../node_modules/ramda/es/indexBy.js","./indexOf.js":"../node_modules/ramda/es/indexOf.js","./init.js":"../node_modules/ramda/es/init.js","./innerJoin.js":"../node_modules/ramda/es/innerJoin.js","./insert.js":"../node_modules/ramda/es/insert.js","./insertAll.js":"../node_modules/ramda/es/insertAll.js","./intersection.js":"../node_modules/ramda/es/intersection.js","./intersperse.js":"../node_modules/ramda/es/intersperse.js","./into.js":"../node_modules/ramda/es/into.js","./invert.js":"../node_modules/ramda/es/invert.js","./invertObj.js":"../node_modules/ramda/es/invertObj.js","./invoker.js":"../node_modules/ramda/es/invoker.js","./is.js":"../node_modules/ramda/es/is.js","./isEmpty.js":"../node_modules/ramda/es/isEmpty.js","./isNil.js":"../node_modules/ramda/es/isNil.js","./join.js":"../node_modules/ramda/es/join.js","./juxt.js":"../node_modules/ramda/es/juxt.js","./keys.js":"../node_modules/ramda/es/keys.js","./keysIn.js":"../node_modules/ramda/es/keysIn.js","./last.js":"../node_modules/ramda/es/last.js","./lastIndexOf.js":"../node_modules/ramda/es/lastIndexOf.js","./length.js":"../node_modules/ramda/es/length.js","./lens.js":"../node_modules/ramda/es/lens.js","./lensIndex.js":"../node_modules/ramda/es/lensIndex.js","./lensPath.js":"../node_modules/ramda/es/lensPath.js","./lensProp.js":"../node_modules/ramda/es/lensProp.js","./lift.js":"../node_modules/ramda/es/lift.js","./liftN.js":"../node_modules/ramda/es/liftN.js","./lt.js":"../node_modules/ramda/es/lt.js","./lte.js":"../node_modules/ramda/es/lte.js","./map.js":"../node_modules/ramda/es/map.js","./mapAccum.js":"../node_modules/ramda/es/mapAccum.js","./mapAccumRight.js":"../node_modules/ramda/es/mapAccumRight.js","./mapObjIndexed.js":"../node_modules/ramda/es/mapObjIndexed.js","./match.js":"../node_modules/ramda/es/match.js","./mathMod.js":"../node_modules/ramda/es/mathMod.js","./max.js":"../node_modules/ramda/es/max.js","./maxBy.js":"../node_modules/ramda/es/maxBy.js","./mean.js":"../node_modules/ramda/es/mean.js","./median.js":"../node_modules/ramda/es/median.js","./memoizeWith.js":"../node_modules/ramda/es/memoizeWith.js","./merge.js":"../node_modules/ramda/es/merge.js","./mergeAll.js":"../node_modules/ramda/es/mergeAll.js","./mergeDeepLeft.js":"../node_modules/ramda/es/mergeDeepLeft.js","./mergeDeepRight.js":"../node_modules/ramda/es/mergeDeepRight.js","./mergeDeepWith.js":"../node_modules/ramda/es/mergeDeepWith.js","./mergeDeepWithKey.js":"../node_modules/ramda/es/mergeDeepWithKey.js","./mergeLeft.js":"../node_modules/ramda/es/mergeLeft.js","./mergeRight.js":"../node_modules/ramda/es/mergeRight.js","./mergeWith.js":"../node_modules/ramda/es/mergeWith.js","./mergeWithKey.js":"../node_modules/ramda/es/mergeWithKey.js","./min.js":"../node_modules/ramda/es/min.js","./minBy.js":"../node_modules/ramda/es/minBy.js","./modulo.js":"../node_modules/ramda/es/modulo.js","./move.js":"../node_modules/ramda/es/move.js","./multiply.js":"../node_modules/ramda/es/multiply.js","./nAry.js":"../node_modules/ramda/es/nAry.js","./negate.js":"../node_modules/ramda/es/negate.js","./none.js":"../node_modules/ramda/es/none.js","./not.js":"../node_modules/ramda/es/not.js","./nth.js":"../node_modules/ramda/es/nth.js","./nthArg.js":"../node_modules/ramda/es/nthArg.js","./o.js":"../node_modules/ramda/es/o.js","./objOf.js":"../node_modules/ramda/es/objOf.js","./of.js":"../node_modules/ramda/es/of.js","./omit.js":"../node_modules/ramda/es/omit.js","./once.js":"../node_modules/ramda/es/once.js","./or.js":"../node_modules/ramda/es/or.js","./otherwise.js":"../node_modules/ramda/es/otherwise.js","./over.js":"../node_modules/ramda/es/over.js","./pair.js":"../node_modules/ramda/es/pair.js","./partial.js":"../node_modules/ramda/es/partial.js","./partialRight.js":"../node_modules/ramda/es/partialRight.js","./partition.js":"../node_modules/ramda/es/partition.js","./path.js":"../node_modules/ramda/es/path.js","./paths.js":"../node_modules/ramda/es/paths.js","./pathEq.js":"../node_modules/ramda/es/pathEq.js","./pathOr.js":"../node_modules/ramda/es/pathOr.js","./pathSatisfies.js":"../node_modules/ramda/es/pathSatisfies.js","./pick.js":"../node_modules/ramda/es/pick.js","./pickAll.js":"../node_modules/ramda/es/pickAll.js","./pickBy.js":"../node_modules/ramda/es/pickBy.js","./pipe.js":"../node_modules/ramda/es/pipe.js","./pipeK.js":"../node_modules/ramda/es/pipeK.js","./pipeP.js":"../node_modules/ramda/es/pipeP.js","./pipeWith.js":"../node_modules/ramda/es/pipeWith.js","./pluck.js":"../node_modules/ramda/es/pluck.js","./prepend.js":"../node_modules/ramda/es/prepend.js","./product.js":"../node_modules/ramda/es/product.js","./project.js":"../node_modules/ramda/es/project.js","./prop.js":"../node_modules/ramda/es/prop.js","./propEq.js":"../node_modules/ramda/es/propEq.js","./propIs.js":"../node_modules/ramda/es/propIs.js","./propOr.js":"../node_modules/ramda/es/propOr.js","./propSatisfies.js":"../node_modules/ramda/es/propSatisfies.js","./props.js":"../node_modules/ramda/es/props.js","./range.js":"../node_modules/ramda/es/range.js","./reduce.js":"../node_modules/ramda/es/reduce.js","./reduceBy.js":"../node_modules/ramda/es/reduceBy.js","./reduceRight.js":"../node_modules/ramda/es/reduceRight.js","./reduceWhile.js":"../node_modules/ramda/es/reduceWhile.js","./reduced.js":"../node_modules/ramda/es/reduced.js","./reject.js":"../node_modules/ramda/es/reject.js","./remove.js":"../node_modules/ramda/es/remove.js","./repeat.js":"../node_modules/ramda/es/repeat.js","./replace.js":"../node_modules/ramda/es/replace.js","./reverse.js":"../node_modules/ramda/es/reverse.js","./scan.js":"../node_modules/ramda/es/scan.js","./sequence.js":"../node_modules/ramda/es/sequence.js","./set.js":"../node_modules/ramda/es/set.js","./slice.js":"../node_modules/ramda/es/slice.js","./sort.js":"../node_modules/ramda/es/sort.js","./sortBy.js":"../node_modules/ramda/es/sortBy.js","./sortWith.js":"../node_modules/ramda/es/sortWith.js","./split.js":"../node_modules/ramda/es/split.js","./splitAt.js":"../node_modules/ramda/es/splitAt.js","./splitEvery.js":"../node_modules/ramda/es/splitEvery.js","./splitWhen.js":"../node_modules/ramda/es/splitWhen.js","./startsWith.js":"../node_modules/ramda/es/startsWith.js","./subtract.js":"../node_modules/ramda/es/subtract.js","./sum.js":"../node_modules/ramda/es/sum.js","./symmetricDifference.js":"../node_modules/ramda/es/symmetricDifference.js","./symmetricDifferenceWith.js":"../node_modules/ramda/es/symmetricDifferenceWith.js","./tail.js":"../node_modules/ramda/es/tail.js","./take.js":"../node_modules/ramda/es/take.js","./takeLast.js":"../node_modules/ramda/es/takeLast.js","./takeLastWhile.js":"../node_modules/ramda/es/takeLastWhile.js","./takeWhile.js":"../node_modules/ramda/es/takeWhile.js","./tap.js":"../node_modules/ramda/es/tap.js","./test.js":"../node_modules/ramda/es/test.js","./andThen.js":"../node_modules/ramda/es/andThen.js","./times.js":"../node_modules/ramda/es/times.js","./toLower.js":"../node_modules/ramda/es/toLower.js","./toPairs.js":"../node_modules/ramda/es/toPairs.js","./toPairsIn.js":"../node_modules/ramda/es/toPairsIn.js","./toString.js":"../node_modules/ramda/es/toString.js","./toUpper.js":"../node_modules/ramda/es/toUpper.js","./transduce.js":"../node_modules/ramda/es/transduce.js","./transpose.js":"../node_modules/ramda/es/transpose.js","./traverse.js":"../node_modules/ramda/es/traverse.js","./trim.js":"../node_modules/ramda/es/trim.js","./tryCatch.js":"../node_modules/ramda/es/tryCatch.js","./type.js":"../node_modules/ramda/es/type.js","./unapply.js":"../node_modules/ramda/es/unapply.js","./unary.js":"../node_modules/ramda/es/unary.js","./uncurryN.js":"../node_modules/ramda/es/uncurryN.js","./unfold.js":"../node_modules/ramda/es/unfold.js","./union.js":"../node_modules/ramda/es/union.js","./unionWith.js":"../node_modules/ramda/es/unionWith.js","./uniq.js":"../node_modules/ramda/es/uniq.js","./uniqBy.js":"../node_modules/ramda/es/uniqBy.js","./uniqWith.js":"../node_modules/ramda/es/uniqWith.js","./unless.js":"../node_modules/ramda/es/unless.js","./unnest.js":"../node_modules/ramda/es/unnest.js","./until.js":"../node_modules/ramda/es/until.js","./update.js":"../node_modules/ramda/es/update.js","./useWith.js":"../node_modules/ramda/es/useWith.js","./values.js":"../node_modules/ramda/es/values.js","./valuesIn.js":"../node_modules/ramda/es/valuesIn.js","./view.js":"../node_modules/ramda/es/view.js","./when.js":"../node_modules/ramda/es/when.js","./where.js":"../node_modules/ramda/es/where.js","./whereEq.js":"../node_modules/ramda/es/whereEq.js","./without.js":"../node_modules/ramda/es/without.js","./xor.js":"../node_modules/ramda/es/xor.js","./xprod.js":"../node_modules/ramda/es/xprod.js","./zip.js":"../node_modules/ramda/es/zip.js","./zipObj.js":"../node_modules/ramda/es/zipObj.js","./zipWith.js":"../node_modules/ramda/es/zipWith.js","./thunkify.js":"../node_modules/ramda/es/thunkify.js"}],"Row/Row.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _react = _interopRequireDefault(require("react"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var Row = function Row(_ref) {
+  var children = _ref.children;
+  return /*#__PURE__*/_react.default.createElement("div", {
+    style: {
+      width: "100%",
+      display: "flex",
+      flexDirection: "row",
+      flexWrap: "nowrap",
+      height: "25px"
+    }
+  }, children);
+};
+
+var _default = Row;
+exports.default = _default;
+},{"react":"../node_modules/react/index.js"}],"Row/index.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+Object.defineProperty(exports, "Row", {
+  enumerable: true,
+  get: function () {
+    return _Row.default;
+  }
+});
+
+var _Row = _interopRequireDefault(require("./Row"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+},{"./Row":"Row/Row.js"}],"SeedCell/SeedCell.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -45502,9 +45513,7 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 var SeedTable = function SeedTable(_ref) {
-  var setSeeding = _ref.setSeeding,
-      setGenerations = _ref.setGenerations,
-      table = _ref.table,
+  var table = _ref.table,
       setTable = _ref.setTable;
 
   var setCell = function setCell(_ref2) {
@@ -45560,209 +45569,115 @@ Object.defineProperty(exports, "SeedTable", {
 var _SeedTable = _interopRequireDefault(require("./SeedTable"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-},{"./SeedTable":"SeedTable/SeedTable.js"}],"initial-table.json":[function(require,module,exports) {
-module.exports = [[{
-  "alive": false
-}, {
-  "alive": false
-}, {
-  "alive": false
-}, {
-  "alive": false
-}, {
-  "alive": false
-}, {
-  "alive": false
-}, {
-  "alive": false
-}, {
-  "alive": false
-}, {
-  "alive": false
-}, {
-  "alive": false
-}], [{
-  "alive": false
-}, {
-  "alive": false
-}, {
-  "alive": false
-}, {
-  "alive": false
-}, {
-  "alive": false
-}, {
-  "alive": false
-}, {
-  "alive": false
-}, {
-  "alive": false
-}, {
-  "alive": false
-}, {
-  "alive": false
-}], [{
-  "alive": false
-}, {
-  "alive": false
-}, {
-  "alive": false
-}, {
-  "alive": false
-}, {
-  "alive": false
-}, {
-  "alive": false
-}, {
-  "alive": false
-}, {
-  "alive": false
-}, {
-  "alive": false
-}, {
-  "alive": false
-}], [{
-  "alive": false
-}, {
-  "alive": false
-}, {
-  "alive": false
-}, {
-  "alive": false
-}, {
-  "alive": false
-}, {
-  "alive": false
-}, {
-  "alive": false
-}, {
-  "alive": false
-}, {
-  "alive": false
-}, {
-  "alive": false
-}], [{
-  "alive": false
-}, {
-  "alive": false
-}, {
-  "alive": false
-}, {
-  "alive": false
-}, {
-  "alive": false
-}, {
-  "alive": false
-}, {
-  "alive": false
-}, {
-  "alive": false
-}, {
-  "alive": false
-}, {
-  "alive": false
-}], [{
-  "alive": false
-}, {
-  "alive": false
-}, {
-  "alive": false
-}, {
-  "alive": false
-}, {
-  "alive": false
-}, {
-  "alive": false
-}, {
-  "alive": false
-}, {
-  "alive": false
-}, {
-  "alive": false
-}, {
-  "alive": false
-}], [{
-  "alive": false
-}, {
-  "alive": false
-}, {
-  "alive": false
-}, {
-  "alive": false
-}, {
-  "alive": false
-}, {
-  "alive": false
-}, {
-  "alive": false
-}, {
-  "alive": false
-}, {
-  "alive": false
-}, {
-  "alive": false
-}], [{
-  "alive": false
-}, {
-  "alive": false
-}, {
-  "alive": false
-}, {
-  "alive": false
-}, {
-  "alive": false
-}, {
-  "alive": false
-}, {
-  "alive": false
-}, {
-  "alive": false
-}, {
-  "alive": false
-}, {
-  "alive": false
-}], [{
-  "alive": false
-}, {
-  "alive": false
-}, {
-  "alive": false
-}, {
-  "alive": false
-}, {
-  "alive": false
-}, {
-  "alive": false
-}, {
-  "alive": false
-}, {
-  "alive": false
-}, {
-  "alive": false
-}, {
-  "alive": false
-}], [{
-  "alive": false
-}, {
-  "alive": false
-}, {
-  "alive": false
-}, {
-  "alive": false
-}, {
-  "alive": false
-}, {
-  "alive": false
-}, {
-  "alive": false
-}, {
-  "alive": false
-}, {
-  "alive": false
-}, {
-  "alive": false
-}]];
-},{}],"lib/create-generations.js":[function(require,module,exports) {
+},{"./SeedTable":"SeedTable/SeedTable.js"}],"Cell/Cell.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _react = _interopRequireDefault(require("react"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var Cell = function Cell(_ref) {
+  var cell = _ref.cell;
+  var alive = cell.alive;
+  return /*#__PURE__*/_react.default.createElement("div", {
+    style: {
+      height: "25px",
+      width: "25px",
+      backgroundColor: alive ? "green" : "white"
+    }
+  });
+};
+
+var _default = Cell;
+exports.default = _default;
+},{"react":"../node_modules/react/index.js"}],"Cell/index.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+Object.defineProperty(exports, "Cell", {
+  enumerable: true,
+  get: function () {
+    return _Cell.default;
+  }
+});
+
+var _Cell = _interopRequireDefault(require("./Cell"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+},{"./Cell":"Cell/Cell.js"}],"GameBoard/GameBoard.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _react = _interopRequireWildcard(require("react"));
+
+var _Row = require("../Row");
+
+var _Cell = require("../Cell");
+
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+var GameBoard = function GameBoard(_ref) {
+  var generations = _ref.generations,
+      gen = _ref.gen,
+      setGen = _ref.setGen;
+  (0, _react.useEffect)(function () {
+    if (gen + 1 < generations.length) {
+      setTimeout(function () {
+        return setGen(gen + 1);
+      }, 1000);
+    }
+  }, [gen]);
+  return /*#__PURE__*/_react.default.createElement("div", {
+    style: {
+      width: "100%",
+      height: "100%",
+      display: "flex",
+      flexDirection: "column"
+    }
+  }, generations[gen].map(function (row, rowIdx) {
+    return /*#__PURE__*/_react.default.createElement(_Row.Row, {
+      key: rowIdx
+    }, row.map(function (cell, cellIdx) {
+      return /*#__PURE__*/_react.default.createElement(_Cell.Cell, {
+        key: cellIdx,
+        cell: cell
+      });
+    }));
+  }));
+};
+
+var _default = GameBoard;
+exports.default = _default;
+},{"react":"../node_modules/react/index.js","../Row":"Row/index.js","../Cell":"Cell/index.js"}],"GameBoard/index.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+Object.defineProperty(exports, "GameBoard", {
+  enumerable: true,
+  get: function () {
+    return _GameBoard.default;
+  }
+});
+
+var _GameBoard = _interopRequireDefault(require("./GameBoard"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+},{"./GameBoard":"GameBoard/GameBoard.js"}],"lib/create-generations.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -45781,13 +45696,14 @@ var deadCell = {
 
 var createGenerations = function createGenerations(_ref) {
   var table = _ref.table,
-      maxGens = _ref.maxGens;
+      maxGens = _ref.maxGens,
+      tableN = _ref.tableN;
   var gens = [];
 
   var generate = function generate(rows) {
     var newGen = rows.map(function (row, rowIdx) {
       var newRow = row.map(function (cell, cellIdx) {
-        var arr = (0, _ramda.range)(0, 10);
+        var arr = (0, _ramda.range)(0, tableN);
         var deadRow = arr.map(function () {
           return deadCell;
         });
@@ -45795,16 +45711,16 @@ var createGenerations = function createGenerations(_ref) {
         var btmRowIdx = rowIdx - 1;
         var leftIdx = cellIdx - 1;
         var rightIdx = cellIdx + 1;
-        var topRow = topRowIdx > 9 ? deadRow : rows[topRowIdx];
+        var topRow = topRowIdx > tableN - 1 ? deadRow : rows[topRowIdx];
         var bottomRow = btmRowIdx < 0 ? deadRow : rows[btmRowIdx];
         var topLeft = leftIdx < 0 ? deadCell : topRow[leftIdx];
         var top = topRow[cellIdx];
-        var topRight = rightIdx > 9 ? deadCell : topRow[rightIdx];
+        var topRight = rightIdx > tableN - 1 ? deadCell : topRow[rightIdx];
         var left = leftIdx < 0 ? deadCell : row[leftIdx];
-        var right = rightIdx > 9 ? deadCell : row[rightIdx];
+        var right = rightIdx > tableN - 1 ? deadCell : row[rightIdx];
         var bottomLeft = leftIdx < 0 ? deadCell : bottomRow[leftIdx];
         var bottom = bottomRow[cellIdx];
-        var bottomRight = rightIdx > 9 ? deadCell : bottomRow[rightIdx];
+        var bottomRight = rightIdx > tableN - 1 ? deadCell : bottomRow[rightIdx];
         var neighbors = [topLeft, top, topRight, left, right, bottomLeft, bottom, bottomRight];
         var livingNeighbors = (0, _ramda.filter)(function (n) {
           return n.alive;
@@ -45844,6 +45760,32 @@ var createGenerations = function createGenerations(_ref) {
 
 var _default = createGenerations;
 exports.default = _default;
+},{"ramda":"../node_modules/ramda/es/index.js"}],"lib/create-initial-table.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _ramda = require("ramda");
+
+var createInitialTable = function createInitialTable(n) {
+  var arr = (0, _ramda.range)(0, n);
+  var rows = arr.map(function (row) {
+    var returnRow = arr.map(function (cell) {
+      var returnCell = {
+        alive: false
+      };
+      return returnCell;
+    });
+    return returnRow;
+  });
+  return rows;
+};
+
+var _default = createInitialTable;
+exports.default = _default;
 },{"ramda":"../node_modules/ramda/es/index.js"}],"lib/index.js":[function(require,module,exports) {
 "use strict";
 
@@ -45856,11 +45798,19 @@ Object.defineProperty(exports, "createGenerations", {
     return _createGenerations.default;
   }
 });
+Object.defineProperty(exports, "createInitialTable", {
+  enumerable: true,
+  get: function () {
+    return _createInitialTable.default;
+  }
+});
 
 var _createGenerations = _interopRequireDefault(require("./create-generations"));
 
+var _createInitialTable = _interopRequireDefault(require("./create-initial-table"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-},{"./create-generations":"lib/create-generations.js"}],"app.js":[function(require,module,exports) {
+},{"./create-generations":"lib/create-generations.js","./create-initial-table":"lib/create-initial-table.js"}],"app.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -45872,15 +45822,15 @@ var _react = _interopRequireWildcard(require("react"));
 
 var _BoardWrapper = require("./BoardWrapper");
 
-var _GameBoard = require("./GameBoard");
+var _Button = require("./Button");
+
+var _CreateTable = require("./CreateTable");
 
 var _SeedTable = require("./SeedTable");
 
-var _initialTable = _interopRequireDefault(require("./initial-table"));
+var _GameBoard = require("./GameBoard");
 
 var _lib = require("./lib");
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
 
@@ -45899,68 +45849,151 @@ function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 var App = function App() {
-  var maxGens = 25;
-
-  var _useState = (0, _react.useState)(_initialTable.default),
+  var _useState = (0, _react.useState)("initialize"),
       _useState2 = _slicedToArray(_useState, 2),
-      table = _useState2[0],
-      setTable = _useState2[1];
+      step = _useState2[0],
+      setStep = _useState2[1];
 
-  var _useState3 = (0, _react.useState)([]),
+  var _useState3 = (0, _react.useState)(25),
       _useState4 = _slicedToArray(_useState3, 2),
-      generations = _useState4[0],
-      setGenerations = _useState4[1];
+      maxGens = _useState4[0],
+      setMaxGens = _useState4[1];
 
-  var _useState5 = (0, _react.useState)(0),
+  var _useState5 = (0, _react.useState)(25),
       _useState6 = _slicedToArray(_useState5, 2),
-      gen = _useState6[0],
-      setGen = _useState6[1];
+      tableN = _useState6[0],
+      setTableN = _useState6[1];
 
-  var _useState7 = (0, _react.useState)(true),
+  var _useState7 = (0, _react.useState)([]),
       _useState8 = _slicedToArray(_useState7, 2),
-      seeding = _useState8[0],
-      setSeeding = _useState8[1];
+      table = _useState8[0],
+      setTable = _useState8[1];
 
-  var toggleBtn = function toggleBtn() {
-    if (seeding) {
-      setSeeding(false);
-      var gens = (0, _lib.createGenerations)({
-        table: table,
-        maxGens: maxGens
-      });
-      setGenerations(gens);
-    } else {
-      setTable(_initialTable.default);
-      setGenerations([]);
-      setSeeding(true);
+  var _useState9 = (0, _react.useState)([]),
+      _useState10 = _slicedToArray(_useState9, 2),
+      generations = _useState10[0],
+      setGenerations = _useState10[1];
+
+  var _useState11 = (0, _react.useState)(0),
+      _useState12 = _slicedToArray(_useState11, 2),
+      gen = _useState12[0],
+      setGen = _useState12[1];
+
+  var createTable = function createTable() {
+    var iT = (0, _lib.createInitialTable)(tableN);
+    setTable(iT);
+    setStep("seed");
+  };
+
+  var setSeeds = function setSeeds() {
+    var gens = (0, _lib.createGenerations)({
+      table: table,
+      maxGens: maxGens,
+      tableN: tableN
+    });
+    setGenerations(gens);
+    setStep("play");
+  };
+
+  var resetTable = function resetTable() {
+    setMaxGens(25);
+    setTableN(25);
+    setTable([]);
+    setGenerations([]);
+    setGen(0);
+    setStep("initialize");
+  };
+
+  var renderHeader = function renderHeader() {
+    switch (step) {
+      case "initialize":
+        return /*#__PURE__*/_react.default.createElement("h2", null, "Pick your starter values.");
+
+      case "seed":
+        return /*#__PURE__*/_react.default.createElement("h2", null, "Select some squares to start, then click play.");
+
+      case "play":
+        return /*#__PURE__*/_react.default.createElement("h2", null, "Generation: ", gen, "/", generations.length - 1);
     }
   };
 
-  return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("h1", null, "Kayla's Game of Life"), !seeding && /*#__PURE__*/_react.default.createElement("h2", null, "Generation: ", gen, "/", generations.length - 1), seeding && /*#__PURE__*/_react.default.createElement("h2", null, "Select some squares to start, then click play."), /*#__PURE__*/_react.default.createElement("div", {
-    role: "button",
-    onClick: toggleBtn,
-    style: {
-      height: "50px",
-      width: "100px",
-      border: "1px solid green",
-      margin: "1rem",
-      cursor: "pointer"
+  var renderButton = function renderButton() {
+    switch (step) {
+      case "initialize":
+        return /*#__PURE__*/_react.default.createElement(_Button.Button, {
+          onClick: function onClick() {
+            return createTable();
+          },
+          text: "Create Board"
+        });
+
+      case "seed":
+        return /*#__PURE__*/_react.default.createElement(_Button.Button, {
+          onClick: function onClick() {
+            return setSeeds();
+          },
+          text: "Play Game"
+        });
+
+      case "play":
+        return /*#__PURE__*/_react.default.createElement(_Button.Button, {
+          onClick: function onClick() {
+            return resetTable();
+          },
+          text: "Reset Board"
+        });
+
+      default:
+        return /*#__PURE__*/_react.default.createElement(_Button.Button, {
+          onClick: function onClick() {
+            return resetTable();
+          },
+          text: "Reset Board"
+        });
     }
-  }, seeding ? "Play" : "Reset"), /*#__PURE__*/_react.default.createElement(_BoardWrapper.BoardWrapper, null, seeding && /*#__PURE__*/_react.default.createElement(_SeedTable.SeedTable, {
-    setSeeding: setSeeding,
-    setGenerations: setGenerations,
-    table: table,
-    setTable: setTable
-  }), !seeding && /*#__PURE__*/_react.default.createElement(_GameBoard.GameBoard, {
-    generations: generations,
-    gen: gen,
-    setGen: setGen
-  })));
+  };
+
+  var renderBoard = function renderBoard() {
+    switch (step) {
+      case "initialize":
+        return /*#__PURE__*/_react.default.createElement(_CreateTable.CreateTable, {
+          setMaxGens: setMaxGens,
+          setTableN: setTableN,
+          maxGens: maxGens,
+          tableN: tableN
+        });
+
+      case "seed":
+        return /*#__PURE__*/_react.default.createElement(_SeedTable.SeedTable, {
+          table: table,
+          setTable: setTable
+        });
+
+      case "play":
+        return /*#__PURE__*/_react.default.createElement(_GameBoard.GameBoard, {
+          generations: generations,
+          gen: gen,
+          setGen: setGen
+        });
+
+      default:
+        return /*#__PURE__*/_react.default.createElement(_CreateTable.CreateTable, {
+          setMaxGens: setMaxGens,
+          setTableN: setTableN,
+          maxGens: maxGens,
+          tableN: tableN
+        });
+    }
+  };
+
+  return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("h1", null, "Kayla's Game of Life"), renderHeader(), renderButton(), /*#__PURE__*/_react.default.createElement(_BoardWrapper.BoardWrapper, {
+    tableN: tableN
+  }, renderBoard()));
 };
 
 var _default = App;
 exports.default = _default;
-},{"react":"../node_modules/react/index.js","./BoardWrapper":"BoardWrapper/index.js","./GameBoard":"GameBoard/index.js","./SeedTable":"SeedTable/index.js","./initial-table":"initial-table.json","./lib":"lib/index.js"}],"index.js":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","./BoardWrapper":"BoardWrapper/index.js","./Button":"Button/index.js","./CreateTable":"CreateTable/index.js","./SeedTable":"SeedTable/index.js","./GameBoard":"GameBoard/index.js","./lib":"lib/index.js"}],"index.js":[function(require,module,exports) {
 "use strict";
 
 var _react = _interopRequireDefault(require("react"));
@@ -46000,7 +46033,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59973" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50293" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

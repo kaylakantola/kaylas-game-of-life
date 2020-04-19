@@ -12,7 +12,6 @@ const App = () => {
 
   const [maxGens, setMaxGens] = useState(25);
   const [tableN, setTableN] = useState(25);
-  const [initialTable, setInitialTable] = useState([]);
 
   const [table, setTable] = useState([]);
   const [generations, setGenerations] = useState([]);
@@ -20,12 +19,12 @@ const App = () => {
 
   const createTable = () => {
     const iT = createInitialTable(tableN);
-    setInitialTable(iT);
+    setTable(iT);
     setStep("seed");
   };
 
   const setSeeds = () => {
-    const gens = createGenerations({ table, maxGens });
+    const gens = createGenerations({ table, maxGens, tableN });
     setGenerations(gens);
     setStep("play");
   };
@@ -33,7 +32,6 @@ const App = () => {
   const resetTable = () => {
     setMaxGens(25);
     setTableN(25);
-    setInitialTable([]);
     setTable([]);
     setGenerations([]);
     setGen(0);
@@ -102,7 +100,7 @@ const App = () => {
       <h1>Kayla's Game of Life</h1>
       {renderHeader()}
       {renderButton()}
-      <BoardWrapper>{renderBoard()}</BoardWrapper>
+      <BoardWrapper tableN={tableN}>{renderBoard()}</BoardWrapper>
     </div>
   );
 };

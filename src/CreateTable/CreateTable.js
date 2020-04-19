@@ -6,10 +6,11 @@ const CreateTable = ({ setMaxGens, setTableN, maxGens, tableN }) => {
       style={{
         display: "flex",
         flexDirection: "column",
-        width: "300px",
+        width: "100%",
       }}
     >
-      <div style={{ flexDirection: "row", width: "100%" }}>
+      <div style={{ display: "flex", flexDirection: "row", width: "100%" }}>
+        <div>Max number of generations: </div>
         <button role="button" onClick={() => setMaxGens(maxGens - 1)}>
           less
         </button>
@@ -18,7 +19,8 @@ const CreateTable = ({ setMaxGens, setTableN, maxGens, tableN }) => {
           more
         </button>
       </div>
-      <div style={{ flexDirection: "row", width: "100%" }}>
+      <div style={{ display: "flex", flexDirection: "row", width: "100%" }}>
+        <div>Table size: </div>
         <button role="button" onClick={() => setTableN(tableN - 1)}>
           less
         </button>

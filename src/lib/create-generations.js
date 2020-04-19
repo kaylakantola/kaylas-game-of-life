@@ -12,13 +12,13 @@ import {
 const livingCell = { alive: true };
 const deadCell = { alive: false };
 
-const createGenerations = ({ table, maxGens }) => {
+const createGenerations = ({ table, maxGens, tableN }) => {
   let gens = [];
 
   const generate = (rows) => {
     const newGen = rows.map((row, rowIdx) => {
       const newRow = row.map((cell, cellIdx) => {
-        const arr = range(0, 10);
+        const arr = range(0, tableN);
 
         const deadRow = arr.map(() => deadCell);
 
@@ -27,19 +27,20 @@ const createGenerations = ({ table, maxGens }) => {
         const leftIdx = cellIdx - 1;
         const rightIdx = cellIdx + 1;
 
-        const topRow = topRowIdx > 9 ? deadRow : rows[topRowIdx];
+        const topRow = topRowIdx > tableN - 1 ? deadRow : rows[topRowIdx];
         const bottomRow = btmRowIdx < 0 ? deadRow : rows[btmRowIdx];
 
         const topLeft = leftIdx < 0 ? deadCell : topRow[leftIdx];
         const top = topRow[cellIdx];
-        const topRight = rightIdx > 9 ? deadCell : topRow[rightIdx];
+        const topRight = rightIdx > tableN - 1 ? deadCell : topRow[rightIdx];
 
         const left = leftIdx < 0 ? deadCell : row[leftIdx];
-        const right = rightIdx > 9 ? deadCell : row[rightIdx];
+        const right = rightIdx > tableN - 1 ? deadCell : row[rightIdx];
 
         const bottomLeft = leftIdx < 0 ? deadCell : bottomRow[leftIdx];
         const bottom = bottomRow[cellIdx];
-        const bottomRight = rightIdx > 9 ? deadCell : bottomRow[rightIdx];
+        const bottomRight =
+          rightIdx > tableN - 1 ? deadCell : bottomRow[rightIdx];
 
         const neighbors = [
           topLeft,

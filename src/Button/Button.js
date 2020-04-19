@@ -8,6 +8,10 @@ const Button = ({ text, onClick }) => {
       style={{
         margin: "1rem",
         cursor: "pointer",
+        border: "1px solid green",
+        width: "100px",
+        padding: "5px",
+        textAlign: "center",
       }}
     >
       {text}

@@ -1,11 +1,11 @@
 import React from "react";
 
-const BoardWrapper = ({ children }) => {
+const BoardWrapper = ({ children, tableN }) => {
   return (
     <div
       style={{
-        width: "250px",
-        height: "250px",
+        width: `${tableN * 25}px`,
+        height: `${tableN * 25}px`,
         border: "1px solid green",
       }}
     >
