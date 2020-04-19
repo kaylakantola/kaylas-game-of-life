@@ -28285,7 +28285,114 @@ if ("development" === 'production') {
 } else {
   module.exports = require('./cjs/react-dom.development.js');
 }
-},{"./cjs/react-dom.development.js":"../node_modules/react-dom/cjs/react-dom.development.js"}],"gameboard/gameboard.js":[function(require,module,exports) {
+},{"./cjs/react-dom.development.js":"../node_modules/react-dom/cjs/react-dom.development.js"}],"button/button.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _react = _interopRequireDefault(require("react"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var Button = function Button(_ref) {
+  var gameActive = _ref.gameActive,
+      startGame = _ref.startGame;
+  return /*#__PURE__*/_react.default.createElement("button", {
+    style: {
+      width: "200px"
+    },
+    onClick: function onClick() {
+      return startGame(!gameActive);
+    }
+  }, gameActive ? "end game" : "start game");
+};
+
+var _default = Button;
+exports.default = _default;
+},{"react":"../node_modules/react/index.js"}],"button/index.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+Object.defineProperty(exports, "Button", {
+  enumerable: true,
+  get: function () {
+    return _button.default;
+  }
+});
+
+var _button = _interopRequireDefault(require("./button"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+},{"./button":"button/button.js"}],"decisions/decisions.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _react = _interopRequireDefault(require("react"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var Decisions = function Decisions(_ref) {
+  var formData = _ref.formData;
+  var nRows = formData.nRows,
+      nColumns = formData.nColumns,
+      cellSize = formData.cellSize,
+      cellColor = formData.cellColor;
+  return /*#__PURE__*/_react.default.createElement("div", {
+    style: {
+      display: "flex",
+      flexDirection: "column"
+    }
+  }, /*#__PURE__*/_react.default.createElement("div", {
+    style: {
+      display: "flex",
+      flexDirection: "row"
+    }
+  }, /*#__PURE__*/_react.default.createElement("div", null, "Number of Rows:"), /*#__PURE__*/_react.default.createElement("div", null, nRows)), /*#__PURE__*/_react.default.createElement("div", {
+    style: {
+      display: "flex",
+      flexDirection: "row"
+    }
+  }, /*#__PURE__*/_react.default.createElement("div", null, "Number of Columns:"), /*#__PURE__*/_react.default.createElement("div", null, nColumns)), /*#__PURE__*/_react.default.createElement("div", {
+    style: {
+      display: "flex",
+      flexDirection: "row"
+    }
+  }, /*#__PURE__*/_react.default.createElement("div", null, "Cell Size:"), /*#__PURE__*/_react.default.createElement("div", null, cellSize)), /*#__PURE__*/_react.default.createElement("div", {
+    style: {
+      display: "flex",
+      flexDirection: "row"
+    }
+  }, /*#__PURE__*/_react.default.createElement("div", null, "Cell Color:"), /*#__PURE__*/_react.default.createElement("div", null, cellColor)));
+};
+
+var _default = Decisions;
+exports.default = _default;
+},{"react":"../node_modules/react/index.js"}],"decisions/index.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+Object.defineProperty(exports, "Decisions", {
+  enumerable: true,
+  get: function () {
+    return _decisions.default;
+  }
+});
+
+var _decisions = _interopRequireDefault(require("./decisions"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+},{"./decisions":"decisions/decisions.js"}],"gameboard/gameboard.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -28420,7 +28527,160 @@ var _row = _interopRequireDefault(require("./row"));
 var _cell = _interopRequireDefault(require("./cell"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-},{"./gameboard":"gameboard/gameboard.js","./row":"gameboard/row.js","./cell":"gameboard/cell.js"}],"rows.json":[function(require,module,exports) {
+},{"./gameboard":"gameboard/gameboard.js","./row":"gameboard/row.js","./cell":"gameboard/cell.js"}],"form/form.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _react = _interopRequireDefault(require("react"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var Form = function Form(_ref) {
+  var formData = _ref.formData;
+  var nRows = formData.nRows,
+      setNRows = formData.setNRows,
+      nColumns = formData.nColumns,
+      setNColumns = formData.setNColumns,
+      cellSize = formData.cellSize,
+      setCellSize = formData.setCellSize,
+      cellColor = formData.cellColor,
+      setCellColor = formData.setCellColor;
+  return /*#__PURE__*/_react.default.createElement("div", {
+    style: {
+      display: "flex",
+      flexDirection: "column"
+    }
+  }, /*#__PURE__*/_react.default.createElement("label", null, "Number of Rows", /*#__PURE__*/_react.default.createElement("input", {
+    type: "text",
+    name: "rows",
+    value: nRows,
+    onChange: function onChange(e) {
+      return setNRows(e.target.value);
+    }
+  })), /*#__PURE__*/_react.default.createElement("label", null, "Number of Columns", /*#__PURE__*/_react.default.createElement("input", {
+    type: "text",
+    name: "cols",
+    value: nColumns,
+    onChange: function onChange(e) {
+      return setNColumns(e.target.value);
+    }
+  })), /*#__PURE__*/_react.default.createElement("label", null, "Cell Size", /*#__PURE__*/_react.default.createElement("input", {
+    type: "text",
+    name: "size",
+    value: cellSize,
+    onChange: function onChange(e) {
+      return setCellSize(e.target.value);
+    }
+  })), /*#__PURE__*/_react.default.createElement("label", null, "Cell Color", /*#__PURE__*/_react.default.createElement("input", {
+    type: "text",
+    name: "color",
+    value: cellColor,
+    onChange: function onChange(e) {
+      return setCellColor(e.target.value);
+    }
+  })));
+};
+
+var _default = Form;
+exports.default = _default;
+},{"react":"../node_modules/react/index.js"}],"form/index.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+Object.defineProperty(exports, "Form", {
+  enumerable: true,
+  get: function () {
+    return _form.default;
+  }
+});
+
+var _form = _interopRequireDefault(require("./form"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+},{"./form":"form/form.js"}],"hooks/use-form.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _react = _interopRequireWildcard(require("react"));
+
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(n); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+var useForm = function useForm() {
+  var _useState = (0, _react.useState)(0),
+      _useState2 = _slicedToArray(_useState, 2),
+      nRows = _useState2[0],
+      setNRows = _useState2[1];
+
+  var _useState3 = (0, _react.useState)(0),
+      _useState4 = _slicedToArray(_useState3, 2),
+      nColumns = _useState4[0],
+      setNColumns = _useState4[1];
+
+  var _useState5 = (0, _react.useState)("25px"),
+      _useState6 = _slicedToArray(_useState5, 2),
+      cellSize = _useState6[0],
+      setCellSize = _useState6[1];
+
+  var _useState7 = (0, _react.useState)("green"),
+      _useState8 = _slicedToArray(_useState7, 2),
+      cellColor = _useState8[0],
+      setCellColor = _useState8[1];
+
+  return {
+    nRows: nRows,
+    setNRows: setNRows,
+    nColumns: nColumns,
+    setNColumns: setNColumns,
+    cellSize: cellSize,
+    setCellSize: setCellSize,
+    cellColor: cellColor,
+    setCellColor: setCellColor
+  };
+};
+
+var _default = useForm;
+exports.default = _default;
+},{"react":"../node_modules/react/index.js"}],"hooks/index.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+Object.defineProperty(exports, "useForm", {
+  enumerable: true,
+  get: function () {
+    return _useForm.default;
+  }
+});
+
+var _useForm = _interopRequireDefault(require("./use-form"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+},{"./use-form":"hooks/use-form.js"}],"rows.json":[function(require,module,exports) {
 module.exports = [[{
   "alive": true
 }, {
@@ -28632,7 +28892,15 @@ exports.default = void 0;
 
 var _react = _interopRequireWildcard(require("react"));
 
+var _button = require("./button");
+
+var _decisions = require("./decisions");
+
 var _gameboard = require("./gameboard");
+
+var _form = require("./form");
+
+var _hooks = require("./hooks");
 
 var _rows = _interopRequireDefault(require("./rows.json"));
 
@@ -28641,6 +28909,12 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
@@ -28660,78 +28934,23 @@ var App = function App() {
       gameActive = _useState2[0],
       startGame = _useState2[1];
 
-  var _useState3 = (0, _react.useState)(0),
-      _useState4 = _slicedToArray(_useState3, 2),
-      nRows = _useState4[0],
-      setNRows = _useState4[1];
-
-  var _useState5 = (0, _react.useState)(0),
-      _useState6 = _slicedToArray(_useState5, 2),
-      nColumns = _useState6[0],
-      setNColumns = _useState6[1];
-
-  var _useState7 = (0, _react.useState)("25px"),
-      _useState8 = _slicedToArray(_useState7, 2),
-      cellSize = _useState8[0],
-      setCellSize = _useState8[1];
-
-  var _useState9 = (0, _react.useState)("green"),
-      _useState10 = _slicedToArray(_useState9, 2),
-      cellColor = _useState10[0],
-      setCellColor = _useState10[1];
-
-  return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("h1", null, "Kayla's Game of Life"), /*#__PURE__*/_react.default.createElement("div", {
-    style: {
-      display: "flex",
-      flexDirection: "column"
-    }
-  }, /*#__PURE__*/_react.default.createElement("label", null, "Number of Rows", /*#__PURE__*/_react.default.createElement("input", {
-    type: "text",
-    name: "rows",
-    value: nRows,
-    onChange: function onChange(e) {
-      return setNRows(e.target.value);
-    }
-  })), /*#__PURE__*/_react.default.createElement("label", null, "Number of Columns", /*#__PURE__*/_react.default.createElement("input", {
-    type: "text",
-    name: "cols",
-    value: nColumns,
-    onChange: function onChange(e) {
-      return setNColumns(e.target.value);
-    }
-  })), /*#__PURE__*/_react.default.createElement("label", null, "Cell Size", /*#__PURE__*/_react.default.createElement("input", {
-    type: "text",
-    name: "size",
-    value: cellSize,
-    onChange: function onChange(e) {
-      return setCellSize(e.target.value);
-    }
-  })), /*#__PURE__*/_react.default.createElement("label", null, "Cell Color", /*#__PURE__*/_react.default.createElement("input", {
-    type: "text",
-    name: "color",
-    value: cellColor,
-    onChange: function onChange(e) {
-      return setCellColor(e.target.value);
-    }
-  })), /*#__PURE__*/_react.default.createElement("button", {
-    style: {
-      width: "200px"
-    },
-    onClick: function onClick() {
-      return startGame(true);
-    }
-  }, "start game")), gameActive && /*#__PURE__*/_react.default.createElement(_gameboard.Gameboard, {
-    cellInfo: {
-      cellSize: cellSize,
-      cellColor: cellColor
-    },
+  var formData = (0, _hooks.useForm)();
+  return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("h1", null, "Kayla's Game of Life"), !gameActive && /*#__PURE__*/_react.default.createElement(_form.Form, {
+    formData: formData
+  }), gameActive && /*#__PURE__*/_react.default.createElement(_decisions.Decisions, {
+    formData: formData
+  }), /*#__PURE__*/_react.default.createElement(_button.Button, {
+    gameActive: gameActive,
+    startGame: startGame
+  }), gameActive && /*#__PURE__*/_react.default.createElement(_gameboard.Gameboard, {
+    cellInfo: _objectSpread({}, formData),
     rows: _rows.default
   }));
 };
 
 var _default = App;
 exports.default = _default;
-},{"react":"../node_modules/react/index.js","./gameboard":"gameboard/index.js","./rows.json":"rows.json"}],"index.js":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","./button":"button/index.js","./decisions":"decisions/index.js","./gameboard":"gameboard/index.js","./form":"form/index.js","./hooks":"hooks/index.js","./rows.json":"rows.json"}],"index.js":[function(require,module,exports) {
 "use strict";
 
 var _react = _interopRequireDefault(require("react"));
@@ -28771,7 +28990,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57757" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62030" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
