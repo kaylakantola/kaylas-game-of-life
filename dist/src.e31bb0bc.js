@@ -28301,8 +28301,15 @@ function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return 
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 var Gameboard = function Gameboard(_ref) {
-  var rows = _ref.rows;
+  var cellInfo = _ref.cellInfo,
+      rows = _ref.rows;
   return /*#__PURE__*/_react.default.createElement("div", {
     style: {
       width: "100%",
@@ -28312,9 +28319,11 @@ var Gameboard = function Gameboard(_ref) {
       overflowY: "scroll"
     }
   }, rows.map(function (row) {
-    return /*#__PURE__*/_react.default.createElement(_.Row, null, row.map(function (cell) {
+    return /*#__PURE__*/_react.default.createElement(_.Row, {
+      height: cellInfo.cellSize
+    }, row.map(function (cell) {
       return /*#__PURE__*/_react.default.createElement(_.Cell, {
-        cell: cell
+        cell: _objectSpread({}, cell, {}, cellInfo)
       });
     }));
   }));
@@ -28335,14 +28344,15 @@ var _react = _interopRequireDefault(require("react"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var Row = function Row(_ref) {
-  var children = _ref.children;
+  var children = _ref.children,
+      height = _ref.height;
   return /*#__PURE__*/_react.default.createElement("div", {
     style: {
       width: "100%",
       display: "flex",
       flexDirection: "row",
       flexWrap: "nowrap",
-      height: "25px"
+      height: height
     }
   }, children);
 };
@@ -28363,12 +28373,15 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var Cell = function Cell(_ref) {
   var cell = _ref.cell;
+  var alive = cell.alive,
+      cellColor = cell.cellColor,
+      cellSize = cell.cellSize;
   return /*#__PURE__*/_react.default.createElement("div", {
     style: {
-      height: "25px",
-      width: "25px",
-      backgroundColor: cell.alive ? "green" : "white",
-      border: "1px solid ".concat(cell.alive ? "white" : "green")
+      height: cellSize,
+      width: cellSize,
+      backgroundColor: alive ? cellColor : "white",
+      border: "1px solid ".concat(alive ? "white" : cellColor)
     }
   });
 };
@@ -28617,7 +28630,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 
-var _react = _interopRequireDefault(require("react"));
+var _react = _interopRequireWildcard(require("react"));
 
 var _gameboard = require("./gameboard");
 
@@ -28625,8 +28638,53 @@ var _rows = _interopRequireDefault(require("./rows.json"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(n); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 var App = function App() {
-  return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("h1", null, "Kayla's Game of Life"), /*#__PURE__*/_react.default.createElement(_gameboard.Gameboard, {
+  var _useState = (0, _react.useState)(false),
+      _useState2 = _slicedToArray(_useState, 2),
+      gameActive = _useState2[0],
+      startGame = _useState2[1];
+
+  var _useState3 = (0, _react.useState)(0),
+      _useState4 = _slicedToArray(_useState3, 2),
+      nRows = _useState4[0],
+      setNRows = _useState4[1];
+
+  var _useState5 = (0, _react.useState)(0),
+      _useState6 = _slicedToArray(_useState5, 2),
+      nColumns = _useState6[0],
+      setNColumns = _useState6[1];
+
+  var _useState7 = (0, _react.useState)("25px"),
+      _useState8 = _slicedToArray(_useState7, 2),
+      cellSize = _useState8[0],
+      setCellSize = _useState8[1];
+
+  var _useState9 = (0, _react.useState)("green"),
+      _useState10 = _slicedToArray(_useState9, 2),
+      cellColor = _useState10[0],
+      setCellColor = _useState10[1];
+
+  return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("h1", null, "Kayla's Game of Life"), gameActive && /*#__PURE__*/_react.default.createElement(_gameboard.Gameboard, {
+    cellInfo: {
+      cellSize: cellSize,
+      cellColor: cellColor
+    },
     rows: _rows.default
   }));
 };
@@ -28673,7 +28731,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51347" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54481" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
